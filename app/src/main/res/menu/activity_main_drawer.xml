@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group
+        android:id="@+id/nav_100"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_101"
+            android:icon="@android:drawable/star_big_on"
+            android:title="@string/menu_item101" />
+        <item
+            android:id="@+id/nav_102"
+            android:icon="@android:drawable/star_big_on"
+            android:title="@string/menu_item102" />
+    </group>
+
+    <item
+        android:id="@+id/nav_200"
+        android:title="@string/menu_group2">
+        <menu>
+            <item
+                android:id="@+id/nav_201"
+                android:icon="@android:drawable/star_big_on"
+                android:title="@string/menu_item201" />
+            <item
+                android:id="@+id/nav_202"
+                android:icon="@android:drawable/star_big_on"
+                android:title="@string/menu_item202" />
+            <item
+                android:id="@+id/nav_203"
+                android:icon="@android:drawable/star_big_on"
+                android:title="@string/menu_item203" />
+            <item
+                android:id="@+id/nav_204"
+                android:icon="@android:drawable/star_big_on"
+                android:title="@string/menu_item204" />
+        </menu>
+    </item>
+    <item
+        android:id="@+id/nav_300"
+        android:title="@string/menu_group3">
+        <menu>
+            <item
+                android:id="@+id/nav_301"
+                android:icon="@drawable/ic_menu_send"
+                android:title="@string/menu_item301" />
+            <item
+                android:id="@+id/nav_302"
+                android:icon="@drawable/ic_menu_send"
+                android:title="@string/menu_item302" />
+            <item
+                android:id="@+id/nav_303"
+                android:icon="@drawable/ic_menu_send"
+                android:title="@string/menu_item303" />
+            <item
+                android:id="@+id/nav_304"
+                android:icon="@drawable/ic_menu_send"
+                android:title="@string/menu_item304" />
+            <item
+                android:id="@+id/nav_305"
+                android:icon="@drawable/ic_menu_send"
+                android:title="@string/menu_item305" />
+            <item
+                android:id="@+id/nav_306"
+                android:icon="@drawable/ic_menu_send"
+                android:title="@string/menu_item306" />
+            <item
+                android:id="@+id/nav_307"
+                android:icon="@drawable/ic_menu_send"
+                android:title="@string/menu_item307" />
+            <item
+                android:id="@+id/nav_308"
+                android:icon="@drawable/ic_menu_send"
+                android:title="@string/menu_item308" />
+        </menu>
+    </item>
+
+    <group
+        android:id="@+id/nav_500"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_501"
+            android:icon="@android:drawable/star_big_on"
+            android:title="@string/menu_item501" />
+    </group>
+</menu>
