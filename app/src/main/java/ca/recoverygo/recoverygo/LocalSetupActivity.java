@@ -1,6 +1,6 @@
 package ca.recoverygo.recoverygo;
 
-
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -12,9 +12,6 @@ import android.widget.Toast;
 
 import org.joda.time.DateTime;
 import org.joda.time.Days;
-import org.joda.time.Hours;
-import org.joda.time.Minutes;
-import org.joda.time.Seconds;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -29,8 +26,8 @@ import java.util.Date;
 
 public class LocalSetupActivity extends AppCompatActivity {
 
-    private static final String TAG = "LocalSetupActivity";
-    private static final String FILE_NAME = "rgsetup.txt";
+    private static final String TAG         = "LocalSetupActivity";
+    private static final String FILE_NAME   = "rgsetup.txt";
 
     EditText mEditText;
     TextView mToday;
@@ -67,22 +64,19 @@ public class LocalSetupActivity extends AppCompatActivity {
             Log.d(TAG, "onCreate: text:"+textDate);
 
             Date today = Calendar.getInstance().getTime();
-            Calendar rightNow = Calendar.getInstance();
             Log.d(TAG, "onCreate: today:"+today);
-            SimpleDateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+            @SuppressLint("SimpleDateFormat") SimpleDateFormat df = new SimpleDateFormat("MM/dd/yyyy");
             String formattedDate = df.format(today);
             Log.d(TAG, "onCreate: today:"+formattedDate);
+            @SuppressLint("SimpleDateFormat") SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
             mToday.setText(formattedDate);
-            String dateStart = formattedDate;
-            String dateStop = textDate;
-            SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
 
-            Date date1 = null;
-            Date date2 = null;
+            Date date1;
+            Date date2;
 
             try {
-                date1 = format.parse(dateStart);
-                date2 = format.parse(dateStop);
+                date1 = format.parse(formattedDate);
+                date2 = format.parse(textDate);
                 DateTime dt1 = new DateTime(date1);
                 DateTime dt2 = new DateTime(date2);
 

@@ -146,14 +146,13 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         findViewById(R.id.verifyEmailButton).setEnabled(false);
 
         // Send verification email
-        // [START send_email_verification]
         final FirebaseUser user = mAuth.getCurrentUser();
+        assert user != null;
         user.sendEmailVerification()
                 .addOnCompleteListener(this, new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        // [START_EXCLUDE]
-                        // Re-enable button
+
                         findViewById(R.id.verifyEmailButton).setEnabled(true);
 
                         if (task.isSuccessful()) {
@@ -166,13 +165,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                                     "Failed to send verification email.",
                                     Toast.LENGTH_SHORT).show();
                         }
-                        // [END_EXCLUDE]
                     }
                 });
-        // [END send_email_verification]
     }
 
-    private boolean validateForm() {
+    public boolean validateForm() {
         boolean valid = true;
 
         String email = mEmailField.getText().toString();

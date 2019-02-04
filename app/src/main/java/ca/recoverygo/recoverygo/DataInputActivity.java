@@ -32,10 +32,8 @@ import ca.recoverygo.recoverygo.adapters.NoteRecyclerViewAdapter;
 import ca.recoverygo.recoverygo.models.NewNoteDialog;
 import ca.recoverygo.recoverygo.models.ViewNoteDialog;
 import ca.recoverygo.recoverygo.system.BaseActivity;
-
 import ca.recoverygo.recoverygo.models.Note;
 import ca.recoverygo.recoverygo.system.IDataInputActivity;
-
 
 public class DataInputActivity extends BaseActivity implements
         View.OnClickListener,
@@ -44,39 +42,28 @@ public class DataInputActivity extends BaseActivity implements
 
     private static final String TAG = "DataInputActivity";
 
-    //Firebase
-    private FirebaseAuth.AuthStateListener mAuthListener;
-
-
-    //widgets
-    private FloatingActionButton mFab;
-    private FloatingActionButton mFab2;
-
-    private RecyclerView mRecyclerView;
-    private SwipeRefreshLayout mSwipeRefreshLayout;
-
-    //vars
-    private View mParentLayout;
-    private ArrayList<Note> mNotes = new ArrayList<>();
-    private NoteRecyclerViewAdapter mNoteRecyclerViewAdapter;
-    private DocumentSnapshot mLastQueriedDocument;
-    private FirebaseAuth mAuth;
+    private View                            mParentLayout;
+    private RecyclerView                    mRecyclerView;
+    private SwipeRefreshLayout              mSwipeRefreshLayout;
+    private FirebaseAuth.AuthStateListener  mAuthListener;
+    private ArrayList<Note>                 mNotes = new ArrayList<>();
+    private NoteRecyclerViewAdapter         mNoteRecyclerViewAdapter;
+    private DocumentSnapshot                mLastQueriedDocument;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_data_input);
-        mFab = findViewById(R.id.fab);
-        mFab2 = findViewById(R.id.fab2);
 
-        mParentLayout = findViewById(android.R.id.content);
-        mRecyclerView = findViewById(R.id.recycler_view);
-        mSwipeRefreshLayout = findViewById(R.id.swipe_refresh_layout);
+        FloatingActionButton mFab   = findViewById(R.id.fab);
+        FloatingActionButton mFab2  = findViewById(R.id.fab2);
+        mParentLayout               = findViewById(android.R.id.content);
+        mRecyclerView               = findViewById(R.id.recycler_view);
+        mSwipeRefreshLayout         = findViewById(R.id.swipe_refresh_layout);
 
-        mFab.setOnClickListener(this);
-        mFab2.setOnClickListener(this);
-
-        mSwipeRefreshLayout.setOnRefreshListener(this);
+        mFab.                   setOnClickListener(this);
+        mFab2.                  setOnClickListener(this);
+        mSwipeRefreshLayout.    setOnRefreshListener(this);
 
         setupFirebaseAuth();
         initRecyclerView();
@@ -89,7 +76,6 @@ public class DataInputActivity extends BaseActivity implements
         startActivity(intent);
             super.onBackPressed();
         }
-
 
     @Override
     public void deleteNote(final Note note){
@@ -122,12 +108,9 @@ public class DataInputActivity extends BaseActivity implements
     private void getNotes(){
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        Log.d(TAG, "getNotes: FirebaseFirestore db = FirebaseFirestore.getInstance()********");
-
         CollectionReference notesCollectionRef = db
                 .collection("notes");
-        Log.d(TAG, "getNotes: DEFINING COLLECTION REFERENCE ********************************");
-        Query notesQuery = null;
+        Query notesQuery;
         if(mLastQueriedDocument != null){
            notesQuery = notesCollectionRef
                     .whereEqualTo("user_id", FirebaseAuth.getInstance().getCurrentUser().getUid())
@@ -148,7 +131,6 @@ public class DataInputActivity extends BaseActivity implements
                     for(QueryDocumentSnapshot document: task.getResult()){
                         Note note = document.toObject(Note.class);
                         mNotes.add(note);
-//                        Log.d(TAG, "onComplete: got a new note. Position: " + (mNotes.size() - 1));
                     }
 
                     if(task.getResult().size() != 0){
@@ -237,14 +219,9 @@ public class DataInputActivity extends BaseActivity implements
         });
     }
 
-    // *********************************************************************************************
-
-
-    // *********************************************************************************************
     private void makeSnackBarMessage(String message){
         Snackbar.make(mParentLayout, message, Snackbar.LENGTH_SHORT).show();
     }
-
 
     @Override
     public void onClick(View view) {
@@ -289,9 +266,6 @@ public class DataInputActivity extends BaseActivity implements
         FirebaseAuth.getInstance().signOut();
     }
 
-    /*
-            ----------------------------- Firebase setup ---------------------------------
-         */
     private void setupFirebaseAuth(){
         Log.d(TAG, "setupFirebaseAuth: started.");
 
@@ -328,16 +302,4 @@ public class DataInputActivity extends BaseActivity implements
         }
     }
 
-
-
 }
-
-
-
-
-
-
-
-
-
-

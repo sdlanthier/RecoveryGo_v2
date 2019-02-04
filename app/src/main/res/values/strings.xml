@@ -103,7 +103,8 @@
 
     <string name="label_emailpassword">Email/Password Authentication</string>
     <string name="desc_emailpassword">Use an email and password to authenticate with Firebase.</string>
-    <string name="emailpassword_status_fmt">SIGNED IN\n %1$s \n (verified: %2$b)</string>
+    <string name="emailpassword_status_fmt">SIGNED IN</string>
+    <string name="emailpassword_status_fmt2">SIGNED IN\n %1$s \n (verified: %2$b)</string>
     <string name="emailpassword_title_text">Email and Password</string>
     <string name="firebase_status_fmt">Firebase id:\n %s</string>
 

@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.View;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -14,7 +13,6 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 import ca.recoverygo.recoverygo.adapters.MainAdapter;
-
 
 public class DirectoryActivity extends AppCompatActivity {
 

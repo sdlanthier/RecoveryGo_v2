@@ -1,5 +1,6 @@
 package ca.recoverygo.recoverygo;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.media.AudioManager;
 import android.os.Handler;
@@ -73,13 +74,14 @@ public class MeetingGuideActivity extends AppCompatActivity {
         // inflate the layout of the popup window
         LayoutInflater inflater = (LayoutInflater)
                 getSystemService(LAYOUT_INFLATER_SERVICE);
-        View popupView = inflater.inflate(R.layout.popup_window_mute, null);
+        assert inflater != null;
+        @SuppressLint("InflateParams") View popupView = inflater.inflate(R.layout.popup_window_mute, null);
 
         // create the popup window
         int width = LinearLayout.LayoutParams.WRAP_CONTENT;
         int height = LinearLayout.LayoutParams.WRAP_CONTENT;
-        boolean focusable = true; // lets taps outside the popup also dismiss it
-        final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
+        // boolean focusable = true; // lets taps outside the popup also dismiss it
+        final PopupWindow popupWindow = new PopupWindow(popupView, width, height, true);
 
         // show the popup window
         // which view you pass in doesn't matter, it is only used for the window tolken
@@ -87,6 +89,7 @@ public class MeetingGuideActivity extends AppCompatActivity {
 
         // dismiss the popup window when touched
         popupView.setOnTouchListener(new View.OnTouchListener() {
+            @SuppressLint("ClickableViewAccessibility")
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 popupWindow.dismiss();
@@ -145,9 +148,35 @@ public class MeetingGuideActivity extends AppCompatActivity {
                 Log.d(TAG, "setVolumeOff: Volume restored to previous levels.");
                 Toast.makeText(MeetingGuideActivity.this, "Volume Restored", Toast.LENGTH_LONG).show();
             }
-        }, 5000);
-        Toast.makeText(MeetingGuideActivity.this, "Volume OFF for 1 Minute.", Toast.LENGTH_LONG).show();
-        Log.d(TAG, "setVolumeOff: mute all volume for 1 minute.");
+        }, 3600000);
+
+        // Toast.makeText(MeetingGuideActivity.this, "Volume OFF for 60 Minutes.", Toast.LENGTH_LONG).show();
+        Log.d(TAG, "setVolumeOff: mute all volume for 60 minutes.");
+
+        LayoutInflater inflater = (LayoutInflater)
+                getSystemService(LAYOUT_INFLATER_SERVICE);
+        assert inflater != null;
+        @SuppressLint("InflateParams") View popupView = inflater.inflate(R.layout.popup_window_mute, null);
+
+        // create the popup window
+        int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+        int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+        // boolean focusable = true; // lets taps outside the popup also dismiss it
+        final PopupWindow popupWindow = new PopupWindow(popupView, width, height, true);
+
+        // show the popup window
+        // which view you pass in doesn't matter, it is only used for the window tolken
+        popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+
+        // dismiss the popup window when touched
+        popupView.setOnTouchListener(new View.OnTouchListener() {
+            @SuppressLint("ClickableViewAccessibility")
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                popupWindow.dismiss();
+                return true;
+            }
+        });
     }
 
     public static class PlaceholderFragment extends Fragment {

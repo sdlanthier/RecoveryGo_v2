@@ -1,14 +1,9 @@
 package ca.recoverygo.recoverygo;
 
 import android.content.Intent;
-import android.media.MediaPlayer;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.util.Log;
-import android.view.View;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -17,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -37,22 +33,19 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-import ca.recoverygo.recoverygo.adapters.MainAdapter;
-
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener {
 
     private static final String TAG = "MainActivity";
-
     private static final String FILE_NAME = "rgsetup.txt";
+
+    private FirebaseAuth mAuth;
+
     private TextView mStatusTextView;
     private TextView mDetailTextView;
-    private TextView mTextView;
-    private FirebaseAuth mAuth;
-    TextView mToday;
-    TextView mToday1;
-    TextView mDays;
-    TextView mHours;
-    ImageView mFbSignedIn;
+            TextView mDays;
+            TextView mHours;
+            ImageView mFbSignedIn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +61,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toggle.syncState();
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
         //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         final TextView mTextView = findViewById(R.id.drydate);
 
@@ -99,28 +91,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Log.d(TAG, "onCreate: text:"+textDate);
 
             Date today = Calendar.getInstance().getTime();
-            Calendar rightNow = Calendar.getInstance();
             Log.d(TAG, "onCreate: today:"+today);
             SimpleDateFormat df = new SimpleDateFormat("MM/dd/yyyy");
             String formattedDate = df.format(today);
             Log.d(TAG, "onCreate: today:"+formattedDate);
-            // mToday.setText(formattedDate);
-            String dateStart = formattedDate;
-            String dateStop = textDate;
             SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
 
-            Date date1 = null;
-            Date date2 = null;
+            Date date1;
+            Date date2;
 
             try {
-                date1 = format.parse(dateStart);
-                date2 = format.parse(dateStop);
+                date1 = format.parse(formattedDate);
+                date2 = format.parse(textDate);
                 DateTime dt1 = new DateTime(date1);
                 DateTime dt2 = new DateTime(date2);
 
                 String daysSober = (Days.daysBetween(dt2,dt1).getDays() + " days free!");
                 String hoursSober = (Hours.hoursBetween(dt2,dt1).getHours() + " hours");
-                String minutesSober = (Hours.hoursBetween(dt2,dt1).getHours() + " hours");
 
                 mDays.setText(daysSober);
                 mHours.setText(hoursSober);
