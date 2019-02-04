@@ -29,52 +29,6 @@
                 android:id="@+id/nav_202"
                 android:icon="@android:drawable/star_big_on"
                 android:title="@string/menu_item202" />
-            <item
-                android:id="@+id/nav_203"
-                android:icon="@android:drawable/star_big_on"
-                android:title="@string/menu_item203" />
-            <item
-                android:id="@+id/nav_204"
-                android:icon="@android:drawable/star_big_on"
-                android:title="@string/menu_item204" />
-        </menu>
-    </item>
-    <item
-        android:id="@+id/nav_300"
-        android:title="@string/menu_group3">
-        <menu>
-            <item
-                android:id="@+id/nav_301"
-                android:icon="@drawable/ic_menu_send"
-                android:title="@string/menu_item301" />
-            <item
-                android:id="@+id/nav_302"
-                android:icon="@drawable/ic_menu_send"
-                android:title="@string/menu_item302" />
-            <item
-                android:id="@+id/nav_303"
-                android:icon="@drawable/ic_menu_send"
-                android:title="@string/menu_item303" />
-            <item
-                android:id="@+id/nav_304"
-                android:icon="@drawable/ic_menu_send"
-                android:title="@string/menu_item304" />
-            <item
-                android:id="@+id/nav_305"
-                android:icon="@drawable/ic_menu_send"
-                android:title="@string/menu_item305" />
-            <item
-                android:id="@+id/nav_306"
-                android:icon="@drawable/ic_menu_send"
-                android:title="@string/menu_item306" />
-            <item
-                android:id="@+id/nav_307"
-                android:icon="@drawable/ic_menu_send"
-                android:title="@string/menu_item307" />
-            <item
-                android:id="@+id/nav_308"
-                android:icon="@drawable/ic_menu_send"
-                android:title="@string/menu_item308" />
         </menu>
     </item>
 
@@ -85,5 +39,21 @@
             android:id="@+id/nav_501"
             android:icon="@android:drawable/star_big_on"
             android:title="@string/menu_item501" />
+        <item
+            android:id="@+id/nav_502"
+            android:icon="@android:drawable/star_big_on"
+            android:title="@string/menu_item502" />
+        <item
+            android:id="@+id/nav_503"
+            android:icon="@android:drawable/star_big_on"
+            android:title="@string/menu_item503" />
+        <item
+            android:id="@+id/nav_504"
+            android:icon="@android:drawable/star_big_on"
+            android:title="@string/menu_item504" />
+        <!--<item
+            android:id="@+id/nav_505"
+            android:icon="@android:drawable/star_big_on"
+            android:title="Bruce" />-->
     </group>
 </menu>

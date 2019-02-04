@@ -1,60 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
-    <string name="intro_meetings_title">The A.A. Meeting</string>
-    <string name="intro_meetings">\tThere are several types of A.A. meetings available for anyone to attend. Meetings last for one hour and generally follow the same structure;
-        opening readings followed by a group discussion, a guest speaker, or a reading and discussion from other A.A. approved literature.
-        \n\n\tEach begin with the Serenity Prayer spoken by all (if you choose) followed by a moment of silence; to give thought to those who still suffer from addiction.
-        \n\n\tA member of the group will then read aloud the A.A. Preamble giving new members a general idea of what the program is.\n\nFollowing this, another member will read
-        an excerpt from The Big Book of A.A. titled How It Works.\n\nA reading of the 12 steps and 12 traditions conclude the opening readings of each meeting.\n\nMost meetings will conclude with the Responsibility Pledge and a closing prayer.\n\n</string>
+    <string name="aa_disclaimer">(reprinted without permission)</string>
 
-    <string name="reading1_title">A.A. Preamble</string>
-    <string name="reading1">\tAlcoholics Anonymous is a fellowship of men and women who share their experience, strength, and hope with each other that they may solve their common
-        problem and help others to recover from alcoholism.\n\n\tThe only requirement for membership is the desire to stop drinking. There are no dues or fees for A.A. membership,
-        we are self supporting through our own contributions. A.A. is not allied with any sect, denomination, politics, organization or institution; does not wish to engage in any
-        controversy; neither endorses nor opposes any causes. Our primary purpose is to stay sober and help other alcoholics to achieve sobriety.</string>
-    <string name="reading1_reference">Unknown</string>
+    <string name="slogan01">\"One Day At A Time\"</string>
+
+    <string name="readings">
+        The Serenity Prayer\n
+        AA Preamble\n
+        How It Works\n
+        The Twelve Steps\n
+        The Twelve Traditions\n
+        The Responsibility Pledge\n
+        The Lord\'s Prayer\n
+        The Prayer of St. Francis\n
+        The AA Promises</string>
+
+    <string name="reading0_title">The Serenity Prayer</string>
+    <string name="reading0_ref">Reinhold Niebuhr (1892–1971)</string>
+    <string name="reading0">God, grant me the SERENITY to accept the things I cannot change, COURAGE to change the things I can, and WISDOM to know the difference.</string>
+
+    <string name="reading1_title">AA Preamble</string>
+    <string name="reading1_ref">The Big Book of Alcoholics Anonymous</string>
+    <string name="reading1">
+        \tAlcoholics Anonymous is a fellowship of men and women who share their experience, strength, and hope with each other that they may solve their common problem and help others to recover from alcoholism.
+        \n\n\tThe only requirement for membership is the desire to stop drinking. There are no dues or fees for AA membership, we are self supporting through our own contributions. AA is not allied with any sect, denomination, politics, organization or institution; does not wish to engage in any controversy; neither endorses nor opposes any causes. Our primary purpose is to stay sober and help other alcoholics to achieve sobriety.</string>
 
     <string name="reading2_title">How It Works</string>
-    <string name="reading2">\tRarely have we seen a person fail who has thoroughly followed our path.Those who do not recover are people who cannot or will not completely
-        give themselves to this simple program,usually men and women who are constitutionally incapable of being honest with themselves. There are such unfortunates.They
-        are not at fault; they seem to have been born that way.They are naturally incapable of grasping and developing a manner of living which demands rigorous honesty.
-        Their chances are less than average. There are those, too, who suffer from grave emotional and mental disorders.But many of them do recover if they have the capacity
-        to be honest.\n\tOur stories disclose in a general way what we use to be like, what happened, and what we are like now. If you have decided you want what we have and
-        are willing to go to any lengths to get it - then you are ready to take certain steps. At some of these we balked. We thought we could find an easier, softer way.
-        But we could not. With all the earnestness at our command, we beg of you to be fearless and thorough from the very start. Some of us have tried to hold on to our old
-        ideas and the result was nil until we let go absolutely. Remember that we deal with alcohol - cunning, baffling, powerful! \n\tWithout help it is too much for us.
-        But there is one who has all power - that One is God. May you find him now!\n\tHalf-measures availed us nothing. We stood at the turning point. We asked His protection
-        and care with complete abandon.\n\tHere are the steps we took, which are suggested as a program of recovery. Many of us exclaimed“what an order! I can\'t go through with it.
-        \n\nDo not be discouraged. No one among us has been able to maintain anything like perfect adherence to these principles. We are not Saints. The point is, that we are willing
-        to grow along spiritual lines. The principles we had set down are guides to progress. We claim spiritual progress rather than spiritual perfection.\n\tOur description of the
-        alcoholic, the chapter to the agnostic, and our personal adventures before and after make clear three pertinent ideas:\n\n\tA. That we were alcoholic and could not manage our
-        own lives.\n\tB. That probably no human power could have relieved our alcoholism.\n\tC. That God could and would if he were sought.\n</string>
-    <string name="reading2_reference">Unknown</string>
-
-    <string name="reading2a">Rarely have we seen a person fail who has thoroughly followed our path.Those who do not recover are people who cannot or will not completely
-                give themselves to this simple program,usually men and women who are constitutionally incapable of being honest with themselves. There are such unfortunates.They
-                are not at fault; they seem to have been born that way.They are naturally incapable of grasping and developing a manner of living which demands rigorous honesty.
-                Their chances are less than average. There are those, too, who suffer from grave emotional and mental disorders.But many of them do recover if they have the capacity
-                to be honest.\n\nOur stories disclose in a general way what we use to be like, what happened, and what we are like now. If you have decided you want what we have and are willing to go
-                to any lengths to get it - then you are ready to take certain steps.</string>
-    <string name="reading2b">At some of these we balked. We thought we could find an easier, softer way. But we could not. With all the earnestness at our command, we beg of you to be fearless and thorough from the very start. Some of us have tried to hold on to our old ideas and the result was nil until we let go absolutely. Remember that we deal with alcohol - cunning, baffling, powerful! \n\nWithout help it is too much for us. But there is one who has all power - that One is God. May you find him now!\n\nHalf-measures availed us nothing. We stood at the turning point. We asked His protection and care with complete abandon.\n\nHere are the steps we took, which are suggested as a program of recovery.</string>
-    <string name="reading2c">Many of us exclaimed“what an order! I can\'t go through with it.” \n\nDo not be discouraged. No one among us has been able to maintain anything like perfect adherence to these principles. We are not Saints. The point is, that we are willing to grow along spiritual lines. The principles we had set down are guides to progress. We claim spiritual progress rather than spiritual perfection.\n\nOur description of the alcoholic, the chapter to the agnostic, and our personal adventures before and after make clear three pertinent ideas:\n\na. That we were alcoholic and could not manage our own lives.\nb. That probably no human power could have relieved our alcoholism.\nc. That God could and would if he were sought.\n</string>
+    <string name="reading2_ref">The Big Book of AA - Chapter 5</string>
+    <string name="reading2" tools:ignore="TypographyOther">
+        \tRarely have we seen a person fail who has thoroughly followed our path. Those who do not recover are people who cannot or will not completely give themselves to this simple program,usually men and women who are constitutionally incapable of being honest with themselves. There are such unfortunates. They are not at fault; they seem to have been born that way. They are naturally incapable of grasping and developing a manner of living which demands rigorous honesty. Their chances are less than average. There are those, too, who suffer from grave emotional and mental disorders. But many of them do recover if they have the capacity to be honest.
+        \n\n\tOur stories disclose in a general way what we use to be like, what happened, and what we are like now. If you have decided you want what we have and are willing to go to any lengths to get it - then you are ready to take certain steps.
+        \n\n\tAt some of these we balked. We thought we could find an easier, softer way. But we could not. With all the earnestness at our command, we beg of you to be fearless and thorough from the very start. Some of us have tried to hold on to our old ideas and the result was nil until we let go absolutely.
+        \n\n\tRemember that we deal with alcohol - cunning, baffling, powerful! Without help it is too much for us. But there is one who has all power - that One is God. May you find him now!
+        \n\n\tHalf-measures availed us nothing. We stood at the turning point. We asked His protection and care with complete abandon.
+        \n\n\tHere are the steps we took, which are suggested as a program of recovery:
+        \n\n\tMany of us exclaimed <b>“what an order! I can\'t go through with it.”</b> Do not be discouraged. No one among us has been able to maintain anything like perfect adherence to these principles. We are not Saints. The point is, that we are willing to grow along spiritual lines. The principles we had set down are guides to progress. We claim spiritual progress rather than spiritual perfection.
+        \n\n\tOur description of the alcoholic, the chapter to the agnostic, and our personal adventures before and after make clear three pertinent ideas:
+        \n\n\t(a) That we were alcoholic and could not manage our own lives.
+        \n\t(b) That probably no human power could have relieved our alcoholism.
+        \n\t(c) That God could and would if he were sought.</string>
 
     <string name="reading3_title" >The 12 Steps</string>
+    <string name="reading3_ref">The Big Book of AA - p59</string>
     <string name="reading3">
-        <b>1.</b> We admitted we were powerless over alcohol – that our lives had become unmanageable.\n\n
-        2. Came to believe that a power greater than ourselves could restore us to sanity.\n\n
-        3. Made a decision to turn our will and our lives over to the care of God - as we understood him.\n\n
-        4. Made a searching and fearless moral inventory of ourselves.\n\n
-        5. Admitted to God, to ourselves, and to another human being the exact nature of our wrongs.\n\n
-        6. Were entirely ready to have God remove all these defects of character.\n\n
-        7. Humbly asked him to remove our shortcomings.\n\n
-        8. Made a list of all persons we had harmed, and became willing to make amends to them all.\n\n
-        9. Made direct amends to such people wherever possible, except when to do so would injure them or others.\n\n
-        10. Continued to take personal inventory and when we were wrong promptly admitted it.\n\n
-        11. Sought through prayer and meditation to improve our conscious contact with God as we understood Him, praying only for knowledge of his will for us and the power to carry that out.\n\n
-        12. Having had a spiritual awakening as a result of these steps, we tried to carry this message to alcoholics, and to practice these principals in all our affairs.</string>
+        1. We admitted we were powerless over alcohol – that our lives had become unmanageable.
+        \n\n2. Came to believe that a power greater than ourselves could restore us to sanity.
+        \n\n3. Made a decision to turn our will and our lives over to the care of God - as we understood him.
+        \n\n4. Made a searching and fearless moral inventory of ourselves.
+        \n\n5. Admitted to God, to ourselves, and to another human being the exact nature of our wrongs.
+        \n\n6. Were entirely ready to have God remove all these defects of character.
+        \n\n7. Humbly asked him to remove our shortcomings.
+        \n\n8. Made a list of all persons we had harmed, and became willing to make amends to them all.
+        \n\n9. Made direct amends to such people wherever possible, except when to do so would injure them or others.
+        \n\n10. Continued to take personal inventory and when we were wrong promptly admitted it.
+        \n\n11. Sought through prayer and meditation to improve our conscious contact with God as we understood Him, praying only for knowledge of his will for us and the power to carry that out.
+        \n\n12. Having had a spiritual awakening as a result of these steps, we tried to carry this message to alcoholics, and to practice these principals in all our affairs.</string>
+
+    <string name="reading4_title" >The 12 Traditions</string>
+    <string name="reading4_ref">The Big Book of AA - p562</string>
+    <string name="reading4">
+        1. Our common welfare should come first; personal recovery depends upon AA unity.
+        \n\n2. For our group purpose there is but one ultimate authority – a loving God as He may express Himself in our group conscience. Our leaders are but trusted servants, they do not govern.
+        \n\n3. The only requirement for AA membership is a desire to stop drinking.
+        \n\n4. Each group should be autonomous except in matters affecting other groups, or AA as a whole.
+        \n\n5. Each group has but one primary purpose – to carry its message to the alcoholic who still suffers.
+        \n\n6. An AA group ought never endorse, finance or lend the AA name to any related facility or outside enterprise, lest problems of money, property and prestige divert us from our primary purpose.
+        \n\n7. Every AA group ought to be fully self-supporting, declining outside contributions.
+        \n\n8. Alcoholics Anonymous should remain forever nonprofessional, but our service centres may employ special workers.
+        \n\n9. AA, as such, ought never be organized, but we may create service boards or committees directly responsible to those they serve.
+        \n\n10. Alcoholics Anonymous has no opinion on outside issues, hence the AA name ought never be drawn into public controversy.
+        \n\n11. Our public relations policy is based upon attraction rather than promotion; we need always maintain personal anonymity at the level of press, radio and films.
+        \n\n12. Anonymity is the spiritual foundation of all our Traditions, ever reminding us to place principles before personalities.</string>
+
+    <string name="reading5_title">Responsibility Pledge</string>
+    <string name="reading5_ref">.</string>
+    <string name="reading5">I am Responsible.\nWhen anyone, anywhere, reaches out for help, I want the hand of AA to always be there.\nAnd for that, I am Responsible.</string>
+
+    <string name="reading6_title">The Lord\'s Prayer</string>
+    <string name="reading6_ref">The Bible</string>
+    <string name="reading6">Our Father,\nwho art in heaven,\nHallowed be thy Name.\nThy Kingdom come,\nThy will be done,\nOn earth as it is in heaven.\n\nGive us this day our daily bread.\nAnd forgive us our trespasses.\nAs we forgive those who trespass against us.\nAnd lead us not into temptation,\nBut deliver us from evil.\n\nFor Thine is the Kingdom,\nthe Power and the Glory,\nFor ever and ever,\nAmen</string>
+
+    <string name="reading7_title">Prayer of St. Francis</string>
+    <string name="reading7_ref">.</string>
+    <string name="reading7">
+        Lord, make me an instrument of your peace.
+        \nWhere there is hatred,
+        \n\tlet me bring love.
+        \nWhere there is offense,
+        \n\tlet me bring pardon.
+        \nWhere there is discord,
+        \n\tlet me bring union.
+        \nWhere there is error,
+        \n\tlet me bring truth.
+        \nWhere there is doubt,
+        \n\tlet me bring faith.
+        \nWhere there is despair,
+        \n\tlet me bring hope.
+        \nWhere there is darkness,
+        \n\tlet me bring your light.
+        \nWhere there is sadness,
+        \n\tlet me bring joy.
+        \n\nO Master, let me not seek as much to be consoled as to console, to be understood as to understand,to be loved as to love.
+        \n\nFor it is in giving that one receives, it is in self-forgetting that one finds, it is in pardoning that one is pardoned, it is in dying that one is raised to eternal life.</string>
+
+    <string name="reading8_title">The Promises</string>
+    <string name="reading8_ref">.</string>
+    <string name="reading8">
+        1. If we are painstaking about this phase of our development, we will be amazed before we are half way through.
+        \n\n2. We are going to know a new freedom and a new happiness.
+        \n\n3. We will not regret the past nor wish to shut the door on it.
+        \n\n4. We will comprehend the word serenity and we will know peace.
+        \n\n5. No matter how far down the scale we have gone, we will see how our experience can benefit others.
+        \n\n6. That feeling of uselessness and self-pity will disappear.
+        \n\n7. We will lose interest in selfish things and gain interest in our fellows.
+        \n\n8. Self-seeking will slip away.
+        \n\n9. Our whole attitude and outlook upon life will change.
+        \n\n10. Fear of people and of economic insecurity will leave us.
+        \n\n11. We will intuitively know how to handle situations which used to baffle us.
+        \n\n12. We will suddenly realize that God is doing for us what we could not do for ourselves.
+        \n\nAre these extravagant promises? We think not. They are being fulfilled among us - sometimes quickly, sometimes slowly. They will always materialize if we work for them.</string>
 
     <string name="step_one"   >1. We admitted we were powerless over alcohol – that our lives had become unmanageable.</string>
     <string name="step_two"   >2. Came to believe that a power greater than ourselves could restore us to sanity.</string>
@@ -69,82 +134,129 @@
     <string name="step_eleven">11. Sought through prayer and meditation to improve our conscious contact with God as we understood Him, praying only for knowledge of his will for us and the power to carry that out.</string>
     <string name="step_twelve">12. Having had a spiritual awakening as a result of these steps, we tried to carry this message to alcoholics, and to practice these principals in all our affairs.</string>
 
-    <string name="reading4_title" >The 12 Traditions</string>
-    <string name="reading4">
-        1. Our common welfare should come first; personal recovery depends upon A.A. unity.\n\n
-        2. For our group purpose there is but one ultimate authority – a loving God as He may express Himself in our group conscience. Our leaders are but trusted servants, they do not govern.\n\n
-        3. The only requirement for A.A. membership is a desire to stop drinking.\n\n
-        4. Each group should be autonomous except in matters affecting other groups, or A.A. as a whole.\n\n
-        5. Each group has but one primary purpose – to carry its message to the alcoholic who still suffers.\n\n
-        6. An A.A. group ought never endorse, finance or lend the A.A. name to any related facility or outside enterprise, lest problems of money, property and prestige divert us from our primary purpose.\n\n
-        7. Every A.A. group ought to be fully self-supporting, declining outside contributions.\n\n
-        8. Alcoholics Anonymous should remain forever nonprofessional, but our service centres may employ special workers.\n\n
-        9. A.A., as such, ought never be organized, but we may create service boards or committees directly responsible to those they serve.\n\n
-        10. Alcoholics Anonymous has no opinion on outside issues, hence the A.A. name ought never be drawn into public controversy.\n\n
-        11. Our public relations policy is based upon attraction rather than promotion; we need always maintain personal anonymity at the level of press, radio and films.\n\n
-        12. Anonymity is the spiritual foundation of all our Traditions, ever reminding us to place principles before personalities.</string>
-
-    <string name="trad_one"   >1. Our common welfare should come first; personal recovery depends upon A.A. unity.</string>
+    <string name="trad_one"   >1. Our common welfare should come first; personal recovery depends upon AA unity.</string>
     <string name="trad_two"   >2. For our group purpose there is but one ultimate authority – a loving God as He may express Himself in our group conscience. Our leaders are but trusted servants, they do not govern.</string>
-    <string name="trad_three" >3. The only requirement for A.A. membership is a desire to stop drinking.</string>
-    <string name="trad_four"  >4. Each group should be autonomous except in matters affecting other groups, or A.A. as a whole.</string>
+    <string name="trad_three" >3. The only requirement for AA membership is a desire to stop drinking.</string>
+    <string name="trad_four"  >4. Each group should be autonomous except in matters affecting other groups, or AA as a whole.</string>
     <string name="trad_five"  >5. Each group has but one primary purpose – to carry its message to the alcoholic who still suffers.</string>
-    <string name="trad_six"   >6. An A.A. group ought never endorse, finance or lend the A.A. name to any related facility or outside enterprise, lest problems of money, property and prestige divert us from our primary purpose.</string>
-    <string name="trad_seven" >7. Every A.A. group ought to be fully self-supporting, declining outside contributions.</string>
+    <string name="trad_six"   >6. An AA group ought never endorse, finance or lend the AA name to any related facility or outside enterprise, lest problems of money, property and prestige divert us from our primary purpose.</string>
+    <string name="trad_seven" >7. Every AA group ought to be fully self-supporting, declining outside contributions.</string>
     <string name="trad_eight" >8. Alcoholics Anonymous should remain forever nonprofessional, but our service centres may employ special workers.</string>
-    <string name="trad_nine"  >9. A.A., as such, ought never be organized, but we may create service boards or committees directly responsible to those they serve.</string>
-    <string name="trad_ten"   >10. Alcoholics Anonymous has no opinion on outside issues, hence the A.A. name ought never be drawn into public controversy.</string>
+    <string name="trad_nine"  >9. AA, as such, ought never be organized, but we may create service boards or committees directly responsible to those they serve.</string>
+    <string name="trad_ten"   >10. Alcoholics Anonymous has no opinion on outside issues, hence the AA name ought never be drawn into public controversy.</string>
     <string name="trad_eleven">11. Our public relations policy is based upon attraction rather than promotion; we need always maintain personal anonymity at the level of press, radio and films.</string>
     <string name="trad_twelve">12. Anonymity is the spiritual foundation of all our Traditions, ever reminding us to place principles before personalities.</string>
 
-    <string name="reading5_title">Responsibility Pledge</string>
-    <string name="reading5">I am Responsible.\nWhen anyone, anywhere, reaches out for help, I want the hand of AA to always be there.\nAnd for that,I am Responsible.</string>
+    <string name="how_works1_title">How It Works</string>
+    <string name="how_works1_ref">The Big Book of AA - Chapter 5</string>
+    <string name="how_works1">
+        \tRarely have we seen a person fail who has thoroughly followed our path.Those who do not recover are people who cannot or will not completely give themselves to this simple program,usually men and women who are constitutionally incapable of being honest with themselves. There are such unfortunates.They are not at fault; they seem to have been born that way. They are naturally incapable of grasping and developing a manner of living which demands rigorous honesty. Their chances are less than average. There are those, too, who suffer from grave emotional and mental disorders.But many of them do recover if they have the capacity to be honest.
+        \n\n\tOur stories disclose in a general way what we use to be like, what happened, and what we are like now. If you have decided you want what we have and are willing to go to any lengths to get it - then you are ready to take certain steps. At some of these we balked. We thought we could find an easier, softer way. But we could not. With all the earnestness at our command, we beg of you to be fearless and thorough from the very start. Some of us have tried to hold on to our old ideas and the result was nil until we let go absolutely. Remember that we deal with alcohol - cunning, baffling, powerful.
+        \n\n\tWithout help it is too much for us. But there is one who has all power - that One is God. May you find him now!
+        \n\n\tHalf-measures availed us nothing. We stood at the turning point. We asked His protection and care with complete abandon.
+        \n\n\tHere are the steps we took, which are suggested as a program of recovery.</string>
+        <!-- INSERT 12 STEPS HERE -->
+    <string name="how_works2">
+        \tMany of us exclaimed \“what an order! I can\'t go through with it.\”
+        \n\n\tDo not be discouraged. No one among us has been able to maintain anything like perfect adherence to these principles. We are not Saints. The point is, that we are willing to grow along spiritual lines. The principles we had set down are guides to progress. We claim spiritual progress rather than spiritual perfection.
+        \n\n\tOur description of the alcoholic, the chapter to the agnostic, and our personal adventures before and after make clear three pertinent ideas:
+        \n\n\t\ta. That we were alcoholic and could not manage our own lives.
+        \n\t\tb. That probably no human power could have relieved our alcoholism.
+        \n\t\tc. That God could and would if he were sought.</string>
 
-    <string name="reading6_title">The AA Promises</string>
-    <string name="reading6_ref">Big Book p83–84</string>
-    <string name="reading6">
-        1. If we are painstaking about this phase of our development, we will be amazed before we are half way through.\n\n
-        2. We are going to know a new freedom and a new happiness.\n\n
-        3. We will not regret the past nor wish to shut the door on it.\n\n
-        4. We will comprehend the word serenity and we will know peace.\n\n
-        5. No matter how far down the scale we have gone, we will see how our experience can benefit others.\n\n
-        6. That feeling of uselessness and self-pity will disappear.\n\n
-        7. We will lose interest in selfish things and gain interest in our fellows.\n\n
-        8. Self-seeking will slip away.\n\n
-        9. Our whole attitude and outlook upon life will change.\n\n
-        10. Fear of people and of economic insecurity will leave us.\n\n
-        11. We will intuitively know how to handle situations which used to baffle us.\n\n
-        12. We will suddenly realize that God is doing for us what we could not do for ourselves\n\n
-        Are these extravagant promises? We think not. They are being fulfilled among us - sometimes quickly, sometimes slowly. They will always materialize if we work for them.</string>
+    <string name="moreinfo">
+        Meeting Formats\n
+        The AA Chip System\n
+        The Importance of Anonymity\n
+        AA\'s Single Purpose\n
+        What is Sponsorship?\n
+        AA Grapevine</string>
 
-    <string name="prayer1_title">The Serenity Prayer</string>
-    <string name="prayer1">God, grant me the SERENITY to accept the things I cannot change, COURAGE to change the things I can, and WISDOM to know the difference.</string>
-    <string name="prayer1_auth">Reinhold Niebuhr (1892–1971)</string>
+    <string name="aa_info1_title">Meeting Formats</string>
+    <string name="aa_info1_ref">alcohol.addictionblog.org/types-of-a-a-meetings</string>
+    <string name="aa_info1">\tAlcoholics Anonymous meetings are voluntary meetings for people who identify as alcoholics (closed meetings) or people that are interested in alcoholism (open meetings). These meetings usually follow a similar format and last for 60 minutes. Each AA group consists of a core of voluntary members and different meetings take on different flavors. However, each group is committed to the anonymity of AA members as an underlying principle.
+        \n\n\tGenerally, AA meetings may begin and end with a prayer, and consist of any of the following:
+        \n\n\t\t» Welcome from the host group
+        \n\t\t» Please turn your mobile ringer off
+        \n\t\t» Reading aloud of the AA Preamble
+        \n\t\t» Introductions
+        \n\t\t\t(members introduces themselves aloud)
+        \n\t\t» Reading aloud “How it works”
+        \n\t\t» Reading aloud “the 12 steps”
+        \n\t\t» Reading aloud “the 12 traditions”
+        \n\t\t» The meeting
+        \n\t\t» Reading aloud “the Promises
+        \n\t\t\t(or another reading chosen by the host group)”
+        \n\t\t» Closing announcements
+        \n\t\t» 7th tradition
+        \n\t\t» AA chip system
+        \n\t\t» Closing Prayer
+        \n\t\t\t(some meetings close with a prayer.)
+        \n\t\t» Fellowship
+        \n\t\t\t(chat and talk to fellow members who understand.)
+        \n\nDespite their differences, almost all meetings are structured around the reading of some selection of Alcoholics Anonymous literature, an , a request for newcomers to identify (if they want to), the main body of the meeting (speaker, leader plus participation, etc.), and a closing prayer.
+    </string>
 
-    <string name="prayer2_title">The Lord\'s Prayer</string>
-    <string name="prayer2">Our Father,\nwho art in heaven,\nHallowed be thy Name.\nThy Kingdom come,\nThy will be done,\nOn earth as it is in heaven.\n\nGive us this day our daily bread.\nAnd forgive us our trespasses.\nAs we forgive those who trespass against us.\nAnd lead us not into temptation,\nBut deliver us from evil.\n\nFor Thine is the Kingdom,\nthe Power and the Glory,\nFor ever and ever,\nAmen</string>
+    <string name="aa_info2_title">Types of AA Meetings</string>
+    <string name="aa_info2_ref">alcohol.addictionblog.org/types-of-a-a-meetings</string>
+    <string name="aa_info2">
+        The topic/discussion meeting
+        \n\tThis type of meeting usually ranges in size from five to fifty or sixty, and is structured around a leader, often chosen from within the group, who picks a topic and shares about it for five to fifteen minutes before opening the meeting for general discussion. Some group formats ask the leader to read from AA literature and share in context; others leave the topic to the leader’s discretion. Discussion meetings tend to lie somewhere along a spectrum of “anything goes” to solution-oriented.
+        \n\nThe speaker meeting
+        \n\n\tThese are often big meetings (100-300 people), and are usually open meetings, meaning that one does not have to identify as an alcoholic in order to attend. Speaker meetings are generally structured with little to no time for sharing. Speaker meetings are generally upbeat. Greeters at the door welcome attendees, there’s laughter and applause, and newcomers are not required to participate beyond the voluntary raising of their hands when the leader asks if anyone is in their first thirty days.
+        \n\tThe larger speaker meetings feature speakers who have established track records for delivering “pitches” that contain some combination of entertainment value (wild story, humor, style of delivery), inspiration (describing a seemingly impossible transformation, thus transmitting the possibility of hope for the newcomer), and instruction (describing the actions they took to bring about the transformation).
+        \n\nThe Big Book study
+        \n\n\tThe main text in AA is also called Alcoholics Anonymous, but is affectionately known as The Big Book. Groups often organize in order to read and discuss the book, hoping to give the newcomer an understanding of what the alcoholic’s problem is and what solution is being presented. Usually, each member reads a paragraph in turn, and the book gets read sequentially for several pages — perhaps a half chapter at a time. After a reading, members share their experience or thoughts on the material just read. Within the world of Big Book studies, there are some groups that differentiate themselves as hardcore, intent on preserving the process of the Steps as the original members intended.
+        \n\n12 Step studies
+        \n\n\tLike the Big Book study, but using the book Twelve Steps and Twelve Traditions. </string>
 
-    <string name="prayer3_title">Prayer of St. Francis</string>
-    <string name="prayer3">
-        Lord, make me an instrument of your peace.
-        \nWhere there is hatred,\n\tlet me bring love.
-        \nWhere there is offense,\n\tlet me bring pardon.
-        \nWhere there is discord,\n\tlet me bring union.
-        \nWhere there is error,\n\tlet me bring truth.
-        \nWhere there is doubt,\n\tlet me bring faith.
-        \nWhere there is despair,\n\tlet me bring hope.
-        \nWhere there is darkness,\n\tlet me bring your light.
-        \nWhere there is sadness,\n\tlet me bring joy.
-        \n\nO Master, let me not seek as much to be consoled as to console, to be understood as to understand,to be loved as to love.
-        \n\nFor it is in giving that one receives, it is in self-forgetting that one finds, it is in pardoning that one is pardoned, it is in dying that one is raised to eternal life.</string>
-    <string name="prayer3_auth">x</string>
+    <string name="aa_info3_title">Why do AA members use tokens, medallions, and chips to mark sobriety? When did that practice start?</string>
+    <string name="aa_info3_ref">https://www.aa.org/pages/en_US/frequently-asked-questions-about-aa-history#siete</string>
+    <string name="aa_info3">
+        \tThe chip system is thought to have begun in Indianapolis in 1942. The tradition is believed to have started with Doherty S., who originally brought AA to Indianapolis. Doherty himself, in a letter to Bill, seems to indicate the practice originated in Indianapolis in 1942.
+        \n\n\tNell Wing wrote in 1962 about the history of the chip system: "…The chip system might have begun in Indianapolis….reference was made in a letter from Doherty to the start of giving out ‘chips’ and ‘tokens’. This was in 1942. I imagine this would be about right, because most of the early groups started in 1940 and it would take about a couple of years to think of anniversaries and marking any time of sobriety. I asked Bill about this and his memory is that the system started in Indianapolis.
+        \n\n\tIn Dr. Bob and the Good Old Timers, it indicates that Sister Ignatia in Akron, working at St. Thomas Hospital, also used medallions: “Sister Ignatia gave each of her newly released patients a Sacred Heart medallion, which she asked them to return before they took the first drink. She would occasionally give out St. Christopher medals as well…” (page 195).
+        \n\n\tWe don’t know precisely who started this system first, or when and how it spread to other groups. As with many things in AA, the exact nature of the history eludes us!
+    </string>
 
-    <string name="prayer4_title">x</string>
-    <string name="prayer4">x</string>
-    <string name="prayer4_auth">x</string>
+    <string name="aa_info4_title">AA’s Single Purpose</string>
+    <string name="aa_info4_ref">AA co-founder Bill W., 1955</string>
+    <string name="aa_info4">
+    Tradition Five: Each group has but one primary purpose — to carry its message to the alcoholic who still suffers.
+    \n\n“There are those who predict that AA may well become a new spearhead for a spiritual awakening throughout the world. When our friends say these things, they are both generous and sincere. But we of AA must reflect that such a tribute and such a prophecy could well prove to be a heady drink for most of us — that is, if we really came to believe this to be the real purpose of AA, and if we commenced to behave accordingly.
+    \n\n“Our Society, therefore, will prudently cleave to its single purpose: the carrying of the message to the alcoholic who still suffers. Let us resist the proud assumption that since God has enabled us to do well in one area we are destined to be a channel of saving grace for everybody.”</string>
 
-    <string name="prayer5_title">x</string>
-    <string name="prayer5">x</string>
-    <string name="prayer5_auth">x</string>
+    <string name="aa_info5_title">The Importance of Anonymity</string>
+    <string name="aa_info5_ref">https://www.aa.org/assets/en_US/p-16_theaagroup.pdf</string>
+    <string name="aa_info5">
+    Tradition Twelve: Anonymity is the spiritual foundation of all our Traditions, ever reminding us to place principles before personalities.
+    \n\n\t\tWhat is the purpose of anonymity in AA? Why is it often referred to as the greatest single protection the Fellowship has to assure its continued existence and growth?
+    \nAt the level of press, television, radio, film and the Internet, anonymity stresses the equality in AA of all its members. It puts the brake on our easily inflatable egos, our misplaced conviction that violating our anonymity will help someone, and our desire for personal recognition or control. Most importantly, the Anonymity Tradition reminds us that it is the AA message, not the messenger, that counts.
+    \n\t\tAt the personal level, anonymity assures privacy for all members, a safeguard often of special significance to newcomers who may hesitate to seek help in AA if they have any reason to believe their alcoholism may be exposed publicly.
+    \n\t\tIn theory, the anonymity principle seems clear, but putting it into effect is not always easy. Following are some general guidelines culled from AA group experience that may be helpful.</string>
 
+    <string name="aa_info6_title">What is sponsorship?</string>
+    <string name="aa_info6_ref">https://www.aa.org/assets/en_US/p-15_Q&amp;AonSpon.pdf</string>
+    <string name="aa_info6">
+        \tAlcoholics Anonymous began with sponsorship. When Bill W., only a few months sober, was stricken with a powerful urge to drink, this thought came to him: “You need another alcoholic to talk to. You need another alcoholic just as much as he needs you!”
+        \n\t\tHe found Dr. Bob, who had been trying desperately and unsuccessfully to stop drinking, and out of their common need AA was born. The word “sponsor” was not used then; the Twelve Steps had not been written; but Bill carried the message to Dr. Bob, who in turn safeguarded his own sobriety by sponsoring countless other alcoholics. Through sharing, both of our co-founders discovered, their own sober lives could be enriched beyond measure.
+        \n\t\tWhat does AA mean by sponsorship? To join some organizations, you must have a sponsor — a person who vouches for you, presents you as being suitable for membership. This is definitely not the case with AA Anyone who has a desire to stop drinking is welcome to join us!
+        \n\t\tIn AA, sponsor and sponsored meet as equals, just as Bill and Dr. Bob did. Essentially, the process of sponsorship is this: An alcoholic who has made some progress in the recovery program shares that experience on a continuous, individual basis with another alcoholic who is attempting to attain or maintain sobriety through AA
+        \n\t\tWhen we first begin to attend AA meetings, we may feel confused and sick and apprehensive. Although people at meetings respond to our questions willingly, that alone isn’t enough. Many other questions occur to us between meetings; we find that we need constant, close support as we begin learning how to “live sober.”
+        \n\t\tSo we select an AA member with whom we can feel comfortable, someone with whom we can talk freely and confidentially, and we ask that person to be our sponsor.
+        \n\t\tWhether you are a newcomer who is hesitant about “bothering” anyone, or a member who has been around for some time trying to go it alone, sponsorship is yours for the asking. We urge you: Do not delay. Alcoholics recovered in AA want to share what they have learned with other alcoholics. We know from experience that our own sobriety is greatly strengthened when we give it away!
+        \n\t\tSponsorship can also mean the responsibility the group as a whole has for helping the newcomer. Today, more and more alcoholics arriving at their first AA meeting have had no prior contact with AA They have not telephoned a local AA intergroup or central office; no member has made a “Twelfth Step call” on them. So, especially for such newcomers, groups are recognizing the need to provide some form of sponsorship help. In many successful groups, sponsorship is one of the most important planned activities of the members.
+        \n\t\tSponsorship responsibility is unwritten and informal, but it is a basic part of the AA approach to recovery from alcoholism through the Twelve Steps. Sponsorship can be a longterm relationship.
+        \n\t\tWe hope that this pamphlet will provide answers to some of the often-asked questions about the rewarding two-way street called sponsorship — for people who may be seeking sponsors; for AA members who want to share their sobriety through sponsorship; and for groups that wish to develop sponsorship activity (see What procedures can a group set up to sponsor new members? page 23).</string>
+
+    <string name="aa_info7_title">www.aagrapevine.org</string>
+    <string name="aa_info7_ref">http://www.aagrapevibne.org/content/about-us</string>
+    <string name="aa_info7">
+        <b>The AA Grapevine Mission Statement</b>
+        \n\nThe AA Grapevine, Inc. is publisher of the International Journal of Alcoholics Anonymous. Its primary purpose is to carry the AA message to everyone interested in alcoholism through its magazines, websites, and related items, which reflect the experience, strength, and hope of its members and friends on topics related to recovery, unity and service. It strives in all its activities to operate in accordance with the Twelve Steps, the Twelve Traditions, and the Twelve Concepts of AA, without soliciting monetary contributions from AA members or groups to fund operating expenses.
+        \n\n<b>The AA Grapevine Statement of Purpose</b>
+        \n\nThe AA Grapevine is the international journal of Alcoholics Anonymous. Written, edited, illustrated, and read by AA members and others interested in the AA program of recovery from alcoholism, the Grapevine is a lifeline linking one alcoholic to another.
+        \n\nOften referred to as our "meeting in print," the AA Grapevine communicates the experience, strength, and hope of its contributors and reflects a broad geographic spectrum of current AA experience with recovery, unity, and service. Founded in 1944, the Grapevine does not receive group contributions, but is supported entirely through magazine subscription sales and additional income derived from the sale of Grapevine items.
+        \n\nThe awareness that every AA member has an individual way of working the program permeates the pages of the Grapevine, and throughout its history the magazine has been a forum for the varied and often divergent opinions of AAs around the world. As such, articles are not intended to be statements of AA policy, nor does publication of any article imply endorsement by either AA or the Grapevine.
+        \n\nAs Bill W. expressed it in 1946, "The Grapevine will be the voice of the Alcoholics Anonymous movement. Its editors and staff will be primarily accountable to the AA movement as a whole. . . . Within the bounds of friendliness and good taste, the Grapevine will enjoy perfect freedom of speech on all matters directly pertaining to Alcoholics Anonymous. . . . Like the Alcoholics Anonymous movement it is to mirror, there will be but one central purpose: The Grapevine will try to carry the AA message to alcoholics and practice the AA principles in all its affairs."</string>
 </resources>

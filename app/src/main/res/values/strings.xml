@@ -1,84 +1,82 @@
 <resources>
-    <string name="app_name">RecoveryGo</string>
-    <string name="app_version">v1.1.0</string>
-    <string name="app_description">The Mobile Recovery Resource App</string>
 
-    <string name="title_activity_directory">Treatment Centre Information</string>
-    <string name="title_activity_gallery">Gallery</string>
-    <string name="title_activity_gallery_list">Gallery List</string>
-    <string name="title_activity_main">RecoveryGo v2.0</string>
-
-    <string name="company_name">LTC Inc.</string>
-    <string name="company_address">203 Lakeside Drive, Carleton Place, Ontario, K7C 0C4, Canada</string>
-    <string name="company_phone">+1 613–257–8581</string>
-    <string name="company_email">developers@recoverygo.ca</string>
-    <string name="company_url">www.recoverygo.ca</string>
+    <string name="app_name"         >RecoveryGo v2.0</string>
+    <string name="app_version"      >v2.0</string>
+    <string name="app_description"  >The Mobile Recovery Resource App</string>
     <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">RecoveryGo v2.0</string>
-    <string name="nav_header_subtitle">sdlanthier@rogers.com</string>
-    <string name="nav_header_desc">Main Menu</string>
-    <string name="menu_action_settings">Local Settings</string>
-
-    <string name="instruct02">Swipe Left\nto follow the readings.</string>
-    <string name="text_placeholder">TextView</string>
-    <string name="content_description.">Image</string>
-
+    <string name="company_name"     >LTC Inc.</string>
+    <string name="company_address"  >203 Lakeside Drive, Carleton Place, Ontario, K7C 0C4, Canada</string>
+    <string name="company_phone"    >+1 613–257–8581</string>
+    <string name="company_email"    >developers@recoverygo.ca</string>
+    <string name="company_url"      >www.recoverygo.ca</string>
     <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-
-    <string name="opening_statement">
-            \tThe road to recovery from addiction is no easy journey for anyone to undertake. It CAN NOT be done alone.
-            \n\n\tIt is my hope that this App will help others as they travel the same road I am on now.\n\n
-            SDL - Jan 2019</string>
-
-    <string name="qa_001">What Is Addiction?</string>
-    <string name="qa_001_ans">Addiction is a complex disease, often chronic in nature, which affects the functioning of the brain and body. It also causes serious damage to families, relationships, schools, workplaces and neighborhoods. The most common symptoms of addiction are severe loss of control, continued use despite serious consequences, preoccupation with using, failed attempts to quit, tolerance and withdrawal. Addiction can be effectively prevented, treated and managed by healthcare professionals in combination with family or peer support.</string>
-    <string name="qa_002">The 5 Stages Of Addiction Recovery</string>
-    <string name="qa_002_ans">Addiction is an insidious disease that can take hold quickly (in some cases, after first use of some drugs) or develop only after long-term substance abuse. Though there are certain similarities among addicted individuals, each case is unique, and is influenced by myriad biological, psychological, and social factors such as age, gender, prior drug use, the substance being abused, and family history.\n\nBecause of the intensely personal qualities of addiction, no two people will follow the identical path to recovery. For example, some people will require residential care, outpatient treatment, and years of therapy, while others will be able to bring their disease under control with medication and counseling.\n\nEven with so many influences and factors, though, most recovering addicts will pass through similar phases and stages on their walk from the depths of addiction to the freedom and promise of long-term abstinence.\n\n</string>
-    <string name="qa_003">1. Awareness and Early Acknowledgement</string>
-    <string name="qa_003_ans">This first stage is marked by a growing awareness that there is a problem. In some cases, this realization results from conversations with family members, friends or co-workers; in other instances, it may only occur after the addiction has led to health, financial, work, or legal problems.\n\nAlthough the addict is still engaging in addictive behaviors, and has not made any measurable progress toward ending those behaviors, this first stage is critical in paving the way for the rest of the recovery process.\n\nOne of the most important parts of this phase is the transition from mere awareness of the problem to actual acknowledgement that action is needed. Few experiences are as essential to an addict as the moment when he or she shifts from denial to a willingness to make a change.</string>
-    <string name="qa_004">2. Consideration</string>
-    <string name="qa_004_ans">The second stage of the recovery process involves a shift from awareness to action. In this stage, the addicts are ready to take the first step toward recovery, often in the form of learning more about addiction and the impact it is having on their life and the lives of the people they care about.\n\nThe consideration stage is important because this is when the addict begins to look beyond himself/herself and to understand that friends, family members, and colleagues have been negatively affected by his/her choices and behaviors.\n\nBy taking the step of learning more about their disease and its effect on others, addicts in the consideration stage make the important transition from awareness to action. Though not yet actively pursuing recovery, they are moving in that direction, and are gaining potentially invaluable information and insights in the process.</string>
-    <string name="qa_005">3. Exploring Recovery</string>
-    <string name="qa_005_ans">Moving past denial, the addict is motivated to overcome his or her addiction and begins taking small steps such as exploring the concepts of moderation and abstinence. Some say that this exploratory stage is the stage when recovery really begins.\n\nDuring the exploring recovery stage, addicts may begin to educate themselves about the recovery process and what it means to live a sober life. They may consult with friends or family members who have been through similar experiences, and may also begin to collect information about treatment options.\n\nThis third stage is often when some addicts first make the critical decision to enter an addiction treatment program.</string>
-    <string name="qa_006">4. Early Recovery</string>
-    <string name="qa_006_ans">Early recovery is a time of both great significance and significant risk.\n\nOn the positive side, addicts in early recovery have not only stopped using the substance(s) to which they were addicted, but they have also begun learning how to remain drug-free for the long term. On the less-than-positive side, early recovery is also a time of great vulnerability. The addicts are in the process of abandoning people, activities, and behaviors that have been significant parts of their lives, yet they have yet to completely establish the foundation of their newly drug-free lives.\n\nRelapse is far from uncommon during early recovery. Slipping back into drug abuse during this period can be particularly problematic, because recovering addicts may not yet have developed the knowledge and skills that will prevent them from backsliding into full-blown addiction.\n\nSome of the most important steps taken during Stage Four are developing new coping skills and healthy habits and rebuilding damaged relationships.</string>
-    <string name="qa_007">5. Active Recovery and Maintenance</string>
-    <string name="qa_007_ans">By the time they reach this fifth stage, addicts have completed a great deal of work and made great progress. Perhaps most importantly, they have also learned that they will need to continue to work hard for the rest of their lives to guard against relapse (or to return to sobriety after relapsing). This will require active monitoring of their thoughts and behaviors, ongoing practice of new skills, maintaining a support system, and staying alert to triggers and temptations to use.\n\nAlthough recovery is never easy, by this fifth stage, recovering addicts have begun to live lives they could scarcely have imagined at the start of this journey.\n\nRecovery is about much more than overcoming an addiction to drugs or alcohol, It is a complete transformation of mind, body and spirit. While some individuals can progress through the stages of recovery with just the support of friends and family, most will require education and new skills from a drug rehab program.</string>
-
-    <string name="qa_008">What Is a Residential Treatment Center?</string>
-    <string name="qa_008_ans">
-            A Residential Treatment Center is a live-in health care facility that provides a safe, secure environment where people from all walks of life receive professional therapy, education, a proper diet and physical care.\n\n
-            The environment of most treatment facilities are that of a home. The beds are limited and kept at a comfortable, manageable number to provide every client (not patient) with a safe, comfortable stay.\n\n
-            You will be required to enter the doors of any treatment center sober, for at least 72 hours straight; absolutely nothing, not one drink to calm the nerves, nothing. The reason for this is to ensure that a client has given their body a chance to detoxify without fear of medical distress. In some cases, the client will require a medically supervised detox session of 3 to 7 days before a treatment center will accept you as a client.\n\n
-            Clients should expect to submit a urine sample on the first day of the program and at any time during their stay. Honesty is a crucial part of early recovery. Clients should also expect to complete a substance use/abuse assessment. There are many prescription drugs that are not allowed in the treatment facility. It is vital that a client begin the journey to recovery with complete honesty.\n\n
-            From the moment a client enters the doors, their lives become structured and will be confusing. A full schedule of activities and group education fill the day. Free time and time for family visits are included in most programs. There is zero tolerance for abuse in any form and rules are strictly enforced.\n\n
-            A Residential Treatment Center is a voluntary program of early recovery. Clients are free to leave the program at any time.
-        </string>
-
-
+    <string name="navigation_drawer_open"       >Open navigation drawer</string>
+    <string name="navigation_drawer_close"      >Close navigation drawer</string>
+    <string name="nav_header_title"             >RecoveryGo v2.0</string>
+    <string name="nav_header_subtitle"          >www.recoverygo.ca</string>
+    <string name="nav_header_desc"              >Main Menu</string>
+    <string name="menu_action_settings"         >Local Settings</string>
+    <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <string name="instruct01">Press BACK button</string>
+    <string name="instruct02">Swipe Left\nto follow the readings</string>
+    <string name="instruct03">Swipe Left Edge for List</string>
+    <string name="instruct04">Enter Sobriety Date</string>
+    <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <string name="text_placeholder"     >TextView</string>
+    <string name="content_description"  >ImageView</string>
+    <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <string name="title_activity_directory"         >Treatment Centre Options</string>
+    <string name="title_activity_directory_sub"     >Ottawa - Toronto</string>
+    <string name="title_activity_directory_txt"     >A growing list of Residential Treatment Centres &amp; contact information.</string>
+    <string name="title_activity_gallery"           >RecoveryGo v2.0</string>
+    <string name="title_activity_gallery_list"      >Gallery List</string>
+    <string name="title_activity_local_setup"       >Local Settings</string>
+    <string name="title_activity_local_setup_sub"   >Enter your sobriety date. RecoveryGo will keep track for you..</string>
+    <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <string name="field_name_01"    >Sober Date:</string>
+    <string name="button01"         >Save</string>
+    <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <string name="title_activity_login"             >RecoveryGo v2.0</string>
+    <string name="title_activity_main"              >RecoveryGo v2.0</string>
+    <string name="title_activity_meeting_guide"     >RecoveryGo v2.0</string>
+    <string name="title_activity_test"              >AA Meeting Info</string>
+    <string name="title_activity_web"               >RecoveryGo v2.0</string>
+    <string name="title_activity_web_sub"           >Personal Journal</string>
+    <string name="title_activity_web_txt"           >Tap the + button to add a new entry</string>
+    <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <string name="title_fragment_meeting_guide"         >AA Meeting Guide</string>
+    <string name="title_fragment_meeting_guide_text"    >RecoveryGo v2.0</string>
+    <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <string name="section_format"   >Section: %1$d</string>
+    <string name="popup_mute"       >ringer is off\n for the next 60 minutes</string>
+    <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <string name="action_settings">Settings</string>
+    <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
     <string name="menu_group1">Meetings</string>
     <string name="menu_group2">Information</string>
     <string name="menu_group3">Online</string>
-
+    <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
     <string name="menu_item101">AA Meeting Guide</string>
     <string name="menu_item102">AA Meeting Info</string>
-    <string name="menu_item201">Treatment Information</string>
-    <string name="menu_item202">Recovery Information</string>
+    <string name="menu_item201">Treatment Centres</string>
+    <string name="menu_item202">Web Resources</string>
     <string name="menu_item203">Living Sober</string>
     <string name="menu_item204">Recovery Tools</string>
-    <string name="menu_item301">AA World Services</string>
-    <string name="menu_item302">AA Ottawa Intergroup</string>
-    <string name="menu_item303">AA Toronto Intergroup</string>
-    <string name="menu_item304">AA Lanark/Leeds</string>
-    <string name="menu_item305">NA World Services</string>
-    <string name="menu_item306">NA Ottawa Intergroup</string>
-    <string name="menu_item307">NA Toronto OSRC</string>
-    <string name="menu_item308">Al-Anon Family Group</string>
-
-    <string name="menu_item501">About</string>
+    <string name="menu_item501">Personal Journal</string>
+    <string name="menu_item502">RecoveryGo - Beds</string>
+    <string name="menu_item503">Sobriety Date</string>
+    <string name="menu_item504">Add Facility</string>
+    <string name="menu_item505">Facility</string>
+    <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <string name="menu_item_web101">AA World Services</string>
+    <string name="menu_item_web102">AA Ottawa Intergroup</string>
+    <string name="menu_item_web103">AA Toronto Intergroup</string>
+    <string name="menu_item_web104">AA Lanark/Leeds</string>
+    <string name="menu_item_web105">NA World Services</string>
+    <string name="menu_item_web106">NA Ottawa Intergroup</string>
+    <string name="menu_item_web107">NA Toronto OSRC</string>
+    <string name="menu_item_web108">Al-Anon Family Group</string>
+    <string name="menu_item_web109">Canadian Centre for Addictions</string>
 
     <string name="res_url_01">https://www.aa.org</string>
     <string name="res_url_02">https://www.ottawaaa.org/</string>
@@ -91,10 +89,71 @@
     <string name="res_url_09">https://canadiancentreforaddictions.org</string>
     <string name="res_url_10">https://</string>
     <string name="res_url_11">https://</string>
+    <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <!-- Dialog/Fragment names -->
+    <string name="dialog_new_note">New Note Dialog</string>
+    <string name="dialog_view_note">View Note Dialog</string>
 
-    <string name="title_activity_meeting_guide">Meeting GuideActivity</string>
-    <string name="section_format">Hello World from section: %1$d</string>
-    <string name="section_prayer1format">The Serenity Prayer\n section: %1$d</string>
+    <!-- Strings -->
+    <string name="note_title">Title</string>
+    <string name="note_content">Content</string>
+    <string name="new_string">New</string>
+    <string name="open_string">Open</string>
+    <string name="save_string">Save</string>
 
+    <string name="label_emailpassword">Email/Password Authentication</string>
+    <string name="desc_emailpassword">Use an email and password to authenticate with Firebase.</string>
+    <string name="emailpassword_status_fmt">SIGNED IN\n %1$s \n (verified: %2$b)</string>
+    <string name="emailpassword_title_text">Email and Password</string>
+    <string name="firebase_status_fmt">Firebase id:\n %s</string>
+
+    <string name="hint_user_id">User ID</string>
+    <string name="get_custom_token">Get Token</string>
+    <string name="sign_in">Sign In</string>
+    <string name="create_account">Create Account</string>
+    <string name="send_link">Send Link</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="verify_email">Verify Email</string>
+    <string name="disconnect">Disconnect</string>
+    <string name="loading">Loading…</string>
+    <string name="custom_token">Custom Token</string>
+    <string name="signed_in">Signed In</string>
+    <string name="signed_out">Signed Out</string>
+    <string name="token_null">Token: null</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="desc_firebase_lockup">Firebase logo and name</string>
+    <string name="auth_failed">Authentication failed</string>
+    <string name="start_phone_auth">Start</string>
+    <string name="verify_phone_auth">Verify</string>
+    <string name="resend_phone_auth">Resend</string>
+    <string name="hint_phone_number">Phone Number</string>
+    <string name="hint_verification_code">Verification Code</string>
+    <string name="status_code_sent">Code Sent</string>
+    <string name="status_verification_failed">Verification failed</string>
+    <string name="status_verification_succeeded">Verification succeeded</string>
+    <string name="status_sign_in_failed">Sign-in failed</string>
+    <string name="instant_validation">(instant validation)</string>
+
+    <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ FORM FIELD HEADERS -->
+    <string name="form_name">Treatment\nFacility\nSetup</string>
+
+    <string name="form_field_name"          >Facility Name:</string>
+    <string name="form_field_campus"        >Campus Name</string>
+    <string name="form_field_campus_type"   >Campus Gender</string>
+    <string name="form_field_street"        >Street</string>
+    <string name="form_field_city"          >City</string>
+    <string name="form_field_prov"          >Province</string>
+    <string name="form_field_pcode"         >Postal Code</string>
+    <string name="form_field_country"       >Country</string>
+    <string name="form_field_phone1"        >Main Phone</string>
+    <string name="form_field_phone2"        >Toll Free</string>
+    <string name="form_field_email"         >Email</string>
+    <string name="form_field_website"       >Web Site</string>
+    <string name="form_field_logourl"       >Logo Url</string>
+    <string name="form_field_beds_ttl"      >Beds Total</string>
+    <string name="form_field_beds_repair"   >Beds Repair</string>
+
+    <string name="data_sobriety_date">My Sobriety Date</string>
 
 </resources>

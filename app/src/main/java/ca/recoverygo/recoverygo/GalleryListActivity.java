@@ -8,6 +8,8 @@ import android.util.Log;
 
 import java.util.ArrayList;
 
+import ca.recoverygo.recoverygo.adapters.RecyclerViewAdapter;
+
 public class GalleryListActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";

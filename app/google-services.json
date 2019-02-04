@@ -1,0 +1,130 @@
+{
+  "project_info": {
+    "project_number": "425879741350",
+    "firebase_url": "https://recoverygo-92659.firebaseio.com",
+    "project_id": "recoverygo-92659",
+    "storage_bucket": "recoverygo-92659.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:425879741350:android:3f9d10ac7fc64653",
+        "android_client_info": {
+          "package_name": "ca.recoverygo.recoverygo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "425879741350-2cktche8t7v0q4d2rpglpek1ko78d4jh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ca.recoverygo.recoverygo",
+            "certificate_hash": "4cdbbbf7d5e57fba7de626e59ce5cf52598103d6"
+          }
+        },
+        {
+          "client_id": "425879741350-1hbqidq1v9rbntvpfgdv4nbn1oencod8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCIcEVAWp2cEiPgDr35oLbU884yGHxxvj0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "425879741350-1hbqidq1v9rbntvpfgdv4nbn1oencod8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:425879741350:android:a1d1ce9b8c3681aa",
+        "android_client_info": {
+          "package_name": "com.codingwithmitch.googlemaps2018"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "425879741350-1hbqidq1v9rbntvpfgdv4nbn1oencod8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCIcEVAWp2cEiPgDr35oLbU884yGHxxvj0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:425879741350:android:5e36aad121498824",
+        "android_client_info": {
+          "package_name": "go.recoverygo.recoverygo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "425879741350-rsqrokf23iiteu91s5c3vu6daffbln39.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "go.recoverygo.recoverygo",
+            "certificate_hash": "4cdbbbf7d5e57fba7de626e59ce5cf52598103d6"
+          }
+        },
+        {
+          "client_id": "425879741350-1hbqidq1v9rbntvpfgdv4nbn1oencod8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCIcEVAWp2cEiPgDr35oLbU884yGHxxvj0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "425879741350-1hbqidq1v9rbntvpfgdv4nbn1oencod8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
