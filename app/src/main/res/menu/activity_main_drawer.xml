@@ -51,9 +51,13 @@
             android:id="@+id/nav_504"
             android:icon="@android:drawable/star_big_on"
             android:title="@string/menu_item504" />
-        <!--<item
+        <item
             android:id="@+id/nav_505"
             android:icon="@android:drawable/star_big_on"
-            android:title="Bruce" />-->
+            android:title="@string/menu_item505" />
+        <item
+            android:id="@+id/nav_506"
+            android:icon="@android:drawable/star_big_on"
+            android:title="@string/menu_item506" />
     </group>
 </menu>

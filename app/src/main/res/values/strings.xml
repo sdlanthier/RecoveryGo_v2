@@ -1,54 +1,54 @@
 <resources>
 
-    <string name="app_name"         >RecoveryGo v2.0</string>
-    <string name="app_version"      >v2.0</string>
-    <string name="app_description"  >The Mobile Recovery Resource App</string>
+    <string name="app_name">RecoveryGo v2.0</string>
+    <string name="app_version">v2.0</string>
+    <string name="app_description">The Mobile Recovery Resource App</string>
     <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-    <string name="company_name"     >LTC Inc.</string>
-    <string name="company_address"  >203 Lakeside Drive, Carleton Place, Ontario, K7C 0C4, Canada</string>
-    <string name="company_phone"    >+1 613–257–8581</string>
-    <string name="company_email"    >developers@recoverygo.ca</string>
-    <string name="company_url"      >www.recoverygo.ca</string>
+    <string name="company_name">LTC Inc.</string>
+    <string name="company_address">203 Lakeside Drive, Carleton Place, Ontario, K7C 0C4, Canada</string>
+    <string name="company_phone">+1 613–257–8581</string>
+    <string name="company_email">developers@recoverygo.ca</string>
+    <string name="company_url">www.recoverygo.ca</string>
     <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-    <string name="navigation_drawer_open"       >Open navigation drawer</string>
-    <string name="navigation_drawer_close"      >Close navigation drawer</string>
-    <string name="nav_header_title"             >RecoveryGo v2.0</string>
-    <string name="nav_header_subtitle"          >www.recoverygo.ca</string>
-    <string name="nav_header_desc"              >Main Menu</string>
-    <string name="menu_action_settings"         >Local Settings</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">RecoveryGo v2.0</string>
+    <string name="nav_header_subtitle">www.recoverygo.ca</string>
+    <string name="nav_header_desc">Main Menu</string>
+    <string name="menu_action_settings">Local Settings</string>
     <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
     <string name="instruct01">Press BACK button</string>
     <string name="instruct02">Swipe Left\nto follow the readings</string>
     <string name="instruct03">Swipe Left Edge for List</string>
     <string name="instruct04">Enter Sobriety Date</string>
     <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-    <string name="text_placeholder"     >TextView</string>
-    <string name="content_description"  >ImageView</string>
+    <string name="text_placeholder">TextView</string>
+    <string name="content_description">ImageView</string>
     <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-    <string name="title_activity_directory"         >Treatment Centre Options</string>
-    <string name="title_activity_directory_sub"     >Ottawa - Toronto</string>
-    <string name="title_activity_directory_txt"     >A growing list of Residential Treatment Centres &amp; contact information.</string>
-    <string name="title_activity_gallery"           >RecoveryGo v2.0</string>
-    <string name="title_activity_gallery_list"      >Gallery List</string>
-    <string name="title_activity_local_setup"       >Local Settings</string>
-    <string name="title_activity_local_setup_sub"   >Enter your sobriety date. RecoveryGo will keep track for you..</string>
+    <string name="title_activity_directory">Treatment Centre Options</string>
+    <string name="title_activity_directory_sub">Ottawa - Toronto</string>
+    <string name="title_activity_directory_txt">A growing list of Residential Treatment Centres &amp; contact information.</string>
+    <string name="title_activity_gallery">RecoveryGo v2.0</string>
+    <string name="title_activity_gallery_list">Gallery List</string>
+    <string name="title_activity_local_setup">Local Settings</string>
+    <string name="title_activity_local_setup_sub">Enter your sobriety date. RecoveryGo will keep track for you..</string>
     <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-    <string name="field_name_01"    >Sober Date:</string>
-    <string name="button01"         >Save</string>
+    <string name="field_name_01">Sober Date:</string>
+    <string name="button01">Save</string>
     <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-    <string name="title_activity_login"             >RecoveryGo v2.0</string>
-    <string name="title_activity_main"              >RecoveryGo v2.0</string>
-    <string name="title_activity_meeting_guide"     >RecoveryGo v2.0</string>
-    <string name="title_activity_test"              >AA Meeting Info</string>
-    <string name="title_activity_web"               >RecoveryGo v2.0</string>
-    <string name="title_activity_web_sub"           >Personal Journal</string>
-    <string name="title_activity_web_txt"           >Tap the + button to add a new entry</string>
+    <string name="title_activity_login">RecoveryGo v2.0</string>
+    <string name="title_activity_main">RecoveryGo v2.0</string>
+    <string name="title_activity_meeting_guide">RecoveryGo v2.0</string>
+    <string name="title_activity_test">AA Meeting Info</string>
+    <string name="title_activity_web">RecoveryGo v2.0</string>
+    <string name="title_activity_web_sub">Personal Journal</string>
+    <string name="title_activity_web_txt">Tap the + button to add a new entry</string>
     <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-    <string name="title_fragment_meeting_guide"         >AA Meeting Guide</string>
-    <string name="title_fragment_meeting_guide_text"    >RecoveryGo v2.0</string>
+    <string name="title_fragment_meeting_guide">AA Meeting Guide</string>
+    <string name="title_fragment_meeting_guide_text">RecoveryGo v2.0</string>
     <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-    <string name="section_format"   >Section: %1$d</string>
-    <string name="popup_mute"       >ringer is off\n for the next 60 minutes</string>
+    <string name="section_format">Section: %1$d</string>
+    <string name="popup_mute">ringer is off\n for the next 60 minutes</string>
     <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
     <string name="action_settings">Settings</string>
     <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
@@ -66,7 +66,8 @@
     <string name="menu_item502">RecoveryGo - Beds</string>
     <string name="menu_item503">Sobriety Date</string>
     <string name="menu_item504">Add Facility</string>
-    <string name="menu_item505">Facility</string>
+    <string name="menu_item505">Add Meeting Location</string>
+    <string name="menu_item506">Find Meeting Location</string>
     <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
     <string name="menu_item_web101">AA World Services</string>
     <string name="menu_item_web102">AA Ottawa Intergroup</string>
@@ -139,22 +140,36 @@
     <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ FORM FIELD HEADERS -->
     <string name="form_name">Treatment\nFacility\nSetup</string>
 
-    <string name="form_field_name"          >Facility Name:</string>
-    <string name="form_field_campus"        >Campus Name</string>
-    <string name="form_field_campus_type"   >Campus Gender</string>
-    <string name="form_field_street"        >Street</string>
-    <string name="form_field_city"          >City</string>
-    <string name="form_field_prov"          >Province</string>
-    <string name="form_field_pcode"         >Postal Code</string>
-    <string name="form_field_country"       >Country</string>
-    <string name="form_field_phone1"        >Main Phone</string>
-    <string name="form_field_phone2"        >Toll Free</string>
-    <string name="form_field_email"         >Email</string>
-    <string name="form_field_website"       >Web Site</string>
-    <string name="form_field_logourl"       >Logo Url</string>
-    <string name="form_field_beds_ttl"      >Beds Total</string>
-    <string name="form_field_beds_repair"   >Beds Repair</string>
+    <string name="form_field_name">Facility Name:</string>
+    <string name="form_field_campus">Campus Name</string>
+    <string name="form_field_campus_type">Campus Gender</string>
+    <string name="form_field_street">Street</string>
+    <string name="form_field_city">City</string>
+    <string name="form_field_prov">Province</string>
+    <string name="form_field_pcode">Postal Code</string>
+    <string name="form_field_country">Country</string>
+    <string name="form_field_phone1">Main Phone</string>
+    <string name="form_field_phone2">Toll Free</string>
+    <string name="form_field_email">Email</string>
+    <string name="form_field_website">Web Site</string>
+    <string name="form_field_logourl">Logo Url</string>
+    <string name="form_field_beds_ttl">Beds Total</string>
+    <string name="form_field_beds_repair">Beds Repair</string>
+
+    <string name="form2_name">Meeting\nLocation\nSetup</string>
+
+    <string name="form2_field_group">Group Name:</string>
+    <string name="form2_field_intergroup">Intergroup Name:</string>
+    <string name="form2_field_district">GPS Lat/Lng:</string>
+    <string name="form2_field_format">Meeting Format:</string>
+    <string name="form2_field_day">Weekday:</string>
+    <string name="form2_field_time">Time:</string>
+    <string name="form2_field_site">Site Name:</string>
+    <string name="form2_field_address">Address:</string>
+    <string name="form2_field_location">GPS:</string>
+    <string name="form2_field_updated">Last Updated:</string>
 
     <string name="data_sobriety_date">My Sobriety Date</string>
+    <string name="title_activity_locator">Map</string>
 
 </resources>

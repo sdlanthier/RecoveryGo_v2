@@ -33,6 +33,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import ca.recoverygo.recoverygo.ui.MeetingSetupActivity;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -42,7 +44,7 @@ public class MainActivity extends AppCompatActivity
     private FirebaseAuth mAuth;
 
     private TextView mStatusTextView;
-    private TextView mDetailTextView;
+    // private TextView mDetailTextView;
             TextView mDays;
             TextView mHours;
             ImageView mFbSignedIn;
@@ -65,7 +67,8 @@ public class MainActivity extends AppCompatActivity
         final TextView mTextView = findViewById(R.id.drydate);
 
         mStatusTextView = findViewById(R.id.status);
-        mDetailTextView = findViewById(R.id.detail);   mAuth = FirebaseAuth.getInstance();
+        // mDetailTextView = findViewById(R.id.detail);
+        mAuth = FirebaseAuth.getInstance();
 
         // mToday = findViewById(R.id.today);
         // mToday1 = findViewById(R.id.today1);
@@ -146,15 +149,14 @@ public class MainActivity extends AppCompatActivity
     private void updateUI(FirebaseUser user) {
         // hideProgressDialog();
         if (user != null) {
-            mStatusTextView.setText(getString(R.string.emailpassword_status_fmt,
-                    user.getEmail(), user.isEmailVerified()));
-            mDetailTextView.setText(getString(R.string.firebase_status_fmt, user.getUid()));
+            mStatusTextView.setText(getString(R.string.emailpassword_status_fmt));
+            // mDetailTextView.setText(getString(R.string.firebase_status_fmt, user.getUid()));
             mFbSignedIn.setVisibility(View.VISIBLE);
             Log.d(TAG, "updateUI: User is logged in");
 
         } else {
             mStatusTextView.setText(R.string.signed_out);
-            mDetailTextView.setText(null);
+            // mDetailTextView.setText(null);
         }
     }
 
@@ -220,10 +222,15 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(MainActivity.this, FacilitySetupActivity.class);
             startActivity(intent);
         }
-/*            else if (id == R.id.nav_505) {
-            Intent intent = new Intent(MainActivity.this, BruceActivity.class);
+            else if (id == R.id.nav_505) {
+            Intent intent = new Intent(MainActivity.this, MeetingSetupActivity.class);
             startActivity(intent);
-        }*/
+        }
+            else if (id == R.id.nav_506) {
+            Intent intent = new Intent(MainActivity.this, LocatorActivity.class);
+            startActivity(intent);
+        }
+
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

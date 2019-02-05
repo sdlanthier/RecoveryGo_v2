@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="ca.recoverygo.recoverygo">
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE_STORAGE" />
@@ -16,6 +18,17 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
 
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <activity
+            android:name=".LocatorActivity"
+            android:label="@string/title_activity_locator">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ca.recoverygo.recoverygo.MainActivity" />
+        </activity>
         <activity
             android:name=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -25,6 +38,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".MeetingGuideActivity"
             android:parentActivityName=".MainActivity"
@@ -62,9 +76,12 @@
         <activity
             android:name=".FacilitySetupActivity"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.MeetingSetupActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
 
-        <activity android:name=".BruceActivity"></activity>
         <activity android:name=".BedInputActivity" />
+
     </application>
 
 </manifest>
