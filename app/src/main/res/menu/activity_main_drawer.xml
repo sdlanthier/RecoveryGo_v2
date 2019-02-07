@@ -15,6 +15,14 @@
             android:id="@+id/nav_102"
             android:icon="@android:drawable/star_big_on"
             android:title="@string/menu_item102" />
+        <item
+            android:id="@+id/nav_103"
+            android:icon="@android:drawable/star_big_on"
+            android:title="@string/menu_item103" />
+        <item
+            android:id="@+id/nav_104"
+            android:icon="@android:drawable/star_big_on"
+            android:title="@string/menu_item104" />
     </group>
 
     <item
@@ -32,32 +40,31 @@
         </menu>
     </item>
 
-    <group
-        android:id="@+id/nav_500"
+    <item
+        android:id="@+id/nav_300"
+        android:title="@string/menu_group3"
         android:checkableBehavior="single">
+        <menu>
+            <item
+                android:id="@+id/nav_301"
+                android:icon="@android:drawable/star_big_on"
+                android:title="@string/menu_item301" />
+            <item
+                android:id="@+id/nav_302"
+                android:icon="@android:drawable/star_big_on"
+                android:title="@string/menu_item302" />
+        </menu>
+    </item>
+
+    <group>
         <item
-            android:id="@+id/nav_501"
+            android:id="@+id/nav_401"
             android:icon="@android:drawable/star_big_on"
-            android:title="@string/menu_item501" />
+            android:title="@string/menu_item401" />
         <item
-            android:id="@+id/nav_502"
+            android:id="@+id/nav_402"
             android:icon="@android:drawable/star_big_on"
-            android:title="@string/menu_item502" />
-        <item
-            android:id="@+id/nav_503"
-            android:icon="@android:drawable/star_big_on"
-            android:title="@string/menu_item503" />
-        <item
-            android:id="@+id/nav_504"
-            android:icon="@android:drawable/star_big_on"
-            android:title="@string/menu_item504" />
-        <item
-            android:id="@+id/nav_505"
-            android:icon="@android:drawable/star_big_on"
-            android:title="@string/menu_item505" />
-        <item
-            android:id="@+id/nav_506"
-            android:icon="@android:drawable/star_big_on"
-            android:title="@string/menu_item506" />
+            android:title="@string/menu_item402" />
+
     </group>
 </menu>

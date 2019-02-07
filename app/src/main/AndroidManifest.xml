@@ -79,6 +79,8 @@
         <activity
             android:name=".ui.MeetingSetupActivity"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.MeetingListActivity" />
 
         <activity android:name=".BedInputActivity" />
 

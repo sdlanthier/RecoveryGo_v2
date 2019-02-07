@@ -52,22 +52,24 @@
     <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
     <string name="action_settings">Settings</string>
     <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-    <string name="menu_group1">Meetings</string>
-    <string name="menu_group2">Information</string>
-    <string name="menu_group3">Online</string>
+    <string name="menu_group1">Information</string>
+    <string name="menu_group2">Treatment</string>
+    <string name="menu_group3">Tools</string>
     <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-    <string name="menu_item101">AA Meeting Guide</string>
-    <string name="menu_item102">AA Meeting Info</string>
+    <string name="menu_item101">Meeting Guide</string>
+    <string name="menu_item102">Meeting Info</string>
+    <string name="menu_item103">Web Resources</string>
+    <string name="menu_item104">Find Meeting</string>
+
     <string name="menu_item201">Treatment Centres</string>
-    <string name="menu_item202">Web Resources</string>
-    <string name="menu_item203">Living Sober</string>
-    <string name="menu_item204">Recovery Tools</string>
-    <string name="menu_item501">Personal Journal</string>
-    <string name="menu_item502">RecoveryGo - Beds</string>
-    <string name="menu_item503">Sobriety Date</string>
-    <string name="menu_item504">Add Facility</string>
-    <string name="menu_item505">Add Meeting Location</string>
-    <string name="menu_item506">Find Meeting Location</string>
+    <string name="menu_item202">Add Facility</string>
+
+    <string name="menu_item301">Personal Journal</string>
+    <string name="menu_item302">Sobriety Date</string>
+
+    <string name="menu_item401">Add Meeting Location</string>
+    <string name="menu_item402">View Meeting List</string>
+
     <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
     <string name="menu_item_web101">AA World Services</string>
     <string name="menu_item_web102">AA Ottawa Intergroup</string>
@@ -166,7 +168,7 @@
     <string name="form2_field_time">Time:</string>
     <string name="form2_field_site">Site Name:</string>
     <string name="form2_field_address">Address:</string>
-    <string name="form2_field_location">GPS:</string>
+    <string name="form2_field_location">GPS Location</string>
     <string name="form2_field_updated">Last Updated:</string>
 
     <string name="data_sobriety_date">My Sobriety Date</string>

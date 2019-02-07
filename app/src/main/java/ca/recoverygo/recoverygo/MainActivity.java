@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -33,6 +34,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import ca.recoverygo.recoverygo.ui.MeetingListActivity;
 import ca.recoverygo.recoverygo.ui.MeetingSetupActivity;
 
 public class MainActivity extends AppCompatActivity
@@ -44,7 +46,6 @@ public class MainActivity extends AppCompatActivity
     private FirebaseAuth mAuth;
 
     private TextView mStatusTextView;
-    // private TextView mDetailTextView;
             TextView mDays;
             TextView mHours;
             ImageView mFbSignedIn;
@@ -67,11 +68,10 @@ public class MainActivity extends AppCompatActivity
         final TextView mTextView = findViewById(R.id.drydate);
 
         mStatusTextView = findViewById(R.id.status);
-        // mDetailTextView = findViewById(R.id.detail);
+
+        FirebaseApp.initializeApp(this);
         mAuth = FirebaseAuth.getInstance();
 
-        // mToday = findViewById(R.id.today);
-        // mToday1 = findViewById(R.id.today1);
         mDays = findViewById(R.id.days);
         mHours = findViewById(R.id.hours);
         mFbSignedIn = findViewById(R.id.fbSignedIn);
@@ -104,8 +104,8 @@ public class MainActivity extends AppCompatActivity
             Date date2;
 
             try {
-                date1 = format.parse(formattedDate);
-                date2 = format.parse(textDate);
+                date1 = df.parse(formattedDate);
+                date2 = df.parse(textDate);
                 DateTime dt1 = new DateTime(date1);
                 DateTime dt2 = new DateTime(date2);
 
@@ -121,8 +121,6 @@ public class MainActivity extends AppCompatActivity
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-
-
         }catch (FileNotFoundException e){
             e.printStackTrace();
         }catch (IOException e) {
@@ -141,22 +139,20 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onStart() {
         super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
+        FirebaseUser currentUser;
+        currentUser = mAuth.getCurrentUser();
         updateUI(currentUser);
     }
 
     private void updateUI(FirebaseUser user) {
-        // hideProgressDialog();
         if (user != null) {
             mStatusTextView.setText(getString(R.string.emailpassword_status_fmt));
-            // mDetailTextView.setText(getString(R.string.firebase_status_fmt, user.getUid()));
             mFbSignedIn.setVisibility(View.VISIBLE);
             Log.d(TAG, "updateUI: User is logged in");
 
         } else {
             mStatusTextView.setText(R.string.signed_out);
-            // mDetailTextView.setText(null);
+            Log.d(TAG, "updateUI: User is logged out");
         }
     }
 
@@ -176,7 +172,6 @@ public class MainActivity extends AppCompatActivity
         return false;
     }
 
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
@@ -193,44 +188,37 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-               if (id == R.id.nav_101) {
+        if (id == R.id.nav_101) {
             Intent intent = new Intent(MainActivity.this, MeetingGuideActivity.class);
             startActivity(intent);
-        } else if (id == R.id.nav_102) {
+        }   else if (id == R.id.nav_102) {
             Intent intent = new Intent(MainActivity.this, TestActivity.class);
             startActivity(intent);
-        } else if (id == R.id.nav_201) {
-            Intent intent = new Intent(MainActivity.this, DirectoryActivity.class);
-            startActivity(intent);
-        } else if (id == R.id.nav_202) {
+        }   else if (id == R.id.nav_103) {
             Intent intent = new Intent(MainActivity.this, WebActivity.class);
             startActivity(intent);
-        }
-            else if (id == R.id.nav_501) {
-            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-            startActivity(intent);
-        }
-            else if (id == R.id.nav_502) {
-            Intent intent = new Intent(MainActivity.this, BedInputActivity.class);
-            startActivity(intent);
-        }
-            else if (id == R.id.nav_503) {
-            Intent intent = new Intent(MainActivity.this, LocalSetupActivity.class);
-            startActivity(intent);
-        }
-            else if (id == R.id.nav_504) {
-            Intent intent = new Intent(MainActivity.this, FacilitySetupActivity.class);
-            startActivity(intent);
-        }
-            else if (id == R.id.nav_505) {
-            Intent intent = new Intent(MainActivity.this, MeetingSetupActivity.class);
-            startActivity(intent);
-        }
-            else if (id == R.id.nav_506) {
+        }   else if (id == R.id.nav_104) {
             Intent intent = new Intent(MainActivity.this, LocatorActivity.class);
             startActivity(intent);
+        }   else if (id == R.id.nav_201) {
+            Intent intent = new Intent(MainActivity.this, DirectoryActivity.class);
+            startActivity(intent);
+        }   else if (id == R.id.nav_202) {
+            Intent intent = new Intent(MainActivity.this, FacilitySetupActivity.class);
+            startActivity(intent);
+        }   else if (id == R.id.nav_301) {
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+            startActivity(intent);
+        }   else if (id == R.id.nav_302) {
+            Intent intent = new Intent(MainActivity.this, LocalSetupActivity.class);
+            startActivity(intent);
+        }   else if (id == R.id.nav_401) {
+            Intent intent = new Intent(MainActivity.this, MeetingSetupActivity.class);
+            startActivity(intent);
+        }   else if (id == R.id.nav_402) {
+            Intent intent = new Intent(MainActivity.this, MeetingListActivity.class);
+            startActivity(intent);
         }
-
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

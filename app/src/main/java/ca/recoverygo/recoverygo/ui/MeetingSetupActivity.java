@@ -1,19 +1,28 @@
 package ca.recoverygo.recoverygo.ui;
 
+import android.Manifest;
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 import java.util.Map;
+
 
 import ca.recoverygo.recoverygo.R;
 
@@ -34,6 +43,8 @@ public class MeetingSetupActivity extends AppCompatActivity {
     private static final String KEY_LOCATION        = "location";
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private LocationManager locationManager;
+    private String provider;
 
     EditText mFieldGroup;
     EditText mFieldFormat;
@@ -51,6 +62,25 @@ public class MeetingSetupActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meeting_setup);
 
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+
+        Criteria criteria = new Criteria();
+        provider = locationManager.getBestProvider(criteria, false);
+        if (ActivityCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            Log.d(TAG, "onCreate MeetingSetupActivity() provider: " + provider);
+            return;
+        }
+        Location location = locationManager.getLastKnownLocation(provider);
+        Double myLat = location.getLatitude();
+        Double myLng = location.getLongitude();
+
+        LatLng myposition = new LatLng(myLat, myLng);
+     // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
      // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         mFieldGroup        = findViewById(R.id.field_group);
         mFieldFormat       = findViewById(R.id.field_format);
@@ -61,6 +91,8 @@ public class MeetingSetupActivity extends AppCompatActivity {
         mFieldIntergroup   = findViewById(R.id.field_intergroup);
         mFieldLocation     = findViewById(R.id.field_location);
      // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        mFieldLocation.setText(String.valueOf(myposition));
     }
 
     public void save(View v) {

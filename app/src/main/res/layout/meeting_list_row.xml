@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v7.widget.CardView
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="2dp"
+    android:layout_marginTop="2dp"
+    android:layout_marginRight="2dp"
+
+    android:layout_marginBottom="8dp"
+    android:paddingTop="4dp"
+    android:textAlignment="center"
+    card_view:cardBackgroundColor="@color/colorPrimaryBackground"
+    card_view:cardCornerRadius="10dp"
+    card_view:cardElevation="8dp"
+    card_view:cardUseCompatPadding="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/groupname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="16sp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16sp"
+            android:background="@color/colorAccentLight"
+            android:paddingLeft="4dp"
+            android:paddingRight="4dp"
+            android:text="Group Name"
+            android:textAlignment="center"
+            android:textColor="@color/Black"
+            android:textSize="20sp"
+            tools:ignore="RtlHardcoded" />
+
+        <TextView
+            android:id="@+id/format"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/groupname"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="16sp"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="16dp"
+            android:background="@color/colorAccentLight"
+            android:paddingLeft="4dp"
+            android:paddingRight="4dp"
+            android:text="Meeting Format"
+            android:textAlignment="center"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/day"
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/format"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="false"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:paddingLeft="4dp"
+            android:paddingRight="4dp"
+            android:text="Day"
+            android:textAlignment="center"
+            android:textColor="@color/colorAccent"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/time"
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/day"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="false"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="0dp"
+            android:paddingLeft="4dp"
+            android:paddingRight="4dp"
+            android:text="00:00 AM"
+            android:textAlignment="center"
+            android:textColor="@color/blue2"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/site"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/format"
+            android:layout_alignParentStart="false"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="94dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:maxLines="2"
+            android:paddingLeft="4dp"
+            android:paddingRight="4dp"
+            android:text="Site Name"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/address"
+            android:layout_width="250dp"
+            android:layout_height="46dp"
+            android:layout_below="@+id/site"
+            android:layout_alignParentStart="false"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="94dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:maxLines="3"
+            android:paddingLeft="4dp"
+            android:paddingRight="4dp"
+            android:text="Address"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/address"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="11dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="21dp"
+            android:paddingLeft="4dp"
+            android:paddingRight="4dp"
+            android:text="Location"
+            android:textAlignment="textEnd"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/notes"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_below="@+id/location"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="11dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="21dp"
+            android:background="@color/colorPrimaryBackground"
+            android:maxLines="2"
+            android:paddingLeft="4dp"
+            android:paddingRight="4dp"
+            android:text="Notes"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/intergroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/location"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="11dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="21dp"
+            android:paddingLeft="4dp"
+            android:paddingRight="4dp"
+            android:text="Street Address"
+            android:textSize="16sp"
+            android:visibility="invisible" />
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>
+
