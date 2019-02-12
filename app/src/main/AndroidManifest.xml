@@ -22,38 +22,66 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity
-            android:name=".LocatorActivity"
-            android:label="@string/title_activity_locator">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="ca.recoverygo.recoverygo.MainActivity" />
-        </activity>
+
         <activity
             android:name=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
         <activity
+            android:name=".LoginActivity"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".MeetingGuideActivity"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".DirectoryActivity"
-            android:parentActivityName=".MainActivity" />
-        <activity
-            android:name=".TestActivity"
+            android:name=".MeetingInfoActivity"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".WebActivity"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
+            <activity android:name=".ui.BookTwelveStepsActivity"
+                android:theme="@style/AppTheme.NoActionBar"  />
+            <activity android:name=".ui.BookBigBookStoriesActivity"
+                android:theme="@style/AppTheme.NoActionBar"  />
+        <activity
+            android:name=".LocatorActivity"
+            android:label="@string/title_activity_locator"/>
+        <activity
+            android:name=".DirectoryActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".FingerPaintMainActivity"
+            android:parentActivityName=".MainActivity"/>
+            <activity
+                android:name=".FingerPaintActivity"
+                android:parentActivityName=".FingerPaintMainActivity"  />
+        <activity
+            android:name=".DataInputActivity"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".LocalSetupActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".DirectoryInputActivity"
+            android:theme="@style/AppTheme.NoActionBar"  />
+        <activity
+            android:name=".MeetingListActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".MeetingSetupActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+
         <activity
             android:name=".GalleryListActivity"
             android:parentActivityName=".MainActivity"
@@ -62,27 +90,17 @@
             android:name=".GalleryActivity"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".LocalSetupActivity"
-            android:parentActivityName=".MainActivity" />
-        <activity
-            android:name=".LoginActivity"
-            android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".DataInputActivity"
-            android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+
         <activity
             android:name=".FacilitySetupActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".ui.MeetingSetupActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".ui.MeetingListActivity" />
 
         <activity android:name=".BedInputActivity" />
+
+
+
+
+
 
     </application>
 

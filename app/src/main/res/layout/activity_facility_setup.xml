@@ -227,7 +227,7 @@
             app:layout_constraintTop_toBottomOf="@+id/field_name" />
 
         <TextView
-            android:id="@+id/formField8"
+            android:id="@+id/user"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -251,7 +251,7 @@
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/formField8"
+            app:layout_constraintStart_toEndOf="@+id/user"
             app:layout_constraintTop_toBottomOf="@+id/field_country" />
 
         <TextView
@@ -264,7 +264,7 @@
             android:textAlignment="textStart"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/formField8" />
+            app:layout_constraintTop_toBottomOf="@+id/user" />
 
         <EditText
             android:id="@+id/field_phone2"

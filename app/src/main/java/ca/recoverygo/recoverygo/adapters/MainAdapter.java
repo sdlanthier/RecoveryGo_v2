@@ -67,18 +67,18 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
             super(itemView);
 
             Log.d(TAG, "ViewHolder: Setting up individual cards");
-            mName = itemView.findViewById(R.id.full_name);
-            mStreet = itemView.findViewById(R.id.street);
-            mCity = itemView.findViewById(R.id.city);
-            mProv = itemView.findViewById(R.id.prov);
-            mPcode = itemView.findViewById(R.id.pcode);
-            mPhone1 = itemView.findViewById(R.id.phone1);
-            mPhone2 = itemView.findViewById(R.id.phone2);
-            mType = itemView.findViewById(R.id.type);
-            mAccess = itemView.findViewById(R.id.access);
-            mBeds = itemView.findViewById(R.id.capacity);
-            mEmail = itemView.findViewById(R.id.email);
-            mWebsite = itemView.findViewById(R.id.website);
+            mName       = itemView.findViewById(R.id.full_name);
+            mStreet     = itemView.findViewById(R.id.street);
+            mCity       = itemView.findViewById(R.id.city);
+            mProv       = itemView.findViewById(R.id.prov);
+            mPcode      = itemView.findViewById(R.id.pcode);
+            mPhone1     = itemView.findViewById(R.id.phone1);
+            mPhone2     = itemView.findViewById(R.id.phone2);
+            mType       = itemView.findViewById(R.id.type);
+            mAccess     = itemView.findViewById(R.id.access);
+            mBeds       = itemView.findViewById(R.id.capacity);
+            mEmail      = itemView.findViewById(R.id.email);
+            mWebsite    = itemView.findViewById(R.id.website);
             // mLogo = itemView.findViewById(R.id.logo_img);
 
             itemView.setOnClickListener(new View.OnClickListener() {

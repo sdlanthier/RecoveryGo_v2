@@ -10,39 +10,48 @@
     <string name="company_email">developers@recoverygo.ca</string>
     <string name="company_url">www.recoverygo.ca</string>
     <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <string name="instruct01">Press BACK button</string>
+    <string name="instruct02">Swipe Left\nto follow the readings</string>
+    <string name="instruct03">Swipe Left Edge for List</string>
+    <string name="instruct04">Enter Sobriety Date</string>
+    <string name="instruct05">Tap to read</string>
+
+    <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">RecoveryGo v2.0</string>
     <string name="nav_header_subtitle">www.recoverygo.ca</string>
     <string name="nav_header_desc">Main Menu</string>
     <string name="menu_action_settings">Local Settings</string>
-    <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-    <string name="instruct01">Press BACK button</string>
-    <string name="instruct02">Swipe Left\nto follow the readings</string>
-    <string name="instruct03">Swipe Left Edge for List</string>
-    <string name="instruct04">Enter Sobriety Date</string>
+
     <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
     <string name="text_placeholder">TextView</string>
     <string name="content_description">ImageView</string>
-    <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-    <string name="title_activity_directory">Treatment Centre Options</string>
-    <string name="title_activity_directory_sub">Ottawa - Toronto</string>
-    <string name="title_activity_directory_txt">A growing list of Residential Treatment Centres &amp; contact information.</string>
-    <string name="title_activity_gallery">RecoveryGo v2.0</string>
-    <string name="title_activity_gallery_list">Gallery List</string>
-    <string name="title_activity_local_setup">Local Settings</string>
-    <string name="title_activity_local_setup_sub">Enter your sobriety date. RecoveryGo will keep track for you..</string>
-    <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
     <string name="field_name_01">Sober Date:</string>
     <string name="button01">Save</string>
     <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-    <string name="title_activity_login">RecoveryGo v2.0</string>
-    <string name="title_activity_main">RecoveryGo v2.0</string>
-    <string name="title_activity_meeting_guide">RecoveryGo v2.0</string>
-    <string name="title_activity_test">AA Meeting Info</string>
-    <string name="title_activity_web">RecoveryGo v2.0</string>
-    <string name="title_activity_web_sub">Personal Journal</string>
-    <string name="title_activity_web_txt">Tap the + button to add a new entry</string>
+    <string name="title_activity_directory"             >Treatment Centre Options</string>
+    <string name="title_activity_directory_sub"         >Ottawa - Toronto</string>
+    <string name="title_activity_directory_txt"         >A growing list of Residential Treatment Centres &amp; contact information.</string>
+    <string name="title_activity_directory_input"       >Add Treatment Centre</string>
+    <string name="title_activity_directory_input_sub"   >Add Treatment Centre</string>
+    <string name="title_activity_gallery"               >RecoveryGo v2.0</string>
+    <string name="title_activity_gallery_list"          >Gallery List</string>
+    <string name="title_activity_local_setup"           >Local Settings</string>
+    <string name="title_activity_local_setup_sub"       >Enter your sobriety date. RecoveryGo will keep track for you..</string>
+    <string name="title_activity_login"                 >RecoveryGo v2.0</string>
+    <string name="title_activity_main"                  >RecoveryGo v2.0</string>
+    <string name="title_activity_meeting_guide"         >RecoveryGo v2.0</string>
+    <string name="title_activity_meeting_list"          >Add a Meeting Location</string>
+    <string name="title_activity_meeting_list_sub"      >Ontario</string>
+
+    <string name="title_activity_test"              >AA Meeting Info</string>
+    <string name="title_activity_web"               >RecoveryGo v2.0</string>
+    <string name="title_activity_web_sub"           >Personal Journal</string>
+    <string name="title_activity_web_txt"           >Tap the + button to add a new entry</string>
+
+    <string name="pdf_bigbookstories">Stories From the Big Book</string>
+    <string name="pdf_twelvesteps">The Twelve Steps</string>
     <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
     <string name="title_fragment_meeting_guide">AA Meeting Guide</string>
     <string name="title_fragment_meeting_guide_text">RecoveryGo v2.0</string>
@@ -63,12 +72,14 @@
 
     <string name="menu_item201">Treatment Centres</string>
     <string name="menu_item202">Add Facility</string>
+    <string name="menu_item203">Finger Paint</string>
 
     <string name="menu_item301">Personal Journal</string>
     <string name="menu_item302">Sobriety Date</string>
 
     <string name="menu_item401">Add Meeting Location</string>
     <string name="menu_item402">View Meeting List</string>
+    <string name="menu_item403">MapMarkerListActivity</string>
 
     <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
     <string name="menu_item_web101">AA World Services</string>
@@ -96,7 +107,8 @@
     <!-- Dialog/Fragment names -->
     <string name="dialog_new_note">New Note Dialog</string>
     <string name="dialog_view_note">View Note Dialog</string>
-
+    <string name="dialog_new_entry">New Entry Dialog</string>
+    <string name="dialog_view_entry">View Entry Dialog</string>
     <!-- Strings -->
     <string name="note_title">Title</string>
     <string name="note_content">Content</string>
@@ -104,40 +116,44 @@
     <string name="open_string">Open</string>
     <string name="save_string">Save</string>
 
-    <string name="label_emailpassword">Email/Password Authentication</string>
-    <string name="desc_emailpassword">Use an email and password to authenticate with Firebase.</string>
-    <string name="emailpassword_status_fmt">SIGNED IN</string>
-    <string name="emailpassword_status_fmt2">SIGNED IN\n %1$s \n (verified: %2$b)</string>
-    <string name="emailpassword_title_text">Email and Password</string>
-    <string name="firebase_status_fmt">Firebase id:\n %s</string>
+    <string name="entry_name">Facility Name</string>
+    <string name="entry_city">City</string>
 
-    <string name="hint_user_id">User ID</string>
-    <string name="get_custom_token">Get Token</string>
-    <string name="sign_in">Sign In</string>
-    <string name="create_account">Create Account</string>
-    <string name="send_link">Send Link</string>
-    <string name="sign_out">Sign Out</string>
-    <string name="verify_email">Verify Email</string>
-    <string name="disconnect">Disconnect</string>
-    <string name="loading">Loading…</string>
-    <string name="custom_token">Custom Token</string>
-    <string name="signed_in">Signed In</string>
-    <string name="signed_out">Signed Out</string>
-    <string name="token_null">Token: null</string>
-    <string name="hint_email">Email</string>
-    <string name="hint_password">Password</string>
-    <string name="desc_firebase_lockup">Firebase logo and name</string>
-    <string name="auth_failed">Authentication failed</string>
-    <string name="start_phone_auth">Start</string>
-    <string name="verify_phone_auth">Verify</string>
-    <string name="resend_phone_auth">Resend</string>
-    <string name="hint_phone_number">Phone Number</string>
-    <string name="hint_verification_code">Verification Code</string>
-    <string name="status_code_sent">Code Sent</string>
-    <string name="status_verification_failed">Verification failed</string>
-    <string name="status_verification_succeeded">Verification succeeded</string>
-    <string name="status_sign_in_failed">Sign-in failed</string>
-    <string name="instant_validation">(instant validation)</string>
+    <string name="label_emailpassword"              >Email/Password Authentication</string>
+    <string name="desc_emailpassword"               >Use an email and password to authenticate with Firebase.</string>
+    <string name="emailpassword_status_fmt"         >SIGNED IN</string>
+    <string name="emailpassword_status_fmt1"         >Signed In: %1$s (verified: %2$b)</string>
+    <string name="emailpassword_title_text"         >Email and Password</string>
+    <string name="firebase_status_fmt"              >Firebase id:\n %s</string>
+    <string name="hint_user_id"                     >User ID</string>
+    <string name="get_custom_token"                 >Get Token</string>
+    <string name="sign_in"                          >Sign In</string>
+    <string name="create_account"                   >Create Account</string>
+    <string name="send_link"                        >Send Link</string>
+    <string name="sign_out"                         >Sign Out</string>
+    <string name="verify_email"                     >Verify Email</string>
+    <string name="disconnect"                       >Disconnect</string>
+    <string name="loading"                          >Loading…</string>
+    <string name="custom_token"                     >Custom Token</string>
+    <string name="signed_in"                        >Signed In</string>
+    <string name="signed_out"                       >Signed Out</string>
+    <string name="token_null"                       >Token: null</string>
+    <string name="hint_email"                       >Email</string>
+    <string name="hint_password"                    >Password</string>
+    <string name="desc_firebase_lockup"             >Firebase logo and name</string>
+    <string name="auth_failed"                      >Authentication failed</string>
+    <string name="start_phone_auth"                 >Start</string>
+    <string name="verify_phone_auth"                >Verify</string>
+    <string name="resend_phone_auth"                >Resend</string>
+    <string name="hint_phone_number"                >Phone Number</string>
+    <string name="hint_verification_code"           >Verification Code</string>
+    <string name="status_code_sent"                 >Code Sent</string>
+    <string name="status_verification_failed"       >Verification failed</string>
+    <string name="status_verification_succeeded"    >Verification succeeded</string>
+    <string name="status_sign_in_failed"            >Sign-in failed</string>
+    <string name="instant_validation"               >(instant validation)</string>
+    <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ LOGIN FIELD HEADERS -->
+    <string name="btn_Sign_in">Sign In</string>
 
     <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ FORM FIELD HEADERS -->
     <string name="form_name">Treatment\nFacility\nSetup</string>
@@ -157,19 +173,18 @@
     <string name="form_field_logourl">Logo Url</string>
     <string name="form_field_beds_ttl">Beds Total</string>
     <string name="form_field_beds_repair">Beds Repair</string>
+    <string name="form_field_next_avail">MM/DD/YY</string>
+    <string name="form_field_next_avail_hdr">Next Available Bed</string>
+    <string name="form_field_comma">,</string>
 
     <string name="form2_name">Meeting\nLocation\nSetup</string>
 
-    <string name="form2_field_group">Group Name:</string>
-    <string name="form2_field_intergroup">Intergroup Name:</string>
-    <string name="form2_field_district">GPS Lat/Lng:</string>
-    <string name="form2_field_format">Meeting Format:</string>
-    <string name="form2_field_day">Weekday:</string>
-    <string name="form2_field_time">Time:</string>
-    <string name="form2_field_site">Site Name:</string>
+    <string name="form2_field_marker">GeoPoint:</string>
     <string name="form2_field_address">Address:</string>
-    <string name="form2_field_location">GPS Location</string>
-    <string name="form2_field_updated">Last Updated:</string>
+    <string name="form2_field_site">Site Name:</string>
+    <string name="form2_field_group">Group:</string>
+    <string name="form2_field_note">Meetings:</string>
+    <string name="form2_field_note_hint">eg. MON 8:00 PM / WED 8:00 PM</string>
 
     <string name="data_sobriety_date">My Sobriety Date</string>
     <string name="title_activity_locator">Map</string>

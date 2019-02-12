@@ -1,10 +1,15 @@
 package ca.recoverygo.recoverygo;
 
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -13,10 +18,12 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 import ca.recoverygo.recoverygo.adapters.MainAdapter;
+import ca.recoverygo.recoverygo.adapters.NoteRecyclerViewAdapter;
+import ca.recoverygo.recoverygo.models.Note;
 
 public class DirectoryActivity extends AppCompatActivity {
 
-    private static final String TAG = "MainActivity";
+    private static final String TAG = "DirectoryActivity";
 
     // csvImport variables
     InputStream inputStream;
@@ -45,9 +52,10 @@ public class DirectoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_directory);
 
-        mRecyclerView = findViewById(R.id.recyclev1);
-        mLayoutManager = new LinearLayoutManager((this));
+        mRecyclerView   = findViewById(R.id.recyclev1);
+        mLayoutManager  = new LinearLayoutManager((this));
         mRecyclerView.setLayoutManager(mLayoutManager);
+
         // *****************************************************************************************
         inputStream = getResources().openRawResource(R.raw.directory);
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
@@ -92,9 +100,8 @@ public class DirectoryActivity extends AppCompatActivity {
         catch (IOException ex) {
             throw new RuntimeException("Error reading states.csv file: "+ ex);
         }
+        // *****************************************************************************************
 
-        Log.i(TAG,""+mName+","+mStreet+","+mCity+","+mProv+","+mPcode+","+mPhone1+","+mPhone2+","+mType+","+mAccess+","+mCapacity+","+mEmail+","+mWebsite+","+mLogo);
-        Log.d(TAG, "onCreate: send data to adapter");
         mAdapter = new MainAdapter(mName,mStreet,mCity,mProv,mPcode,mPhone1,mPhone2,mType,mAccess,mCapacity,mEmail,mWebsite,mLogo);
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setHasFixedSize(true);

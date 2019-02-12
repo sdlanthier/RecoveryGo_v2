@@ -33,7 +33,7 @@
         android:background="@color/colorWhite"
         android:fillViewport="true"
         android:orientation="vertical"
-        tools:context=".ui.MeetingSetupActivity">
+        tools:context=".MeetingSetupActivity">
 
 
         <TextView
@@ -41,20 +41,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:text="@string/form2_field_group"
             android:textAlignment="textStart"
             android:textColor="@color/colorAccent"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/field_location" />
+            app:layout_constraintTop_toBottomOf="@+id/marker" />
 
         <EditText
-            android:id="@+id/field_group"
+            android:id="@+id/group"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:background="@color/grey_100"
             android:maxLines="1"
@@ -63,97 +63,7 @@
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/formField1"
-            app:layout_constraintTop_toBottomOf="@+id/field_location" />
-
-        <TextView
-            android:id="@+id/formField7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/form2_field_format"
-            android:textAlignment="textStart"
-            android:textColor="@color/colorAccent"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/formField6" />
-
-        <EditText
-            android:id="@+id/field_format"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:background="@color/grey_100"
-            android:maxLines="1"
-            android:paddingStart="4dp"
-            android:paddingEnd="4dp"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/formField7"
-            app:layout_constraintTop_toBottomOf="@+id/field_intergroup" />
-
-        <TextView
-            android:id="@+id/formField2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/form2_field_day"
-            android:textAlignment="textStart"
-            android:textColor="@color/colorAccent"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/formField7" />
-
-        <EditText
-            android:id="@+id/field_weekday"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:background="@color/grey_100"
-            android:maxLines="1"
-            android:paddingStart="4dp"
-            android:paddingEnd="4dp"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/formField2"
-            app:layout_constraintTop_toBottomOf="@+id/field_format" />
-
-        <TextView
-            android:id="@+id/formField3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/form2_field_time"
-            android:textAlignment="textStart"
-            android:textColor="@color/colorAccent"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/formField2" />
-
-        <EditText
-            android:id="@+id/field_time"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:background="@color/grey_100"
-            android:maxLines="1"
-            android:paddingStart="4dp"
-            android:paddingEnd="4dp"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/formField3"
-            app:layout_constraintTop_toBottomOf="@+id/field_weekday" />
+            app:layout_constraintTop_toBottomOf="@+id/marker" />
 
         <TextView
             android:id="@+id/formField4"
@@ -166,10 +76,10 @@
             android:textColor="@color/colorAccent"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/formField3" />
+            app:layout_constraintTop_toBottomOf="@+id/formField6" />
 
         <EditText
-            android:id="@+id/field_site"
+            android:id="@+id/site"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
@@ -183,10 +93,42 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/formField4"
-            app:layout_constraintTop_toBottomOf="@+id/field_time" />
+            app:layout_constraintTop_toBottomOf="@+id/address" />
 
         <TextView
             android:id="@+id/formField5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/form2_field_note"
+            android:textAlignment="textStart"
+            android:textColor="@color/colorAccent"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/formField4" />
+
+        <EditText
+            android:id="@+id/note"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@color/grey_100"
+            android:hint="eg. MON 8:00 PM / WED 8:00 PM"
+            android:lines="2"
+            android:maxLines="2"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/formField5"
+            app:layout_constraintTop_toBottomOf="@+id/site" />
+
+        <TextView
+            android:id="@+id/formField6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -196,40 +138,10 @@
             android:textColor="@color/colorAccent"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/formField4" />
-
-        <EditText
-            android:id="@+id/field_address"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:background="@color/grey_100"
-            android:maxLines="1"
-            android:paddingStart="4dp"
-            android:paddingEnd="4dp"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/formField5"
-            app:layout_constraintTop_toBottomOf="@+id/field_site" />
-
-        <TextView
-            android:id="@+id/formField6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/form2_field_intergroup"
-            android:textAlignment="textStart"
-            android:textColor="@color/colorAccent"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/formField1" />
 
         <EditText
-            android:id="@+id/field_intergroup"
+            android:id="@+id/address"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
@@ -243,39 +155,55 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/formField6"
-            app:layout_constraintTop_toBottomOf="@+id/field_group" />
+            app:layout_constraintTop_toBottomOf="@+id/group" />
 
         <TextView
-            android:id="@+id/formField8"
+            android:id="@+id/user"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="24dp"
             android:layout_marginEnd="8dp"
-            android:text="@string/form2_field_district"
+            android:text="@string/form2_field_marker"
             android:textAlignment="center"
             android:textColor="@color/colorAccent"
-            android:textSize="16sp"
+            android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
+        <TextView
+            android:id="@+id/geo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/form2_field_marker"
+            android:textAlignment="center"
+            android:textColor="@color/colorAccent"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/user" />
+
         <EditText
-            android:id="@+id/field_location"
+            android:id="@+id/marker"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:background="@color/grey_100"
-            android:inputType="phone"
+            android:enabled="false"
             android:maxLines="1"
             android:paddingStart="4dp"
             android:paddingEnd="4dp"
             android:textAlignment="center"
-            android:textSize="16sp"
+            android:textSize="12sp"
+            android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/formField8" />
+            app:layout_constraintTop_toBottomOf="@+id/geo" />
 
 
         <Button
@@ -290,7 +218,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/field_address" />
+            app:layout_constraintTop_toBottomOf="@+id/note" />
 
         <Button
             android:id="@+id/button_load"
@@ -302,7 +230,7 @@
             android:text="load"
             android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/field_address" />
+            app:layout_constraintTop_toBottomOf="@+id/note" />
 
         <ImageView
             android:id="@+id/imageView9"

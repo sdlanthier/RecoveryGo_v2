@@ -1,6 +1,5 @@
 package ca.recoverygo.recoverygo.adapters;
 
-
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -30,14 +29,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private ArrayList<String> mImages = new ArrayList<>();
     private ArrayList<String> mTextBodys = new ArrayList<>();
 
-
-
     public RecyclerViewAdapter(Context context, ArrayList<String> imageNames, ArrayList<String> images, ArrayList<String> textBodys) {
 
-        mContext = context;
+        mContext    = context;
         mImageNames = imageNames;
-        mImages = images;
-        mTextBodys = textBodys;
+        mImages     = images;
+        mTextBodys  = textBodys;
     }
 
     @NonNull
@@ -53,14 +50,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public void onBindViewHolder(ViewHolder holder, final int position) {
         Log.d(TAG,"onBindViewHolder: called.");
 
-        Glide.with(mContext)
-                .asBitmap()
-                .load(mImages.get(position))
-        .into(holder.image);
+        Glide.with(mContext).asBitmap().load(mImages.get(position)).into(holder.image);
 
         holder.imageName.setText(mImageNames.get(position));
         holder.textBody.setText(mTextBodys.get(position));
-
 
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,7 +65,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 intent.putExtra("image_url",mImages.get(position));
                 intent.putExtra("image_name",mImageNames.get(position));
                 intent.putExtra("text_body",mTextBodys.get(position));
-
                 mContext.startActivity(intent);
             }
 
@@ -97,7 +89,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             imageName = itemView.findViewById(R.id.image_name);
             textBody = itemView.findViewById(R.id.text_body);
             parentLayout = itemView.findViewById(R.id.parent_layout);
-
         }
     }
 }

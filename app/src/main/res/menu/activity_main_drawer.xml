@@ -21,7 +21,7 @@
             android:title="@string/menu_item103" />
         <item
             android:id="@+id/nav_104"
-            android:icon="@android:drawable/star_big_on"
+            android:icon="@android:drawable/ic_menu_search"
             android:title="@string/menu_item104" />
     </group>
 
@@ -33,10 +33,14 @@
                 android:id="@+id/nav_201"
                 android:icon="@android:drawable/star_big_on"
                 android:title="@string/menu_item201" />
-            <item
+            <!--<item
                 android:id="@+id/nav_202"
                 android:icon="@android:drawable/star_big_on"
-                android:title="@string/menu_item202" />
+                android:title="@string/menu_item202" />-->
+            <item
+                android:id="@+id/nav_203"
+                android:icon="@android:drawable/star_big_on"
+                android:title="@string/menu_item203" />
         </menu>
     </item>
 
@@ -47,11 +51,11 @@
         <menu>
             <item
                 android:id="@+id/nav_301"
-                android:icon="@android:drawable/star_big_on"
+                android:icon="@android:drawable/ic_menu_edit"
                 android:title="@string/menu_item301" />
             <item
                 android:id="@+id/nav_302"
-                android:icon="@android:drawable/star_big_on"
+                android:icon="@android:drawable/ic_menu_today"
                 android:title="@string/menu_item302" />
         </menu>
     </item>

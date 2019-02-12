@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimaryBackground"
-        tools:context=".ui.MeetingListActivity">
+        tools:context=".MeetingListActivity">
 
         <TextView
             android:id="@+id/textView1"
@@ -25,7 +25,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:background="@null"
-            android:text="RecoveryGo Meeting List"
+            android:text="@string/title_activity_meeting_list"
             android:textAlignment="center"
             android:textColor="@color/Black"
             android:textSize="22sp"
@@ -53,8 +53,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
-            android:lineSpacingExtra="4sp"
-            android:text="@string/title_activity_directory_sub"
+            android:text="@string/title_activity_meeting_list_sub"
             android:textAlignment="center"
             android:textColor="@color/Black"
             android:textSize="18sp"
@@ -62,32 +61,17 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/hLine" />
 
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:lineSpacingExtra="4sp"
-            android:text="@string/title_activity_directory_txt"
-            android:textAlignment="center"
-            android:textColor="@color/colorAccent"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView2" />
-
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclev1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView4"></android.support.v7.widget.RecyclerView>
+            app:layout_constraintTop_toBottomOf="@+id/textView2"></android.support.v7.widget.RecyclerView>
 
 
     </android.support.constraint.ConstraintLayout>

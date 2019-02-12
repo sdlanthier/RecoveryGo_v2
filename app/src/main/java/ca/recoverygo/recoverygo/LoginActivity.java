@@ -21,42 +21,33 @@ import ca.recoverygo.recoverygo.system.BaseActivity;
 
 public class LoginActivity extends BaseActivity implements View.OnClickListener {
 
-    private static final String TAG = "LoginActivity";
+    private static final String TAG = "RGO_LoginActivity";
 
     private TextView mStatusTextView;
     private TextView mDetailTextView;
     private EditText mEmailField;
     private EditText mPasswordField;
-
-    // [START declare_auth]
     private FirebaseAuth mAuth;
-    // [END declare_auth]
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        // Views
         mStatusTextView = findViewById(R.id.status);
         mDetailTextView = findViewById(R.id.detail);
         mEmailField = findViewById(R.id.fieldEmail);
         mPasswordField = findViewById(R.id.fieldPassword);
 
-        // Buttons
         findViewById(R.id.emailSignInButton).setOnClickListener(this);
         findViewById(R.id.emailCreateAccountButton).setOnClickListener(this);
         findViewById(R.id.signOutButton).setOnClickListener(this);
         findViewById(R.id.verifyEmailButton).setOnClickListener(this);
 
-        // [START initialize_auth]
-        // Initialize Firebase Auth
         FirebaseApp.initializeApp(this);
         mAuth = FirebaseAuth.getInstance();
-        // [END initialize_auth]
     }
 
-    // [START on_start_check_user]
     @Override
     public void onStart() {
         super.onStart();
@@ -64,7 +55,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         FirebaseUser currentUser = mAuth.getCurrentUser();
         updateUI(currentUser);
     }
-    // [END on_start_check_user]
 
     private void createAccount(String email, String password) {
         Log.d(TAG, "createAccount:" + email);
@@ -196,8 +186,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     private void updateUI(FirebaseUser user) {
         hideProgressDialog();
         if (user != null) {
-            mStatusTextView.setText(getString(R.string.emailpassword_status_fmt,
-                    user.getEmail(), user.isEmailVerified()));
+            mStatusTextView.setText(getString(R.string.emailpassword_status_fmt));
             mDetailTextView.setText(getString(R.string.firebase_status_fmt, user.getUid()));
 
             findViewById(R.id.emailPasswordButtons).setVisibility(View.GONE);
@@ -206,7 +195,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
             findViewById(R.id.verifyEmailButton).setEnabled(!user.isEmailVerified());
             Log.d(TAG, "updateUI: User is logged in");
-            Intent intent = new Intent(LoginActivity.this, DataInputActivity.class);
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(intent);
         } else {
             mStatusTextView.setText(R.string.signed_out);

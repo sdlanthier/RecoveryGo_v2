@@ -34,14 +34,10 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-import ca.recoverygo.recoverygo.ui.MeetingListActivity;
-import ca.recoverygo.recoverygo.ui.MeetingSetupActivity;
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
-
-    private static final String TAG = "MainActivity";
-    private static final String FILE_NAME = "rgsetup.txt";
+    private static final String TAG         = "RGO_MainActivity";
+    private static final String FILE_NAME   = "rgsetup.txt";
 
     private FirebaseAuth mAuth;
 
@@ -110,7 +106,7 @@ public class MainActivity extends AppCompatActivity
                 DateTime dt2 = new DateTime(date2);
 
                 String daysSober = (Days.daysBetween(dt2,dt1).getDays() + " days free!");
-                String hoursSober = (Hours.hoursBetween(dt2,dt1).getHours() + " hours");
+                String hoursSober = (Hours.hoursBetween(dt2,dt1).getHours()-1 + " hours");
 
                 mDays.setText(daysSober);
                 mHours.setText(hoursSober);
@@ -192,7 +188,7 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(MainActivity.this, MeetingGuideActivity.class);
             startActivity(intent);
         }   else if (id == R.id.nav_102) {
-            Intent intent = new Intent(MainActivity.this, TestActivity.class);
+            Intent intent = new Intent(MainActivity.this, MeetingInfoActivity.class);
             startActivity(intent);
         }   else if (id == R.id.nav_103) {
             Intent intent = new Intent(MainActivity.this, WebActivity.class);
@@ -201,17 +197,22 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(MainActivity.this, LocatorActivity.class);
             startActivity(intent);
         }   else if (id == R.id.nav_201) {
-            Intent intent = new Intent(MainActivity.this, DirectoryActivity.class);
+            Intent intent = new Intent(MainActivity.this, DirectoryInputActivity.class);
             startActivity(intent);
-        }   else if (id == R.id.nav_202) {
+        /*}   else if (id == R.id.nav_202) {
             Intent intent = new Intent(MainActivity.this, FacilitySetupActivity.class);
+            startActivity(intent);*/
+        }   else if (id == R.id.nav_203) {
+            Intent intent = new Intent(MainActivity.this, FingerPaintMainActivity.class);
             startActivity(intent);
+
         }   else if (id == R.id.nav_301) {
-            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+            Intent intent = new Intent(MainActivity.this, DataInputActivity.class);
             startActivity(intent);
         }   else if (id == R.id.nav_302) {
             Intent intent = new Intent(MainActivity.this, LocalSetupActivity.class);
             startActivity(intent);
+
         }   else if (id == R.id.nav_401) {
             Intent intent = new Intent(MainActivity.this, MeetingSetupActivity.class);
             startActivity(intent);

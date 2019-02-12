@@ -42,6 +42,7 @@ dependencies {
     // circleimageview
     implementation 'de.hdodenhof:circleimageview:3.0.0'
     implementation files('libs/joda-time-2.10.1.jar')
+    implementation 'com.github.barteksc:android-pdf-viewer:2.0.3'
 }
 
 apply plugin: 'com.google.gms.google-services'

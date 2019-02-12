@@ -22,17 +22,17 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 
-import ca.recoverygo.recoverygo.ui.Meeting1Fragment;
-import ca.recoverygo.recoverygo.ui.Meeting2Fragment;
-import ca.recoverygo.recoverygo.ui.Meeting3Fragment;
-import ca.recoverygo.recoverygo.ui.Meeting4Fragment;
-import ca.recoverygo.recoverygo.ui.Meeting5Fragment;
-import ca.recoverygo.recoverygo.ui.Meeting6Fragment;
-import ca.recoverygo.recoverygo.ui.Meeting7Fragment;
-import ca.recoverygo.recoverygo.ui.Meeting8Fragment;
-import ca.recoverygo.recoverygo.ui.Meeting9Fragment;
-import ca.recoverygo.recoverygo.ui.MeetingA1Fragment;
-import ca.recoverygo.recoverygo.ui.MeetingA2Fragment;
+import ca.recoverygo.recoverygo.ui.MeetingGuide01Fragment;
+import ca.recoverygo.recoverygo.ui.MeetingGuide02Fragment;
+import ca.recoverygo.recoverygo.ui.MeetingGuide03Fragment;
+import ca.recoverygo.recoverygo.ui.MeetingGuide04Fragment;
+import ca.recoverygo.recoverygo.ui.MeetingGuide05Fragment;
+import ca.recoverygo.recoverygo.ui.MeetingGuide06Fragment;
+import ca.recoverygo.recoverygo.ui.MeetingGuide07Fragment;
+import ca.recoverygo.recoverygo.ui.MeetingGuide08Fragment;
+import ca.recoverygo.recoverygo.ui.MeetingGuide09Fragment;
+import ca.recoverygo.recoverygo.ui.MeetingGuide10Fragment;
+import ca.recoverygo.recoverygo.ui.MeetingGuide11Fragment;
 
 public class MeetingGuideActivity extends AppCompatActivity {
 
@@ -97,17 +97,17 @@ public class MeetingGuideActivity extends AppCompatActivity {
         @Override
         public Fragment getItem(int position) {
             switch (position) {
-                case 1: return  new Meeting9Fragment();
-                case 2: return  new Meeting1Fragment();
-                case 3: return  new Meeting2Fragment();
-                case 4: return  new Meeting3Fragment();
-                case 5: return  new Meeting4Fragment();
-                case 6: return  new Meeting5Fragment();
-                case 7: return  new Meeting6Fragment();
-                case 8: return  new Meeting7Fragment();
-                case 9: return  new Meeting8Fragment();
-                case 10: return new MeetingA2Fragment();
-                case 11: return new MeetingA1Fragment();
+                case 1: return  new MeetingGuide09Fragment();
+                case 2: return  new MeetingGuide01Fragment();
+                case 3: return  new MeetingGuide02Fragment();
+                case 4: return  new MeetingGuide03Fragment();
+                case 5: return  new MeetingGuide04Fragment();
+                case 6: return  new MeetingGuide05Fragment();
+                case 7: return  new MeetingGuide06Fragment();
+                case 8: return  new MeetingGuide07Fragment();
+                case 9: return  new MeetingGuide08Fragment();
+                case 10: return new MeetingGuide11Fragment();
+                case 11: return new MeetingGuide10Fragment();
 
                 default: break; }
             return PlaceholderFragment.newInstance(position + 1);

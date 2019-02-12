@@ -15,6 +15,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import ca.recoverygo.recoverygo.ui.BookBigBookStoriesActivity;
+import ca.recoverygo.recoverygo.ui.BookTwelveStepsActivity;
+
 public class WebActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -117,5 +120,15 @@ public class WebActivity extends AppCompatActivity
     public void playMusic(View view) {
         MediaPlayer mp = MediaPlayer.create(this, R.raw.rainthunder1);
         mp.start();
+    }
+
+    public void loadBook1(View view) {
+        Intent intent = new Intent(WebActivity.this, BookBigBookStoriesActivity.class);
+        startActivity(intent);
+    }
+
+    public void loadBook2(View view) {
+        Intent intent = new Intent(WebActivity.this, BookTwelveStepsActivity.class);
+        startActivity(intent);
     }
 }
