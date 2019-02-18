@@ -13,7 +13,6 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
@@ -25,56 +24,31 @@ import android.widget.Toast;
 
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
+
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.GeoPoint;
-import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
+import java.util.Objects;
 
-import ca.recoverygo.recoverygo.adapters.MeetingRecyclerViewAdapter;
 import ca.recoverygo.recoverygo.models.Meeting;
-import ca.recoverygo.recoverygo.models.Note;
 
 public class MeetingSetupActivity extends AppCompatActivity {
 
     private static final String TAG                 = "rg_MeetingSetup";
-    private static final String CONTAINER_NAME      = "locations";
-
-    private static final String KEY_ADDRESS         = "address";
-    private static final String KEY_GROUPNAME       = "groupname";
-    private static final String KEY_MARKER          = "location";
-    private static final String KEY_NOTE            = "note";
-    private static final String KEY_ORG             = "org";
-    private static final String KEY_SITE            = "site";
-    private static final String KEY_USER            = "user";
-
-    private ArrayList<Meeting> mMeetings = new ArrayList<Meeting>();
-    private RecyclerView mRecyclerView;
-
-    private MeetingRecyclerViewAdapter mMeetingRecyclerViewAdapter;
-    private DocumentSnapshot mLastQueriedDocument;
-    public FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     public LocationManager locationManager;
     public String provider;
 
-    EditText mGroup, mSite, mNote, mMarker, mOrg;
     TextView mUser, mAddressLine, mGeo;
+    EditText mGroup, mSite, mNote, mOrg;
+    RecyclerView mRecyclerView;
 
     // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     @Override
@@ -83,7 +57,6 @@ public class MeetingSetupActivity extends AppCompatActivity {
         setContentView(R.layout.activity_meeting_setup);
         mRecyclerView               = findViewById(R.id.recycler_view);
 
-        // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         mGroup  = findViewById(R.id.group);
         mSite   = findViewById(R.id.site);
@@ -125,8 +98,8 @@ public class MeetingSetupActivity extends AppCompatActivity {
         Location location = locationManager.getLastKnownLocation(provider);
 
         if (location != null) {
-            Double myLat = location.getLatitude();
-            Double myLng = location.getLongitude();
+            double myLat = location.getLatitude();
+            double myLng = location.getLongitude();
 
             LatLng myposition = new LatLng(myLat, myLng);
             mGeo.setText(String.valueOf(myposition));
@@ -138,7 +111,7 @@ public class MeetingSetupActivity extends AppCompatActivity {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                if (addresses.size() > 0) {
+                if (Objects.requireNonNull(addresses).size() > 0) {
                     String addressLine = addresses.get(0).getAddressLine(0);
                     mAddressLine = findViewById(R.id.addressLine);
                     mAddressLine.setText(String.valueOf(addressLine));
@@ -177,7 +150,6 @@ public class MeetingSetupActivity extends AppCompatActivity {
         String site    = mSite.getText().toString();
         String address = mAddressLine.getText().toString();
         String note    = mNote.getText().toString();
-        String uid     = mUser.getText().toString();
         String org     = mOrg.getText().toString();
 
         GeoPoint marker = new GeoPoint(myLat,myLng);
@@ -195,7 +167,7 @@ public class MeetingSetupActivity extends AppCompatActivity {
 
         // **************************************************
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        String userId = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
 
         DocumentReference newMeetingRef = db
                 .collection("locations")

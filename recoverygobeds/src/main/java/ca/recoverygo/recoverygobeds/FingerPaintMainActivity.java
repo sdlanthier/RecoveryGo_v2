@@ -1,5 +1,6 @@
-package ca.recoverygo.recoverygo;
+package ca.recoverygo.recoverygobeds;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -107,6 +108,7 @@ public class FingerPaintMainActivity extends Activity {
             mPath.reset();
         }
 
+        @SuppressLint("ClickableViewAccessibility")
         @Override
         public boolean onTouchEvent(MotionEvent event) {
             float x = event.getX();

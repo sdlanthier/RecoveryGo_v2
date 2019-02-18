@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
@@ -26,7 +25,7 @@ public class MeetingListActivity extends AppCompatActivity {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseAuth mAuth;
 
-    private static final String TAG="RGO_MeetingListActivity";
+    // private static final String TAG="RGO_MeetingListActivity";
 
     private List<String> addressList        = new ArrayList<>();
     private List<String> groupsList         = new ArrayList<>();
@@ -43,14 +42,11 @@ public class MeetingListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meeting_list);
 
-        Log.d(TAG, "onCreate: Started");
-
         FirebaseApp.initializeApp(this);
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser;
         currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
-            Log.d(TAG, "onCreate: User is logged in");
             mRecyclerView = findViewById(R.id.recyclev1);
             mLayoutManager = new LinearLayoutManager((this));
             mRecyclerView.setLayoutManager(mLayoutManager);
@@ -72,7 +68,6 @@ public class MeetingListActivity extends AppCompatActivity {
                     sitesList.add(snapshot.         getString("site"));
                     orgsList.add(snapshot.          getString("org"));
                 }
-                Log.d(TAG, "onCreate: Record count:"+addressList.size());
 
                 mAdapter = new MeetingListAdapter(addressList,groupsList,notesList,sitesList,orgsList);
                 mRecyclerView.setAdapter(mAdapter);
@@ -81,7 +76,6 @@ public class MeetingListActivity extends AppCompatActivity {
         });
 
         } else {
-            Log.d(TAG, "onCreate: User is logged out");
             Intent intent = new Intent(MeetingListActivity.this, LoginActivity.class);
             startActivity(intent);
         }

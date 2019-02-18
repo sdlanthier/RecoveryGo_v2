@@ -1,10 +1,7 @@
 package ca.recoverygo.recoverygo;
 
-import android.Manifest;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -41,7 +38,7 @@ import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    private static final String TAG         = "RGO_Main";
+    private static final String TAG         = "rg_MainActivity";
     private static final String FILE_NAME   = "rgsetup.txt";
     
     private FirebaseAuth mAuth;
@@ -228,9 +225,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }   else if (id == R.id.nav_401) {
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(intent);
-        }   else if (id == R.id.nav_402) {
+        /*}   else if (id == R.id.nav_402) {
             Intent intent = new Intent(MainActivity.this, FingerPaintMainActivity.class);
-            startActivity(intent);
+            startActivity(intent);*/
         }   else if (id == R.id.nav_403) {
             Intent intent = new Intent(MainActivity.this, GalleryListActivity.class);
             startActivity(intent);

@@ -1,5 +1,6 @@
-package ca.recoverygo.recoverygo;
+package ca.recoverygo.recoverygobeds;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -15,6 +16,7 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.os.Bundle;
 import android.os.Environment;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -125,6 +127,7 @@ public class FingerPaintActivity extends Activity
             //mPaint.setMaskFilter(null);
         }
 
+        @SuppressLint("ClickableViewAccessibility")
         @Override
         public boolean onTouchEvent(MotionEvent event) {
             float x = event.getX();
@@ -214,8 +217,8 @@ public class FingerPaintActivity extends Activity
                 editalert.setTitle("Please Enter the name with which you want to Save");
                 final EditText input = new EditText(FingerPaintActivity.this);
                 LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
-                        LinearLayout.LayoutParams.FILL_PARENT,
-                        LinearLayout.LayoutParams.FILL_PARENT);
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams.MATCH_PARENT);
                 input.setLayoutParams(lp);
                 editalert.setView(input);
                 editalert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -225,12 +228,13 @@ public class FingerPaintActivity extends Activity
                         Bitmap bitmap = mv.getDrawingCache();
 
                         String path = Environment.getExternalStorageDirectory().getAbsolutePath();
-                        File file = new File("/sdcard/"+name+".png");
+                        @SuppressLint("SdCardPath") File file = new File("/sdcard/"+name+".png");
                         try
                         {
                             if(!file.exists())
                             {
-                                file.createNewFile();
+                                Log.d("Empty if", "onClick: ");
+                                //file.createNewFile();
                             }
                             FileOutputStream ostream = new FileOutputStream(file);
                             bitmap.compress(Bitmap.CompressFormat.PNG, 10, ostream);

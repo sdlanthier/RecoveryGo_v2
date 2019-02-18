@@ -27,6 +27,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import ca.recoverygo.recoverygo.adapters.EntryRecyclerViewAdapter;
 import ca.recoverygo.recoverygo.models.Entry;
@@ -120,7 +121,7 @@ public class DirectoryInputActivity extends BaseActivity implements
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if(task.isSuccessful()){
 
-                    for(QueryDocumentSnapshot document: task.getResult()){
+                    for(QueryDocumentSnapshot document: Objects.requireNonNull(task.getResult())){
                         Entry entry = document.toObject(Entry.class);
                         mNames.add(entry);
                     }
@@ -220,8 +221,6 @@ public class DirectoryInputActivity extends BaseActivity implements
                                String nextavail) {
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-
-        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         DocumentReference newNoteRef = db
                 .collection("Notebook")

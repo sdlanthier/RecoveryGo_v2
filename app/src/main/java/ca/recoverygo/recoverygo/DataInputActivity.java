@@ -29,6 +29,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import ca.recoverygo.recoverygo.adapters.NoteRecyclerViewAdapter;
 import ca.recoverygo.recoverygo.models.NewNoteDialog;
@@ -52,7 +53,7 @@ public class DataInputActivity extends BaseActivity implements
     private ArrayList<Note>                 mNotes = new ArrayList<>();
     private NoteRecyclerViewAdapter         mNoteRecyclerViewAdapter;
     private DocumentSnapshot                mLastQueriedDocument;
-    private TextView                        mNologinMsg;
+    TextView                                mNologinMsg;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -169,13 +170,13 @@ public class DataInputActivity extends BaseActivity implements
         Query notesQuery;
         if(mLastQueriedDocument != null){
            notesQuery = notesCollectionRef
-                    .whereEqualTo("user_id", FirebaseAuth.getInstance().getCurrentUser().getUid())
+                    .whereEqualTo("user_id", Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid())
                     .orderBy("timestamp", Query.Direction.ASCENDING)
                     .startAfter(mLastQueriedDocument);
         }
         else{
             notesQuery = notesCollectionRef
-                    .whereEqualTo("user_id", FirebaseAuth.getInstance().getCurrentUser().getUid())
+                    .whereEqualTo("user_id", Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid())
                     .orderBy("timestamp", Query.Direction.ASCENDING);
         }
 
@@ -184,7 +185,7 @@ public class DataInputActivity extends BaseActivity implements
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if(task.isSuccessful()){
 
-                    for(QueryDocumentSnapshot document: task.getResult()){
+                    for(QueryDocumentSnapshot document: Objects.requireNonNull(task.getResult())){
                         Note note = document.toObject(Note.class);
                         mNotes.add(note);
                     }
@@ -248,7 +249,7 @@ public class DataInputActivity extends BaseActivity implements
     public void createNewNote(String title, String content) {
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        String userId = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
 
         DocumentReference newNoteRef = db
                 .collection("notes")
