@@ -87,7 +87,7 @@
             android:contentDescription="@string/content_description"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView4"
+            app:layout_constraintTop_toBottomOf="@+id/textView3"
             app:srcCompat="@drawable/rglogo_wht_256x256" />
     </android.support.constraint.ConstraintLayout>
 

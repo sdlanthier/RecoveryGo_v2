@@ -11,22 +11,18 @@ import java.util.List;
 import ca.recoverygo.recoverygo.R;
 
 public class MeetingListAdapter extends RecyclerView.Adapter<MeetingListAdapter.ViewHolder> {
-
     private List<String> mAddress;
     private List<String> mGroupname;
     private List<String> mNote;
     private List<String> mSite;
+    private List<String> mOrg;
 
-    public MeetingListAdapter(List<String> address,
-                              List<String> groupname,
-                              List<String> note,
-                              List<String> site) {
-
+    public MeetingListAdapter(List<String> address, List<String> groupname, List<String> note, List<String> site, List<String> org ) {
         mAddress        = address;
         mGroupname      = groupname;
         mNote           = note;
         mSite           = site;
-
+        mOrg            = org;
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
@@ -35,6 +31,7 @@ public class MeetingListAdapter extends RecyclerView.Adapter<MeetingListAdapter.
         TextView mGroupname;
         TextView mNote;
         TextView mSite;
+        TextView mOrg;
 
         private ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -43,6 +40,7 @@ public class MeetingListAdapter extends RecyclerView.Adapter<MeetingListAdapter.
             mSite       = itemView.findViewById(R.id.site);
             mAddress    = itemView.findViewById(R.id.address);
             mNote       = itemView.findViewById(R.id.notes);
+            mOrg       = itemView.findViewById(R.id.org);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -70,6 +68,7 @@ public class MeetingListAdapter extends RecyclerView.Adapter<MeetingListAdapter.
         holder.mGroupname.setText(mGroupname.get(position));
         holder.mNote.setText(mNote.get(position));
         holder.mSite.setText(mSite.get(position));
+        holder.mOrg.setText(mOrg.get(position));
 
     }
 

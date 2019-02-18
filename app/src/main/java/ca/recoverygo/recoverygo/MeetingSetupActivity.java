@@ -1,99 +1,121 @@
 package ca.recoverygo.recoverygo;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Address;
 import android.location.Criteria;
+import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.FirebaseApp;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.GeoPoint;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
 import java.util.Map;
+
+import ca.recoverygo.recoverygo.adapters.MeetingRecyclerViewAdapter;
+import ca.recoverygo.recoverygo.models.Meeting;
+import ca.recoverygo.recoverygo.models.Note;
 
 public class MeetingSetupActivity extends AppCompatActivity {
 
- // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    private static final String TAG                 = "RGO_MeetingSetupActivity";
-
+    private static final String TAG                 = "rg_MeetingSetup";
     private static final String CONTAINER_NAME      = "locations";
 
-    private static final String KEY_GROUPNAME       = "groupname";
-    private static final String KEY_SITE            = "site";
     private static final String KEY_ADDRESS         = "address";
-    private static final String KEY_NOTE            = "note";
+    private static final String KEY_GROUPNAME       = "groupname";
     private static final String KEY_MARKER          = "location";
+    private static final String KEY_NOTE            = "note";
+    private static final String KEY_ORG             = "org";
+    private static final String KEY_SITE            = "site";
     private static final String KEY_USER            = "user";
 
+    private ArrayList<Meeting> mMeetings = new ArrayList<Meeting>();
+    private RecyclerView mRecyclerView;
+
+    private MeetingRecyclerViewAdapter mMeetingRecyclerViewAdapter;
+    private DocumentSnapshot mLastQueriedDocument;
     public FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     public LocationManager locationManager;
     public String provider;
 
-    EditText mGroup;
-    EditText mSite;
-    EditText mAddress;
-    EditText mNote;
-    EditText mMarker;
-    TextView mUser;
-    TextView mGeo;
+    EditText mGroup, mSite, mNote, mMarker, mOrg;
+    TextView mUser, mAddressLine, mGeo;
 
     // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meeting_setup);
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        mRecyclerView               = findViewById(R.id.recycler_view);
+
+        // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        mGroup  = findViewById(R.id.group);
+        mSite   = findViewById(R.id.site);
+        mNote   = findViewById(R.id.note);
+        mOrg    = findViewById(R.id.org);
+        mUser   = findViewById(R.id.user);
+        mGeo    = findViewById(R.id.geo);
+        // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
         if (user != null) {
-                // Name, email address, and profile photo Url
-                String name = user.getDisplayName();
-                String email = user.getEmail();
-                Uri photoUrl = user.getPhotoUrl();
-
-                // Check if user's email is verified
-                boolean emailVerified = user.isEmailVerified();
-
-                // The user's ID, unique to the Firebase project. Do NOT use this value to
-                // authenticate with your backend server, if you have one. Use
-                // FirebaseUser.getIdToken() instead.
-                String uid = user.getUid();
-            mUser         = findViewById(R.id.user);
+            String uid = user.getUid();
             mUser.setText(uid);
-
+        } else {
+            AlertDialog alertDialog = new AlertDialog.Builder(MeetingSetupActivity.this).create();
+            alertDialog.setTitle("Alert");
+            alertDialog.setMessage("You must have a valid acount to create a new meeting marker.");
+            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                            Intent intent = new Intent(MeetingSetupActivity.this, LoginActivity.class);
+                            startActivity(intent);
+                        }
+                    });
+            alertDialog.show();
         }
-        // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         Criteria criteria = new Criteria();
         provider = locationManager.getBestProvider(criteria, false);
+
         if (ActivityCompat.checkSelfPermission(this,
                 Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(this,
@@ -101,22 +123,27 @@ public class MeetingSetupActivity extends AppCompatActivity {
             return;
         }
         Location location = locationManager.getLastKnownLocation(provider);
-        Double myLat = location.getLatitude();
-        Double myLng = location.getLongitude();
 
-        LatLng myposition = new LatLng(myLat, myLng);
-     // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-        mGroup        = findViewById(R.id.group);
-        mSite         = findViewById(R.id.site);
-        mAddress      = findViewById(R.id.address);
-        mNote         = findViewById(R.id.note);
-        mMarker       = findViewById(R.id.marker);
-        mUser         = findViewById(R.id.user);
-        mGeo          = findViewById(R.id.geo);
+        if (location != null) {
+            Double myLat = location.getLatitude();
+            Double myLng = location.getLongitude();
 
-        // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-        mMarker.setText(String.valueOf(myposition));
-        mGeo.setText(String.valueOf(myposition));
+            LatLng myposition = new LatLng(myLat, myLng);
+            mGeo.setText(String.valueOf(myposition));
+
+            Geocoder gcd = new Geocoder(this, Locale.getDefault());
+                List<Address> addresses = null;
+                try {
+                    addresses = gcd.getFromLocation(myLat, myLng, 1);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                if (addresses.size() > 0) {
+                    String addressLine = addresses.get(0).getAddressLine(0);
+                    mAddressLine = findViewById(R.id.addressLine);
+                    mAddressLine.setText(String.valueOf(addressLine));
+                }
+        }
 
         AlertDialog alertDialog = new AlertDialog.Builder(MeetingSetupActivity.this).create();
         alertDialog.setTitle("Alert");
@@ -128,6 +155,7 @@ public class MeetingSetupActivity extends AppCompatActivity {
                     }
                 });
         alertDialog.show();
+        //checkMeeting();
     }
 
     public void save(View v) {
@@ -145,46 +173,76 @@ public class MeetingSetupActivity extends AppCompatActivity {
         Double myLat = location.getLatitude();
         Double myLng = location.getLongitude();
         // **************************************************
-        String group   = mGroup.getText().toString();
+        String groupname   = mGroup.getText().toString();
         String site    = mSite.getText().toString();
-        String address = mAddress.getText().toString();
+        String address = mAddressLine.getText().toString();
         String note    = mNote.getText().toString();
-        String uid    = mUser.getText().toString();
+        String uid     = mUser.getText().toString();
+        String org     = mOrg.getText().toString();
 
-        Object marker = new GeoPoint(myLat,myLng);
-        
-        // **************************************************
-        mGroup.getText().clear();
-        mSite.getText().clear();
-        mAddress.getText().clear();
-        mNote.getText().clear();
-        mMarker.getText().clear();
-        mGroup.setVisibility(View.INVISIBLE);
-        mSite.setVisibility(View.INVISIBLE);
-        mAddress.setVisibility(View.INVISIBLE);
-        mNote.setVisibility(View.INVISIBLE);
+        GeoPoint marker = new GeoPoint(myLat,myLng);
+        GeoPoint loc = new GeoPoint(myLat,myLng);
 
         // **************************************************
-        Map<String,Object> meetingrcd = new HashMap<>();
+        mGroup      .getText().clear();
+        mSite       .getText().clear();
+        mNote       .getText().clear();
 
-        meetingrcd.put(KEY_GROUPNAME, group);
-        meetingrcd.put(KEY_SITE,      site);
-        meetingrcd.put(KEY_ADDRESS,   address);
-        meetingrcd.put(KEY_NOTE,      note);
-        meetingrcd.put(KEY_MARKER,    marker);
-        meetingrcd.put(KEY_USER,      uid);
+        mGroup      .setVisibility(View.INVISIBLE);
+        mSite       .setVisibility(View.INVISIBLE);
+        mNote       .setVisibility(View.INVISIBLE);
+        mOrg        .setVisibility(View.INVISIBLE);
 
-        db.collection(CONTAINER_NAME).document().set(meetingrcd).addOnSuccessListener(new OnSuccessListener<Void>() {
+        // **************************************************
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+        DocumentReference newMeetingRef = db
+                .collection("locations")
+                .document();
+
+        Meeting meeting = new Meeting(groupname, site, org, note, userId, marker, loc, address);
+
+        meeting.setGroupname(groupname);
+        meeting.setSite(site);
+        meeting.setOrg(org);
+        meeting.setNote(note);
+        meeting.setUser(userId);
+        meeting.setMarker(marker);
+        meeting.setLocation(loc);
+        meeting.setAddress(address);
+
+        meeting.setLocation_id(newMeetingRef.getId());
+
+
+        newMeetingRef.set(meeting).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
-            public void onSuccess(Void aVoid) {
-                Toast.makeText(MeetingSetupActivity.this, "Record Saved", Toast.LENGTH_LONG).show();
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(MeetingSetupActivity.this, "Error!", Toast.LENGTH_LONG).show();
+            public void onComplete(@NonNull Task<Void> task) {
+                if(task.isSuccessful()){
+                    Toast.makeText(MeetingSetupActivity.this, "Created New Meeting", Toast.LENGTH_SHORT).show();
+                    Log.d(TAG, "onComplete: Created New meeting");                }
+                else{
+                    Log.d(TAG, "onComplete: Create New Meeting Failed");                }
             }
         });
+
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.d(TAG, "onPause: called");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d(TAG, "onDestroy: called");
+    }
+
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        Log.d(TAG, "onPostResume: called");
+    }
 }

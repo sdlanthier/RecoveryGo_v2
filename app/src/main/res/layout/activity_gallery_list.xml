@@ -1,19 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <RelativeLayout
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:background="#ffffff">
 
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+    <TextView
+        android:id="@+id/tv_header"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        android:text="@string/title_activity_gallery"
+        android:textColor="#ffffff"
+        android:textSize="18sp" />
+
+<ImageView
+    android:id="@+id/imageView"
+    android:layout_width="256dp"
+    android:layout_height="256dp"
+    android:layout_alignParentTop="true"
+    android:layout_centerHorizontal="true"
+    android:layout_marginTop="120dp"
+    android:contentDescription="@string/content_description"
+    app:srcCompat="@drawable/rglogo_wht_256x256" />
+
+<android.support.v4.widget.SwipeRefreshLayout
+
+    android:id="@+id/swipe_refresh_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryBackground"
-    tools:context=".MainActivity">
+    android:layout_marginTop="48dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginEnd="8dp">
 
     <android.support.v7.widget.RecyclerView
+
         android:id="@+id/recycler_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
     </android.support.v7.widget.RecyclerView>
+
+</android.support.v4.widget.SwipeRefreshLayout>
 
 </RelativeLayout>

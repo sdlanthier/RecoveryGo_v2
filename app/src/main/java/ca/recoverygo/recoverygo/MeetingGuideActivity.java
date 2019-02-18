@@ -11,11 +11,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,7 +33,7 @@ import ca.recoverygo.recoverygo.ui.MeetingGuide11Fragment;
 
 public class MeetingGuideActivity extends AppCompatActivity {
 
-    private static final String TAG="MeetingGuideActivity";
+    // private static final String TAG="MeetingGuideActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,24 +43,6 @@ public class MeetingGuideActivity extends AppCompatActivity {
         SectionsPagerAdapter mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
         ViewPager mViewPager = findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        Log.d(TAG, "onCreateOptionsMenu: Started");
-        getMenuInflater().inflate(R.menu.menu_meeting_guide, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 
     public static class PlaceholderFragment extends Fragment {
@@ -106,8 +85,8 @@ public class MeetingGuideActivity extends AppCompatActivity {
                 case 7: return  new MeetingGuide06Fragment();
                 case 8: return  new MeetingGuide07Fragment();
                 case 9: return  new MeetingGuide08Fragment();
-                case 10: return new MeetingGuide11Fragment();
-                case 11: return new MeetingGuide10Fragment();
+                case 10: return new MeetingGuide10Fragment();
+                case 11: return new MeetingGuide11Fragment();
 
                 default: break; }
             return PlaceholderFragment.newInstance(position + 1);
@@ -141,6 +120,7 @@ public class MeetingGuideActivity extends AppCompatActivity {
             }
         }, 10);
     }
+
     public void setVolumeOff(View view) {
 
         AudioManager am = (AudioManager) this.getSystemService(Context.AUDIO_SERVICE);

@@ -25,7 +25,7 @@ public class BookTwelveStepsActivity extends Activity implements OnPageChangeLis
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_twelve_steps);
+        setContentView(R.layout.activity_book_twelve_steps);
 
 
         pdfView= findViewById(R.id.pdfView);

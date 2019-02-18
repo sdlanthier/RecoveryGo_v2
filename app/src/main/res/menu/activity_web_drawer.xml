@@ -12,6 +12,7 @@
                 android:id="@+id/nav_web101"
                 android:icon="@drawable/ic_menu_send"
                 android:title="@string/menu_item_web101" />
+
             <item
                 android:id="@+id/nav_web102"
                 android:icon="@drawable/ic_menu_send"
@@ -24,26 +25,6 @@
                 android:id="@+id/nav_web104"
                 android:icon="@drawable/ic_menu_send"
                 android:title="@string/menu_item_web104" />
-            <item
-                android:id="@+id/nav_web105"
-                android:icon="@drawable/ic_menu_send"
-                android:title="@string/menu_item_web105" />
-            <item
-                android:id="@+id/nav_web106"
-                android:icon="@drawable/ic_menu_send"
-                android:title="@string/menu_item_web106" />
-            <item
-                android:id="@+id/nav_web107"
-                android:icon="@drawable/ic_menu_send"
-                android:title="@string/menu_item_web107" />
-            <item
-                android:id="@+id/nav_web108"
-                android:icon="@drawable/ic_menu_send"
-                android:title="@string/menu_item_web108" />
-            <item
-                android:id="@+id/nav_web109"
-                android:icon="@drawable/ic_menu_send"
-                android:title="@string/menu_item_web109" />
         </menu>
     </item>
 </menu>

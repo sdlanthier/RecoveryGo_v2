@@ -13,9 +13,11 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
@@ -41,6 +43,7 @@ public class DataInputActivity extends BaseActivity implements
         SwipeRefreshLayout.OnRefreshListener {
 
     private static final String TAG = "DataInputActivity";
+    private FirebaseAuth mAuth;
 
     private View                            mParentLayout;
     private RecyclerView                    mRecyclerView;
@@ -49,9 +52,11 @@ public class DataInputActivity extends BaseActivity implements
     private ArrayList<Note>                 mNotes = new ArrayList<>();
     private NoteRecyclerViewAdapter         mNoteRecyclerViewAdapter;
     private DocumentSnapshot                mLastQueriedDocument;
+    private TextView                        mNologinMsg;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_data_input);
 
@@ -60,16 +65,68 @@ public class DataInputActivity extends BaseActivity implements
         mParentLayout               = findViewById(android.R.id.content);
         mRecyclerView               = findViewById(R.id.recycler_view);
         mSwipeRefreshLayout         = findViewById(R.id.swipe_refresh_layout);
-
+        mAuth                       = FirebaseAuth.getInstance();
         mFab.                   setOnClickListener(this);
         mFab2.                  setOnClickListener(this);
         mSwipeRefreshLayout.    setOnRefreshListener(this);
 
-        setupFirebaseAuth();
-        initRecyclerView();
-        getNotes();
+
+    }
+    @Override
+    public void onStart() {
+        super.onStart();
+        Log.d(TAG, "onStart: getting user info");
+        FirebaseApp.initializeApp(this);
+        FirebaseUser currentUser;
+        currentUser = mAuth.getCurrentUser();
+        Log.d(TAG, "onStart: sending to updateUI: "+currentUser);
+        updateUI(currentUser);
+    }
+    private void updateUI(FirebaseUser user) {
+        if (user != null) {
+            String name = user.getDisplayName();
+            String email = user.getEmail();
+            String uid = user.getUid();
+
+            Log.d(TAG, "updateUI: user = "+uid);
+            Log.d(TAG, "updateUI: name = "+name);
+            Log.d(TAG, "updateUI: email = "+email);
+            //setupFirebaseAuth();
+            initRecyclerView();
+            getNotes();
+        } else {
+            FloatingActionButton mFab   = findViewById(R.id.fab);
+            mNologinMsg               = findViewById(R.id.nologinmsg);
+
+            mFab.setVisibility(View.GONE);
+            mNologinMsg.setVisibility(View.VISIBLE);
+
+            Log.d(TAG, "updateUI: User is logged out");
+
+        }
+        Log.d(TAG, "updateUI: complete");
     }
 
+    private void setupFirebaseAuth(){
+        Log.d(TAG, "setupFirebaseAuth: started.");
+
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user != null) {
+
+                    Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
+
+                } else {
+                    Log.d(TAG, "onAuthStateChanged:signed_out");
+                    Intent intent = new Intent(DataInputActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+            }
+        };
+    }
     @Override
     public void onBackPressed() {
         Intent intent = new Intent(DataInputActivity.this, MainActivity.class);
@@ -106,10 +163,9 @@ public class DataInputActivity extends BaseActivity implements
     }
 
     private void getNotes(){
-
+        setupFirebaseAuth();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        CollectionReference notesCollectionRef = db
-                .collection("notes");
+        CollectionReference notesCollectionRef = db.collection("notes");
         Query notesQuery;
         if(mLastQueriedDocument != null){
            notesQuery = notesCollectionRef
@@ -192,7 +248,6 @@ public class DataInputActivity extends BaseActivity implements
     public void createNewNote(String title, String content) {
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-
         String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         DocumentReference newNoteRef = db
@@ -264,34 +319,6 @@ public class DataInputActivity extends BaseActivity implements
     private void signOut(){
         Log.d(TAG, "signOut: signing out");
         FirebaseAuth.getInstance().signOut();
-    }
-
-    private void setupFirebaseAuth(){
-        Log.d(TAG, "setupFirebaseAuth: started.");
-
-        mAuthListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-                if (user != null) {
-
-                    Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
-
-                } else {
-                    Log.d(TAG, "onAuthStateChanged:signed_out");
-                    Intent intent = new Intent(DataInputActivity.this, LoginActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(intent);
-                    finish();
-                }
-            }
-        };
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        FirebaseAuth.getInstance().addAuthStateListener(mAuthListener);
     }
 
     @Override

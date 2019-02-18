@@ -31,81 +31,88 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginStart="16sp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16sp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
             android:background="@color/colorAccentLight"
             android:paddingLeft="4dp"
             android:paddingRight="4dp"
-            android:text="Group Name"
-            android:textAlignment="center"
+            android:text="@string/text_placeholder"
+            android:textAlignment="textStart"
             android:textColor="@color/Black"
-            android:textSize="20sp"
-            tools:ignore="RtlHardcoded" />
+            android:textSize="18sp" />
+
 
         <TextView
-            android:id="@+id/site"
+            android:id="@+id/address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/groupname"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="8dp"
             android:maxLines="2"
             android:paddingLeft="4dp"
             android:paddingRight="4dp"
-            android:text="Site Name"
+            android:text="@string/text_placeholder"
             android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/address"
+            android:id="@+id/site"
             android:layout_width="wrap_content"
-            android:layout_height="46dp"
-            android:layout_below="@+id/site"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:maxLines="3"
-            android:paddingLeft="4dp"
-            android:paddingRight="4dp"
-            android:text="Address"
-            android:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/location"
-            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/address"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="8dp"
             android:paddingLeft="4dp"
             android:paddingRight="4dp"
-            android:text="Location"
-            android:textAlignment="textEnd"
+            android:text="@string/text_placeholder"
             android:textSize="16sp" />
+
 
         <TextView
             android:id="@+id/notes"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:layout_below="@+id/location"
+            android:layout_below="@+id/site"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="8dp"
             android:background="@color/colorPrimaryBackground"
             android:maxLines="2"
             android:paddingLeft="4dp"
             android:paddingRight="4dp"
-            android:text="Notes"
+            android:text="@string/text_placeholder"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/org"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/notes"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="8dp"
+            android:layout_toEndOf="@+id/textView23"
+            android:text="@string/text_placeholder"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/textView23"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/notes"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            android:text="Support Group:"
             android:textSize="16sp" />
 
     </RelativeLayout>

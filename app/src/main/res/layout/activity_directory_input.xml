@@ -1,10 +1,19 @@
 <RelativeLayout
-
-    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/White">
+    android:background="#ffffff">
+
+    <TextView
+        android:id="@+id/tv_header"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        android:text="@string/title_activity_directory"
+        android:textColor="#ffffff"
+        android:textSize="18sp" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -12,46 +21,26 @@
         android:layout_height="256dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="120dp"
         android:contentDescription="@string/content_description"
         app:srcCompat="@drawable/rglogo_wht_256x256" />
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="256dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/imageView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="0dp"
-        android:fontFamily="serif"
-        android:text="@string/title_activity_directory_input_sub"
-        android:textAlignment="center"
-        android:textAllCaps="true"
-        android:textColor="@color/colorAccent"
-        android:textSize="18sp" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="256dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView1"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="66dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/title_activity_web_txt"
-        android:textAlignment="center"
-        android:textAllCaps="false"
-        android:textSize="14sp" />
-
     <android.support.v4.widget.SwipeRefreshLayout
+
+        android:id="@+id/swipe_refresh_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/swipe_refresh_layout">
+        android:layout_marginTop="48dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp">
 
         <android.support.v7.widget.RecyclerView
+
             android:id="@+id/recycler_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
         </android.support.v7.widget.RecyclerView>
 
     </android.support.v4.widget.SwipeRefreshLayout>

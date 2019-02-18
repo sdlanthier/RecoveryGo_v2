@@ -4,6 +4,34 @@
     <string name="app_version">v2.0</string>
     <string name="app_description">The Mobile Recovery Resource App</string>
     <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+    <string name="title_activity_book_twelve_steps">Twelve Steps &amp; 12 Traditions</string>
+    <string name="title_activity_book_bigbook_stories">Stories From The Big Book</string>
+
+    <string name="title_activity_directory">Treatment Centre Information</string>
+    <string name="title_activity_data_input">Recovery Journal</string>
+    <string name="title_activity_data_input_nologin">To use the Personal Journal you need to create a RecoveryGo account. Press the back button and select Login from the Main menu.</string>
+
+    <string name="title_activity_meeting_input">Edit/Remove Meeting</string>
+    <string name="title_activity_meeting_input_txt">Meeting Locations you added to the map can only be changed or removed by you.</string>
+    <string name="title_activity_meeting_input_nologin">To Add meetings to the map you need to create a RecoveryGo account. Press the back button and select Login from the Main menu.</string>
+
+    <string name="title_activity_directory_input">Add Treatment Centre</string>
+    <string name="title_activity_gallery">RecoveryGo v2.0</string>
+    <string name="title_activity_gallery_list">Gallery List</string>
+    <string name="title_activity_local_setup">Sobriety Date Calculator</string>
+    <string name="title_activity_local_setup_sub">Enter your sobriety date. RecoveryGo will keep track for you..</string>
+    <string name="title_activity_login">RecoveryGo v2.0 - Login</string>
+    <string name="title_activity_main">RecoveryGo v2.0</string>
+    <string name="title_activity_meeting_guide">AA Meeting Guide</string>
+    <string name="title_activity_meeting_list">Meeting Locations</string>
+
+    <string name="title_activity_test">AA Meeting Info</string>
+    <string name="title_activity_web">RecoveryGo v2.0</string>
+    <string name="title_activity_web_sub">Personal Journal</string>
+    <string name="title_activity_web_txt">Tap the + button to add a new entry</string>
+    <string name="title_content_web_txt">Copies of the above books are available at most AA meetings. They are sold at cost and arrangements are often made to ensure you have your own copy. Ask any member for direction to the librarian.</string>
+
     <string name="company_name">LTC Inc.</string>
     <string name="company_address">203 Lakeside Drive, Carleton Place, Ontario, K7C 0C4, Canada</string>
     <string name="company_phone">+1 613–257–8581</string>
@@ -29,32 +57,18 @@
     <string name="content_description">ImageView</string>
     <string name="field_name_01">Sober Date:</string>
     <string name="button01">Save</string>
-    <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-    <string name="title_activity_directory"             >Treatment Centre Options</string>
-    <string name="title_activity_directory_sub"         >Ottawa - Toronto</string>
-    <string name="title_activity_directory_txt"         >A growing list of Residential Treatment Centres &amp; contact information.</string>
-    <string name="title_activity_directory_input"       >Add Treatment Centre</string>
-    <string name="title_activity_directory_input_sub"   >Add Treatment Centre</string>
-    <string name="title_activity_gallery"               >RecoveryGo v2.0</string>
-    <string name="title_activity_gallery_list"          >Gallery List</string>
-    <string name="title_activity_local_setup"           >Local Settings</string>
-    <string name="title_activity_local_setup_sub"       >Enter your sobriety date. RecoveryGo will keep track for you..</string>
-    <string name="title_activity_login"                 >RecoveryGo v2.0</string>
-    <string name="title_activity_main"                  >RecoveryGo v2.0</string>
-    <string name="title_activity_meeting_guide"         >RecoveryGo v2.0</string>
-    <string name="title_activity_meeting_list"          >Add a Meeting Location</string>
-    <string name="title_activity_meeting_list_sub"      >Ontario</string>
+    <string name="btn_load">Load</string>
+    <string name="btn_save">Save</string>
 
-    <string name="title_activity_test"              >AA Meeting Info</string>
-    <string name="title_activity_web"               >RecoveryGo v2.0</string>
-    <string name="title_activity_web_sub"           >Personal Journal</string>
-    <string name="title_activity_web_txt"           >Tap the + button to add a new entry</string>
+    <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
 
     <string name="pdf_bigbookstories">Stories From the Big Book</string>
     <string name="pdf_twelvesteps">The Twelve Steps</string>
     <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
     <string name="title_fragment_meeting_guide">AA Meeting Guide</string>
     <string name="title_fragment_meeting_guide_text">RecoveryGo v2.0</string>
+    <string name="title_fragment_meeting_guide_hdr">Slogans</string>...
     <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
     <string name="section_format">Section: %1$d</string>
     <string name="popup_mute">ringer is off\n for the next 60 minutes</string>
@@ -62,35 +76,31 @@
     <string name="action_settings">Settings</string>
     <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
     <string name="menu_group1">Information</string>
-    <string name="menu_group2">Treatment</string>
-    <string name="menu_group3">Tools</string>
+    <string name="menu_group2">Tools</string>
+    <string name="menu_group3">Recovery</string>
     <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
     <string name="menu_item101">Meeting Guide</string>
     <string name="menu_item102">Meeting Info</string>
-    <string name="menu_item103">Web Resources</string>
-    <string name="menu_item104">Find Meeting</string>
+    <string name="menu_item103">Find A Meeting</string>
 
-    <string name="menu_item201">Treatment Centres</string>
-    <string name="menu_item202">Add Facility</string>
-    <string name="menu_item203">Finger Paint</string>
+    <string name="menu_item201">Personal Journal</string>
+    <string name="menu_item202">Freedom Date</string>
+    <string name="menu_item203">Mobile Reads</string>
 
-    <string name="menu_item301">Personal Journal</string>
-    <string name="menu_item302">Sobriety Date</string>
+    <string name="menu_item301">Treatment Centres</string>
+    <string name="menu_item302">Add Meeting</string>
+    <string name="menu_item303">Edit/Remove Meeting</string>
 
-    <string name="menu_item401">Add Meeting Location</string>
-    <string name="menu_item402">View Meeting List</string>
-    <string name="menu_item403">MapMarkerListActivity</string>
+    <string name="menu_item401">Login</string>
+    <string name="menu_item402">Finger Paint</string>
+    <string name="menu_item403">Gallery</string>
 
     <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <string name="menu_item_web100">Recovery Web</string>
     <string name="menu_item_web101">AA World Services</string>
-    <string name="menu_item_web102">AA Ottawa Intergroup</string>
-    <string name="menu_item_web103">AA Toronto Intergroup</string>
-    <string name="menu_item_web104">AA Lanark/Leeds</string>
-    <string name="menu_item_web105">NA World Services</string>
-    <string name="menu_item_web106">NA Ottawa Intergroup</string>
-    <string name="menu_item_web107">NA Toronto OSRC</string>
-    <string name="menu_item_web108">Al-Anon Family Group</string>
-    <string name="menu_item_web109">Canadian Centre for Addictions</string>
+    <string name="menu_item_web102">NA World Services</string>
+    <string name="menu_item_web103">Al-Anon Family Group</string>
+    <string name="menu_item_web104">Cdn Ctr For Addictions</string>
 
     <string name="res_url_01">https://www.aa.org</string>
     <string name="res_url_02">https://www.ottawaaa.org/</string>
@@ -104,14 +114,23 @@
     <string name="res_url_10">https://</string>
     <string name="res_url_11">https://</string>
     <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-    <!-- Dialog/Fragment names -->
+
     <string name="dialog_new_note">New Note Dialog</string>
     <string name="dialog_view_note">View Note Dialog</string>
     <string name="dialog_new_entry">New Entry Dialog</string>
     <string name="dialog_view_entry">View Entry Dialog</string>
-    <!-- Strings -->
+    <string name="dialog_new_meeting">New Meeting Dialog</string>
+    <string name="dialog_view_meeting">View Meeting Dialog</string>
+
     <string name="note_title">Title</string>
     <string name="note_content">Content</string>
+
+    <string name="meeting_group">Group Name</string>
+    <string name="meeting_site">Site Name</string>
+    <string name="meeting_org">Support Group Type</string>
+    <string name="meeting_note">Meeting Info</string>
+
+
     <string name="new_string">New</string>
     <string name="open_string">Open</string>
     <string name="save_string">Save</string>
@@ -119,39 +138,41 @@
     <string name="entry_name">Facility Name</string>
     <string name="entry_city">City</string>
 
-    <string name="label_emailpassword"              >Email/Password Authentication</string>
-    <string name="desc_emailpassword"               >Use an email and password to authenticate with Firebase.</string>
-    <string name="emailpassword_status_fmt"         >SIGNED IN</string>
-    <string name="emailpassword_status_fmt1"         >Signed In: %1$s (verified: %2$b)</string>
-    <string name="emailpassword_title_text"         >Email and Password</string>
-    <string name="firebase_status_fmt"              >Firebase id:\n %s</string>
-    <string name="hint_user_id"                     >User ID</string>
-    <string name="get_custom_token"                 >Get Token</string>
-    <string name="sign_in"                          >Sign In</string>
-    <string name="create_account"                   >Create Account</string>
-    <string name="send_link"                        >Send Link</string>
-    <string name="sign_out"                         >Sign Out</string>
-    <string name="verify_email"                     >Verify Email</string>
-    <string name="disconnect"                       >Disconnect</string>
-    <string name="loading"                          >Loading…</string>
-    <string name="custom_token"                     >Custom Token</string>
-    <string name="signed_in"                        >Signed In</string>
-    <string name="signed_out"                       >Signed Out</string>
-    <string name="token_null"                       >Token: null</string>
-    <string name="hint_email"                       >Email</string>
-    <string name="hint_password"                    >Password</string>
-    <string name="desc_firebase_lockup"             >Firebase logo and name</string>
-    <string name="auth_failed"                      >Authentication failed</string>
-    <string name="start_phone_auth"                 >Start</string>
-    <string name="verify_phone_auth"                >Verify</string>
-    <string name="resend_phone_auth"                >Resend</string>
-    <string name="hint_phone_number"                >Phone Number</string>
-    <string name="hint_verification_code"           >Verification Code</string>
-    <string name="status_code_sent"                 >Code Sent</string>
-    <string name="status_verification_failed"       >Verification failed</string>
-    <string name="status_verification_succeeded"    >Verification succeeded</string>
-    <string name="status_sign_in_failed"            >Sign-in failed</string>
-    <string name="instant_validation"               >(instant validation)</string>
+    <string name="label_emailpassword">Email/Password Authentication</string>
+    <string name="desc_emailpassword">Use an email and password to authenticate with Firebase.</string>
+    <string name="emailpassword_status_fmt">SIGNED IN</string>
+    <string name="emailpassword_status_fmt1">Signed In: %1$s (verified: %2$b)</string>
+    <string name="emailpassword_title_text">Email and Password</string>
+    <string name="firebase_status_fmt">Firebase id:\n %s</string>
+    <string name="hint_user_id">User ID</string>
+    <string name="get_custom_token">Get Token</string>
+    <string name="sign_in">Sign In</string>
+    <string name="create_account">Create Account</string>
+    <string name="send_link">Send Link</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="verify_email">Verify Email</string>
+    <string name="disconnect">Disconnect</string>
+    <string name="loading">Loading…</string>
+    <string name="custom_token">Custom Token</string>
+    <string name="signed_in">Signed In</string>
+    <string name="signed_out">Signed Out</string>
+    <string name="token_null">Token: null</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="desc_firebase_lockup">RecoveryGo logo</string>
+    <string name="desc_login">RecoveryGo requires a verifyable email account to access the meeting locations database and to protect any personal data stored in the Personal Journal. </string>
+
+    <string name="auth_failed">Authentication failed</string>
+    <string name="start_phone_auth">Start</string>
+    <string name="verify_phone_auth">Verify</string>
+    <string name="resend_phone_auth">Resend</string>
+    <string name="hint_phone_number">Phone Number</string>
+    <string name="hint_verification_code">Verification Code</string>
+    <string name="status_code_sent">Code Sent</string>
+    <string name="status_verification_failed">Verification failed</string>
+    <string name="status_verification_succeeded">Verification succeeded</string>
+    <string name="status_sign_in_failed">Sign-in failed</string>
+    <string name="instant_validation">(instant validation)</string>
     <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ LOGIN FIELD HEADERS -->
     <string name="btn_Sign_in">Sign In</string>
 
@@ -177,16 +198,19 @@
     <string name="form_field_next_avail_hdr">Next Available Bed</string>
     <string name="form_field_comma">,</string>
 
-    <string name="form2_name">Meeting\nLocation\nSetup</string>
+    <string name="form2_name">Add This Meeting Location</string>
+    <string name="form2_txt">Meeting information entered here will reflect the information shown on the map marker in the Find Meeting function of this application.</string>
 
-    <string name="form2_field_marker">GeoPoint:</string>
-    <string name="form2_field_address">Address:</string>
-    <string name="form2_field_site">Site Name:</string>
-    <string name="form2_field_group">Group:</string>
-    <string name="form2_field_note">Meetings:</string>
-    <string name="form2_field_note_hint">eg. MON 8:00 PM / WED 8:00 PM</string>
+    <string name="form2_field_marker">GeoPoint</string>
+    <string name="form2_field_address">Address</string>
+    <string name="form2_field_site">Site Name</string>
+    <string name="form2_field_group">Group Name</string>
 
-    <string name="data_sobriety_date">My Sobriety Date</string>
+    <string name="form2_field_note">Day &amp; Time of Meeting</string>
+    <string name="form2_field_note_hint">eg. MON 8PM</string>
+    <string name="form2_field_org">Day &amp; Time of Meeting</string>
+    <string name="form2_field_org_hint">eg. AA / NA</string>
+    <string name="data_sobriety_date">My Recovery Date</string>
     <string name="title_activity_locator">Map</string>
 
 </resources>

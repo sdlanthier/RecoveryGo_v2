@@ -1,16 +1,13 @@
 package ca.recoverygo.recoverygo.adapters;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import ca.recoverygo.recoverygo.R;
@@ -19,14 +16,11 @@ import ca.recoverygo.recoverygo.system.IDirectoryInputActivity;
 
 public class EntryRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private static final String TAG = "EntryRecyclerViewAdapter";
+    // private static final String TAG = "RGO_EntryRecyclerViewAdapter";
     private ArrayList<Entry> mNames;
     private IDirectoryInputActivity mIDirectoryInputActivity;
     private Context mContext;
     private int mSelectedNoteIndex;
-    public ProgressDialog mProgressDialog;
-
-    // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
     public EntryRecyclerViewAdapter(Context context, ArrayList<Entry> names) {
         mNames = names;
@@ -50,10 +44,6 @@ public class EntryRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.
             ((ViewHolder)holder).city.setText(mNames.get(position).getCity());
             ((ViewHolder)holder).gender.setText(mNames.get(position).getGender());
             ((ViewHolder)holder).nextavail.setText(mNames.get(position).getNextavail());
-
-            //SimpleDateFormat spf = new SimpleDateFormat("MMM dd, yyyy");
-            //String date = spf.format(mNames.get(position).getTimestamp());
-            //((ViewHolder)holder).timestamp.setText(date);
         }
     }
 
@@ -93,19 +83,15 @@ public class EntryRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.
             city = itemView.findViewById(R.id.city);
             gender = itemView.findViewById(R.id.gender);
             nextavail = itemView.findViewById(R.id.nextavail);
-
             // timestamp = itemView.findViewById(R.id.timestamp);
 
             itemView.setOnClickListener(this);
-
         }
 
         @Override
         public void onClick(View view) {
             mSelectedNoteIndex = getAdapterPosition();
             mIDirectoryInputActivity.onEntrySelected(mNames.get(mSelectedNoteIndex));
-
-
         }
     }
 }

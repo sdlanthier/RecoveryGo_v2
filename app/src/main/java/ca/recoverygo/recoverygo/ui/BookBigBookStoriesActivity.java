@@ -24,7 +24,7 @@ public class BookBigBookStoriesActivity extends Activity implements OnPageChange
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_bbook_stories);
+        setContentView(R.layout.activity_book_big_book_stories);
 
 
         pdfView= findViewById(R.id.pdfView);

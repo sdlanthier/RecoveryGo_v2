@@ -24,7 +24,7 @@ import ca.recoverygo.recoverygo.adapters.MeetingListAdapter;
 public class MeetingListActivity extends AppCompatActivity {
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private FirebaseAuth mAuth;
+    FirebaseAuth mAuth;
 
     private static final String TAG="RGO_MeetingListActivity";
 
@@ -32,6 +32,7 @@ public class MeetingListActivity extends AppCompatActivity {
     private List<String> groupsList         = new ArrayList<>();
     private List<String> notesList          = new ArrayList<>();
     private List<String> sitesList          = new ArrayList<>();
+    private List<String> orgsList           = new ArrayList<>();
 
     RecyclerView mRecyclerView;
     RecyclerView.LayoutManager mLayoutManager;
@@ -49,19 +50,19 @@ public class MeetingListActivity extends AppCompatActivity {
         FirebaseUser currentUser;
         currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
-            Log.d(TAG, "updateUI: User is logged in");
+            Log.d(TAG, "onCreate: User is logged in");
+            mRecyclerView = findViewById(R.id.recyclev1);
+            mLayoutManager = new LinearLayoutManager((this));
+            mRecyclerView.setLayoutManager(mLayoutManager);
 
-        mRecyclerView = findViewById(R.id.recyclev1);
-        mLayoutManager = new LinearLayoutManager((this));
-        mRecyclerView.setLayoutManager(mLayoutManager);
-
-        db.collection("locations").addSnapshotListener(new EventListener<QuerySnapshot>() {
+            db.collection("locations").addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
                 addressList.clear();
                 groupsList.clear();
                 notesList.clear();
                 sitesList.clear();
+                orgsList.clear();
 
                 for(DocumentSnapshot snapshot : documentSnapshots){
 
@@ -69,20 +70,20 @@ public class MeetingListActivity extends AppCompatActivity {
                     groupsList.add(snapshot.        getString("groupname"));
                     notesList.add(snapshot.         getString("note"));
                     sitesList.add(snapshot.         getString("site"));
+                    orgsList.add(snapshot.          getString("org"));
                 }
+                Log.d(TAG, "onCreate: Record count:"+addressList.size());
 
-                mAdapter = new MeetingListAdapter(addressList,groupsList,notesList,sitesList);
+                mAdapter = new MeetingListAdapter(addressList,groupsList,notesList,sitesList,orgsList);
                 mRecyclerView.setAdapter(mAdapter);
                 mRecyclerView.setHasFixedSize(true);
             }
         });
 
         } else {
-            Log.d(TAG, "updateUI: User is logged out");
+            Log.d(TAG, "onCreate: User is logged out");
             Intent intent = new Intent(MeetingListActivity.this, LoginActivity.class);
             startActivity(intent);
-
         }
-
     }
 }

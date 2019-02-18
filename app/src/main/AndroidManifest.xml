@@ -3,11 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="ca.recoverygo.recoverygo">
 
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -22,16 +22,15 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-
         <activity
             android:name=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".LoginActivity"
             android:parentActivityName=".MainActivity"
@@ -48,22 +47,18 @@
             android:name=".WebActivity"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-            <activity android:name=".ui.BookTwelveStepsActivity"
-                android:theme="@style/AppTheme.NoActionBar"  />
-            <activity android:name=".ui.BookBigBookStoriesActivity"
-                android:theme="@style/AppTheme.NoActionBar"  />
+        <activity
+            android:name=".ui.BookTwelveStepsActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.BookBigBookStoriesActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".LocatorActivity"
-            android:label="@string/title_activity_locator"/>
+            android:label="@string/title_activity_locator" />
         <activity
             android:name=".DirectoryActivity"
             android:parentActivityName=".MainActivity" />
-        <activity
-            android:name=".FingerPaintMainActivity"
-            android:parentActivityName=".MainActivity"/>
-            <activity
-                android:name=".FingerPaintActivity"
-                android:parentActivityName=".FingerPaintMainActivity"  />
         <activity
             android:name=".DataInputActivity"
             android:parentActivityName=".MainActivity"
@@ -73,15 +68,25 @@
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".DirectoryInputActivity"
-            android:theme="@style/AppTheme.NoActionBar"  />
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".MeetingListActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".MeetingSetupActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-
-
+        <activity
+            android:name=".MeetingInputActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".FacilitySetupActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".FingerPaintMainActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".FingerPaintActivity"
+            android:parentActivityName=".FingerPaintMainActivity" />
         <activity
             android:name=".GalleryListActivity"
             android:parentActivityName=".MainActivity"
@@ -90,18 +95,5 @@
             android:name=".GalleryActivity"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-
-        <activity
-            android:name=".FacilitySetupActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-        <activity android:name=".BedInputActivity" />
-
-
-
-
-
-
     </application>
-
 </manifest>
