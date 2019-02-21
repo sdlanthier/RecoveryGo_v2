@@ -1,6 +1,4 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,7 +6,7 @@
     android:orientation="vertical"
     android:weightSum="4">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="3"
@@ -16,26 +14,37 @@
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
+        <TextView
+            android:id="@+id/tv_header"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@color/colorPrimary"
+            android:gravity="center"
+            android:text="@string/emailpassword_title_text"
+            android:textAlignment="center"
+            android:textColor="#ffffff"
+            android:textSize="18sp" />
+
         <ImageView
             android:id="@+id/icon"
             android:layout_width="144dp"
             android:layout_height="144dp"
-            android:layout_marginTop="16dp"
+            android:layout_below="@+id/tv_header"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
             android:contentDescription="@string/desc_firebase_lockup"
             android:src="@drawable/rglogo_wht_256x256" />
-
-        <TextView
-            android:id="@+id/titleText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:text="@string/emailpassword_title_text"
-            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/status"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/tv_header"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="76dp"
+            android:layout_marginEnd="4dp"
+            android:layout_toEndOf="@+id/icon"
             android:text="@string/signed_out"
             android:textAlignment="center"
             android:textColor="@color/blue2" />
@@ -44,7 +53,13 @@
             android:id="@+id/detail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Firebase User ID: 123456789abc"
+            android:layout_below="@+id/status"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="4dp"
+            android:layout_toEndOf="@+id/icon"
+            android:text="@string/firebase_user_id"
             android:textAlignment="center"
             android:textColor="@color/blue2" />
 
@@ -52,21 +67,22 @@
             android:id="@+id/info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/icon"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="4dp"
             android:layout_marginEnd="24dp"
             android:text="@string/desc_login"
-            android:textColor="@color/colorPrimary"
+            android:textAlignment="center"
+            android:textColor="@color/Black"
             android:textSize="12sp" />
 
-    </LinearLayout>
+    </RelativeLayout>
 
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:background="@color/colorAccentLight"
         android:gravity="center_vertical">
 
         <LinearLayout

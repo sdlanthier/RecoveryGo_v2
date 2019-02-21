@@ -4,6 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
+    <group>
+        <item
+            android:id="@+id/nav_401"
+            android:icon="@mipmap/ic_launcher"
+            android:title="@string/menu_item401" />
+    </group>
+
     <group
         android:id="@+id/nav_100"
         android:checkableBehavior="single">
@@ -15,17 +22,33 @@
             android:id="@+id/nav_102"
             android:icon="@android:drawable/star_big_on"
             android:title="@string/menu_item102" />
-        <item
-            android:id="@+id/nav_103"
-            android:icon="@android:drawable/ic_menu_search"
-            android:title="@string/menu_item103" />
-
-
     </group>
 
     <item
         android:id="@+id/nav_200"
         android:title="@string/menu_group2">
+        <menu>
+            <item
+                android:id="@+id/nav_103"
+                android:icon="@android:drawable/ic_menu_search"
+                android:title="@string/menu_item103" />
+            <item
+                android:id="@+id/nav_302"
+                android:icon="@android:drawable/star_big_on"
+                android:title="@string/menu_item302" />
+            <item
+                android:id="@+id/nav_303"
+                android:icon="@android:drawable/star_big_on"
+                android:title="@string/menu_item303" />
+
+
+        </menu>
+    </item>
+
+    <item
+        android:id="@+id/nav_300"
+        android:title="@string/menu_group3"
+        android:checkableBehavior="single">
         <menu>
             <item
                 android:id="@+id/nav_201"
@@ -39,43 +62,13 @@
                 android:id="@+id/nav_203"
                 android:icon="@android:drawable/star_big_on"
                 android:title="@string/menu_item203" />
-
-        </menu>
-    </item>
-
-    <item
-        android:id="@+id/nav_300"
-        android:title="@string/menu_group3"
-        android:checkableBehavior="single">
-        <menu>
             <item
                 android:id="@+id/nav_301"
                 android:icon="@android:drawable/ic_menu_edit"
                 android:title="@string/menu_item301" />
-            <item
-                android:id="@+id/nav_302"
-                android:icon="@android:drawable/star_big_on"
-                android:title="@string/menu_item302" />
-            <item
-                android:id="@+id/nav_303"
-                android:icon="@android:drawable/star_big_on"
-                android:title="@string/menu_item303" />
+
         </menu>
     </item>
 
-    <group>
 
-        <item
-            android:id="@+id/nav_401"
-            android:icon="@android:drawable/star_big_on"
-            android:title="@string/menu_item401" />
-        <item
-            android:id="@+id/nav_402"
-            android:icon="@android:drawable/ic_menu_today"
-            android:title="@string/menu_item402" />
-        <item
-            android:id="@+id/nav_403"
-            android:icon="@android:drawable/ic_menu_today"
-            android:title="@string/menu_item403" />
-    </group>
 </menu>

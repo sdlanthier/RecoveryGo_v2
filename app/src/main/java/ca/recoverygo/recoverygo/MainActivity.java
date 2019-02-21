@@ -52,7 +52,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -201,7 +200,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }   else if (id == R.id.nav_103) {
             Intent intent = new Intent(MainActivity.this, LocatorActivity.class);
             startActivity(intent);
-
         }   else if (id == R.id.nav_201) {
             Intent intent = new Intent(MainActivity.this, DataInputActivity.class);
             startActivity(intent);
@@ -211,7 +209,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }   else if (id == R.id.nav_203) {
             Intent intent = new Intent(MainActivity.this, WebActivity.class);
             startActivity(intent);
-
         }   else if (id == R.id.nav_301) {
             Intent intent = new Intent(MainActivity.this, DirectoryInputActivity.class);
             startActivity(intent);
@@ -221,16 +218,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }   else if (id == R.id.nav_303) {
             Intent intent = new Intent(MainActivity.this, MeetingInputActivity.class);
             startActivity(intent);
-
         }   else if (id == R.id.nav_401) {
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(intent);
         /*}   else if (id == R.id.nav_402) {
             Intent intent = new Intent(MainActivity.this, FingerPaintMainActivity.class);
-            startActivity(intent);*/
+            startActivity(intent);
         }   else if (id == R.id.nav_403) {
             Intent intent = new Intent(MainActivity.this, GalleryListActivity.class);
-            startActivity(intent);
+            startActivity(intent);*/
         }
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

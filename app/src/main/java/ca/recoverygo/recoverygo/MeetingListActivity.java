@@ -1,5 +1,6 @@
 package ca.recoverygo.recoverygo;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -41,7 +42,7 @@ public class MeetingListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meeting_list);
-
+        showProgressDialog();
         FirebaseApp.initializeApp(this);
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser;
@@ -72,12 +73,29 @@ public class MeetingListActivity extends AppCompatActivity {
                 mAdapter = new MeetingListAdapter(addressList,groupsList,notesList,sitesList,orgsList);
                 mRecyclerView.setAdapter(mAdapter);
                 mRecyclerView.setHasFixedSize(true);
+                hideProgressDialog();
             }
         });
 
         } else {
             Intent intent = new Intent(MeetingListActivity.this, LoginActivity.class);
             startActivity(intent);
+        }
+    }
+    public ProgressDialog mProgressDialog;
+
+    public void showProgressDialog() {
+        if (mProgressDialog == null) {
+            mProgressDialog = new ProgressDialog(this);
+            mProgressDialog.setMessage(getString(R.string.loading));
+            mProgressDialog.setIndeterminate(false);
+        }
+        mProgressDialog.show();
+    }
+
+    public void hideProgressDialog() {
+        if (mProgressDialog != null && mProgressDialog.isShowing()) {
+            mProgressDialog.dismiss();
         }
     }
 }

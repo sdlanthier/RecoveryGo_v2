@@ -2,6 +2,7 @@ package ca.recoverygo.recoverygo.models;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
@@ -11,13 +12,14 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Objects;
+
 import ca.recoverygo.recoverygo.R;
 import ca.recoverygo.recoverygo.system.IMeetingInputActivity;
 
+public class ViewMeetingDialog extends DialogFragment implements View.OnClickListener {
 
-public class ViewMeetingDialog extends DialogFragment implements View.OnClickListener{
-
-    private static final String TAG = "rg_ViewMeeting";
+    //private static final String TAG = "rg_ViewMeeting";
 
     EditText mGroup, mSite, mOrg, mNote;
 
@@ -41,18 +43,18 @@ public class ViewMeetingDialog extends DialogFragment implements View.OnClickLis
         int theme = android.R.style.Theme_Holo_Light_Dialog;
         setStyle(DialogFragment.STYLE_NORMAL, theme);
 
-        mMeeting = getArguments().getParcelable("meeting");
+        mMeeting = Objects.requireNonNull(getArguments()).getParcelable("meeting");
     }
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.dialog_view_meeting, container, false);
 
-        mGroup = view.findViewById(R.id.groupname);
-        mSite = view.findViewById(R.id.site);
-        mOrg = view.findViewById(R.id.org);
-        mNote = view.findViewById(R.id.note);
+        mGroup  = view.findViewById(R.id.groupname);
+        mSite   = view.findViewById(R.id.site);
+        mOrg    = view.findViewById(R.id.org);
+        mNote   = view.findViewById(R.id.note);
 
         TextView mSave = view.findViewById(R.id.save);
         TextView mDelete = view.findViewById(R.id.delete);
@@ -114,4 +116,6 @@ public class ViewMeetingDialog extends DialogFragment implements View.OnClickLis
         super.onAttach(context);
         mIMeetingInputActivity = (IMeetingInputActivity)getActivity();
     }
+
+
 }

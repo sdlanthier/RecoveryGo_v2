@@ -3,228 +3,240 @@
 <ScrollView
 
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
     android:orientation="vertical">
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="10dp">
 
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/name_wrapper"
-        android:layout_marginTop="10dp">
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/name"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/name_wrapper"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/entry_name"
-            android:imeOptions="actionNext"
-            android:inputType="textCapWords" />
-    </android.support.design.widget.TextInputLayout>
+            android:layout_marginTop="10dp">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/entry_name"
+                android:imeOptions="actionNext"
+                android:inputType="text|textCapCharacters" />
+        </android.support.design.widget.TextInputLayout>
 
 
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/street_wrapper"
-        android:layout_marginTop="10dp">
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/street"
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/street_wrapper"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Street"
-            android:imeOptions="actionNext"
-            android:inputType="textMultiLine" />
-    </android.support.design.widget.TextInputLayout>
+            android:layout_marginTop="10dp">
 
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/city_wrapper"
-        android:layout_marginTop="10dp">
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/city"
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/street"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/entry_street"
+                android:imeOptions="actionNext"
+                android:inputType="text|textCapWords" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/city_wrapper"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/entry_city"
-            android:imeOptions="actionNext"
-            android:inputType="textMultiLine" />
-    </android.support.design.widget.TextInputLayout>
+            android:layout_marginTop="10dp">
 
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/prov_wrapper"
-        android:layout_marginTop="10dp">
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/prov"
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/city"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/entry_city"
+                android:imeOptions="actionNext"
+                android:inputType="text|textCapWords" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/prov_wrapper"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Prov"
-            android:imeOptions="actionNext"
-            android:inputType="textMultiLine" />
+            android:layout_marginTop="10dp">
 
-    </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/prov"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/entry_prov"
+                android:imeOptions="actionNext"
+                android:inputType="text|textCapCharacters" />
 
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/pcode_wrapper"
-        android:layout_marginTop="10dp">
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/pcode"
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/pcode_wrapper"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Pcode"
-            android:imeOptions="actionNext"
-            android:inputType="textMultiLine" />
+            android:layout_marginTop="10dp">
 
-    </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/pcode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/entry_pcode"
+                android:imeOptions="actionNext"
+                android:inputType="text|textCapCharacters" />
 
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/phone_wrapper"
-        android:layout_marginTop="10dp">
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/phone"
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/phone_wrapper"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Phone"
-            android:imeOptions="actionNext"
-            android:inputType="textMultiLine" />
+            android:layout_marginTop="10dp">
 
-    </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/entry_phone"
+                android:imeOptions="actionNext"
+                android:inputType="phone" />
 
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/web_wrapper"
-        android:layout_marginTop="10dp">
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/web"
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/web_wrapper"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Website"
-            android:imeOptions="actionNext"
-            android:inputType="textMultiLine" />
-    </android.support.design.widget.TextInputLayout>
+            android:layout_marginTop="10dp">
 
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/bedsttl_wrapper"
-        android:layout_marginTop="10dp">
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/bedsttl"
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/web"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/entry_web"
+                android:imeOptions="actionNext"
+                android:inputType="textUri" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/bedsttl_wrapper"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Total Beds"
-            android:imeOptions="actionNext"
-            android:inputType="textMultiLine" />
-    </android.support.design.widget.TextInputLayout>
+            android:layout_marginTop="10dp">
 
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/bedsrepair_wrapper"
-        android:layout_marginTop="10dp">
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/bedsrepair"
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/bedsttl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/entry_bedsttl"
+                android:imeOptions="actionNext"
+                android:inputType="number" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/bedsrepair_wrapper"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Beds in Repair"
-            android:imeOptions="actionNext"
-            android:inputType="textMultiLine" />
-    </android.support.design.widget.TextInputLayout>
+            android:layout_marginTop="10dp">
 
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/bedspublic_wrapper"
-        android:layout_marginTop="10dp">
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/bedspublic"
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/bedsrepair"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/entry_bedsrepair"
+                android:imeOptions="actionNext"
+                android:inputType="number" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/bedspublic_wrapper"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Beds Public"
-            android:imeOptions="actionNext"
-            android:inputType="textMultiLine" />
-    </android.support.design.widget.TextInputLayout>
+            android:layout_marginTop="10dp">
 
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/waittime_wrapper"
-        android:layout_marginTop="10dp">
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/waittime"
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/bedspublic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/entry_bedspublic"
+                android:imeOptions="actionNext"
+                android:inputType="number" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/waittime_wrapper"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Wait in Days"
-            android:imeOptions="actionNext"
-            android:inputType="textMultiLine" />
-    </android.support.design.widget.TextInputLayout>
+            android:layout_marginTop="10dp">
 
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/gender_wrapper"
-        android:layout_marginTop="10dp">
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/gender"
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/waittime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/entry_waittime"
+                android:imeOptions="actionNext"
+                android:inputType="number" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/gender_wrapper"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Gender of Campus"
-            android:imeOptions="actionNext"
-            android:inputType="textMultiLine" />
-    </android.support.design.widget.TextInputLayout>
+            android:layout_marginTop="10dp">
 
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/nextavail_wrapper"
-        android:layout_marginTop="10dp">
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/nextavail"
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/gender"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/entry_gender"
+                android:imeOptions="actionNext"
+                android:inputType="text|textCapCharacters" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/nextavail_wrapper"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Gender of Campus"
-            android:imeOptions="actionNext"
-            android:inputType="textMultiLine" />
-    </android.support.design.widget.TextInputLayout>
+            android:layout_marginTop="10dp">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/linkBlue"
-            android:textSize="15sp"
-            android:text="CREATE"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="10dp"
-            android:id="@+id/create"/>
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/nextavail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/entry_nextavail"
+                android:imeOptions="actionNext"
+                android:inputType="date" />
+        </android.support.design.widget.TextInputLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/linkBlue"
-            android:textSize="15sp"
-            android:text="CANCEL"
-            android:layout_marginRight="35dp"
-            android:layout_toLeftOf="@+id/create"
-            android:id="@+id/cancel"/>
-    </RelativeLayout>
-</LinearLayout>
+            android:layout_marginTop="25dp">
+
+            <TextView
+                android:id="@+id/create"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="10dp"
+                android:text="@string/btn_create"
+                android:textColor="@color/linkBlue"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="35dp"
+                android:layout_toStartOf="@+id/create"
+                android:text="@string/btn_cancel"
+                android:textColor="@color/linkBlue"
+                android:textSize="15sp" />
+        </RelativeLayout>
+    </LinearLayout>
 </ScrollView>

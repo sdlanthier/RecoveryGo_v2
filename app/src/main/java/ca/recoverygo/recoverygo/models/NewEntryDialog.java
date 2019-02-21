@@ -2,6 +2,7 @@ package ca.recoverygo.recoverygo.models;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
@@ -16,23 +17,21 @@ import ca.recoverygo.recoverygo.system.IDirectoryInputActivity;
 
 public class NewEntryDialog extends DialogFragment implements View.OnClickListener{
 
-    private static final String TAG = "NewEntryDialog";
+    // private static final String TAG = "rg_NewEntryDialog";
     private EditText mName, mStreet, mCity, mProv, mPcode, mPhone, mWeb, mBedsttl, mBedsrepair, mBedspublic, mWaittime, mGender, mNextavail;
-    private TextView mCreate, mCancel;
     private IDirectoryInputActivity mIDirectoryInputActivity;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        int style = DialogFragment.STYLE_NORMAL;
         int theme = android.R.style.Theme_Holo_Light_Dialog;
-        setStyle(style, theme);
+        setStyle(DialogFragment.STYLE_NORMAL, theme);
     }
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.dialog_new_entry, container, false);
 
         mName       = view.findViewById(R.id.name);
@@ -49,8 +48,8 @@ public class NewEntryDialog extends DialogFragment implements View.OnClickListen
         mGender     = view.findViewById(R.id.gender);
         mNextavail  = view.findViewById(R.id.nextavail);
 
-        mCreate     = view.findViewById(R.id.create);
-        mCancel     = view.findViewById(R.id.cancel);
+        TextView mCreate = view.findViewById(R.id.create);
+        TextView mCancel = view.findViewById(R.id.cancel);
 
         mCancel.setOnClickListener(this);
         mCreate.setOnClickListener(this);
@@ -65,8 +64,6 @@ public class NewEntryDialog extends DialogFragment implements View.OnClickListen
         switch (view.getId()){
 
             case R.id.create:{
-
-                // insert the new entry
 
                 String name         = mName.getText().toString();
                 String street       = mStreet.getText().toString();

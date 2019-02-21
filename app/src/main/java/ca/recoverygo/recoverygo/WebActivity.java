@@ -91,12 +91,6 @@ public class WebActivity extends AppCompatActivity
         return true;
     }
 
-    public void playMusic(View view) {
-            MediaPlayer mp = MediaPlayer.create(this, R.raw.rainthunder1);
-            mp.start();
-            mp.setLooping(true);
-    }
-
     public void loadBook1(View view) {
         Intent intent = new Intent(WebActivity.this, BookBigBookStoriesActivity.class);
         startActivity(intent);

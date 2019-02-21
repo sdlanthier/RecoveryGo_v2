@@ -11,24 +11,19 @@ import com.bumptech.glide.Glide;
 
 public class GalleryActivity extends AppCompatActivity {
 
-    private static final String TAG = "GalleryActivity";
+    // private static final String TAG = "rg_GalleryActivity";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gallery);
-        Log.d(TAG, "onCreate: Started.");
-
         getIncomingIntent();
     }
     private void getIncomingIntent(){
-        Log.d(TAG, "getIncomingIntent: Checking for incoming intents.");
         if(
                 getIntent().hasExtra("image_url") &&
                 getIntent().hasExtra("image_name") &&
                 getIntent().hasExtra("text_body")) {
-
-                Log.d(TAG, "getIncomingIntent: getIncomingIntent: found incoming extras.");
 
                 String imageUrl = getIntent().getStringExtra("image_url");
                 String imageName = getIntent().getStringExtra("image_name");
@@ -39,7 +34,6 @@ public class GalleryActivity extends AppCompatActivity {
     }
     
     private void setImage(String imageUrl, String imageName, String textBody){
-        Log.d(TAG, "setImage: setImage: setting ");
 
         ImageView image = findViewById(R.id.image);
             Glide.with(this)

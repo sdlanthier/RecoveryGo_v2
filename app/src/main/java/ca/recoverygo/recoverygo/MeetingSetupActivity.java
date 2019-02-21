@@ -14,8 +14,6 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -28,7 +26,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
-
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.GeoPoint;
 
@@ -38,24 +35,23 @@ import java.util.Locale;
 import java.util.Objects;
 
 import ca.recoverygo.recoverygo.models.Meeting;
+import ca.recoverygo.recoverygo.system.BaseActivity;
 
-public class MeetingSetupActivity extends AppCompatActivity {
+public class MeetingSetupActivity extends BaseActivity {
 
-    private static final String TAG                 = "rg_MeetingSetup";
+    private static final String TAG = "rg_MeetingSetup";
 
     public LocationManager locationManager;
     public String provider;
 
-    TextView mUser, mAddressLine, mGeo;
     EditText mGroup, mSite, mNote, mOrg;
-    RecyclerView mRecyclerView;
+    TextView mUser, mAddressLine, mGeo;
 
     // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meeting_setup);
-        mRecyclerView               = findViewById(R.id.recycler_view);
 
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         mGroup  = findViewById(R.id.group);
@@ -125,79 +121,10 @@ public class MeetingSetupActivity extends AppCompatActivity {
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
+
                     }
                 });
         alertDialog.show();
-        //checkMeeting();
-    }
-
-    public void save(View v) {
-
-        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        Criteria criteria = new Criteria();
-        provider = locationManager.getBestProvider(criteria, false);
-        if (ActivityCompat.checkSelfPermission(this,
-                Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
-                && ActivityCompat.checkSelfPermission(this,
-                Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            return;
-        }
-        Location location = locationManager.getLastKnownLocation(provider);
-        Double myLat = location.getLatitude();
-        Double myLng = location.getLongitude();
-        // **************************************************
-        String groupname   = mGroup.getText().toString();
-        String site    = mSite.getText().toString();
-        String address = mAddressLine.getText().toString();
-        String note    = mNote.getText().toString();
-        String org     = mOrg.getText().toString();
-
-        GeoPoint marker = new GeoPoint(myLat,myLng);
-        GeoPoint loc = new GeoPoint(myLat,myLng);
-
-        // **************************************************
-        mGroup      .getText().clear();
-        mSite       .getText().clear();
-        mNote       .getText().clear();
-
-        mGroup      .setVisibility(View.INVISIBLE);
-        mSite       .setVisibility(View.INVISIBLE);
-        mNote       .setVisibility(View.INVISIBLE);
-        mOrg        .setVisibility(View.INVISIBLE);
-
-        // **************************************************
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        String userId = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
-
-        DocumentReference newMeetingRef = db
-                .collection("locations")
-                .document();
-
-        Meeting meeting = new Meeting(groupname, site, org, note, userId, marker, loc, address);
-
-        meeting.setGroupname(groupname);
-        meeting.setSite(site);
-        meeting.setOrg(org);
-        meeting.setNote(note);
-        meeting.setUser(userId);
-        meeting.setMarker(marker);
-        meeting.setLocation(loc);
-        meeting.setAddress(address);
-
-        meeting.setLocation_id(newMeetingRef.getId());
-
-
-        newMeetingRef.set(meeting).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if(task.isSuccessful()){
-                    Toast.makeText(MeetingSetupActivity.this, "Created New Meeting", Toast.LENGTH_SHORT).show();
-                    Log.d(TAG, "onComplete: Created New meeting");                }
-                else{
-                    Log.d(TAG, "onComplete: Create New Meeting Failed");                }
-            }
-        });
-
     }
 
     @Override
@@ -216,5 +143,102 @@ public class MeetingSetupActivity extends AppCompatActivity {
     protected void onPostResume() {
         super.onPostResume();
         Log.d(TAG, "onPostResume: called");
+    }
+
+    public void openAlert(View view) {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MeetingSetupActivity.this);
+
+        alertDialogBuilder.setTitle(this.getTitle()+ " decision");
+        alertDialogBuilder.setMessage("Are you sure?");
+        // set positive button: Yes message
+        alertDialogBuilder.setPositiveButton("Yes",new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog,int id) {
+                locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+                Criteria criteria = new Criteria();
+                provider = locationManager.getBestProvider(criteria, false);
+                if (ActivityCompat.checkSelfPermission(getBaseContext(),
+                        Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                        && ActivityCompat.checkSelfPermission(getBaseContext(),
+                        Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                    return;
+                }
+                Location location = locationManager.getLastKnownLocation(provider);
+                Double myLat = location.getLatitude();
+                Double myLng = location.getLongitude();
+                // **************************************************
+                String groupname   = mGroup.getText().toString();
+                String site    = mSite.getText().toString();
+                String address = mAddressLine.getText().toString();
+                String note    = mNote.getText().toString();
+                String org     = mOrg.getText().toString();
+
+                GeoPoint loc = new GeoPoint(myLat,myLng);
+
+                // **************************************************
+                mGroup.getText().clear();
+                mSite.getText().clear();
+                mNote.getText().clear();
+                mOrg.getText().clear();
+
+                mGroup      .setVisibility(View.INVISIBLE);
+                mSite       .setVisibility(View.INVISIBLE);
+                mNote       .setVisibility(View.INVISIBLE);
+                mOrg        .setVisibility(View.INVISIBLE);
+                showProgressDialog();
+                // **************************************************
+                FirebaseFirestore db = FirebaseFirestore.getInstance();
+                String userId = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
+
+                DocumentReference newMeetingRef = db
+                        .collection("locations")
+                        .document();
+
+                Meeting meeting = new Meeting(groupname, site, org, note, userId, loc, address);
+
+                meeting.setGroupname(groupname);
+                meeting.setSite(site);
+                meeting.setOrg(org);
+                meeting.setNote(note);
+                meeting.setUser(userId);
+                meeting.setLocation(loc);
+                meeting.setAddress(address);
+
+                meeting.setLocation_id(newMeetingRef.getId());
+
+
+                newMeetingRef.set(meeting).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isSuccessful()){
+                            Toast.makeText(MeetingSetupActivity.this, "Created New Meeting", Toast.LENGTH_SHORT).show();
+                            hideProgressDialog();
+                            Log.d(TAG, "onComplete: Created New meeting");                }
+                        else{
+                            Log.d(TAG, "onComplete: Create New Meeting Failed");                }
+                    }
+                });
+
+            }
+        });
+        // set negative button: No message
+        alertDialogBuilder.setNegativeButton("No",new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog,int id) {
+                // cancel the alert box and put a Toast to the user
+                dialog.cancel();
+                Toast.makeText(getApplicationContext(), "You chose a negative answer",
+                        Toast.LENGTH_LONG).show();
+            }
+        });
+        // set neutral button: Exit the app message
+        alertDialogBuilder.setNeutralButton("Exit the app",new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog,int id) {
+                // exit the app and go to the HOME
+                MeetingSetupActivity.this.finish();
+            }
+        });
+
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        // show alert
+        alertDialog.show();
     }
 }

@@ -56,7 +56,6 @@ public class MeetingInputActivity extends BaseActivity implements
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meeting_input);
 
@@ -104,7 +103,7 @@ public class MeetingInputActivity extends BaseActivity implements
     }
 
     private void getMeetings(){
-
+        showProgressDialog();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         CollectionReference meetingsCollectionRef = db.collection("locations");
@@ -117,9 +116,8 @@ public class MeetingInputActivity extends BaseActivity implements
         }
         else{
             meetingsQuery = meetingsCollectionRef
-                    .orderBy("groupname", Query.Direction.ASCENDING)
                     .whereEqualTo("user", Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid())
-                    ;
+                    .orderBy("groupname", Query.Direction.ASCENDING);
         }
 
         meetingsQuery.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -137,6 +135,7 @@ public class MeetingInputActivity extends BaseActivity implements
                     }
 
                     mMeetingRecyclerViewAdapter.notifyDataSetChanged();
+                    hideProgressDialog();
                 }
                 else{
                     makeSnackBarMessage("Query Failed. Check Logs.");
@@ -148,7 +147,7 @@ public class MeetingInputActivity extends BaseActivity implements
     @Override
     public void updateMeeting(final Meeting meeting){
         Log.d(TAG, "updateMeeting: called:"+meeting);
-
+        showProgressDialog();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         DocumentReference meetingRef = db
@@ -165,11 +164,12 @@ public class MeetingInputActivity extends BaseActivity implements
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful()){
-                    makeSnackBarMessage("Updated meeting");
+                    makeSnackBarMessage("Location Updated");
                     mMeetingRecyclerViewAdapter.updateMeeting(meeting);
+                    hideProgressDialog();
                 }
                 else{
-                    makeSnackBarMessage("Failed. Check log.");
+                    makeSnackBarMessage("Database Unavailable.");
                 }
             }
         });
@@ -198,24 +198,21 @@ public class MeetingInputActivity extends BaseActivity implements
     }
 
     @Override
-    public void createNewMeeting(String groupname, String site, String org, String note, String user, GeoPoint marker, GeoPoint location, String location_id, String address) {
-
+    public void createNewMeeting(String groupname, String site, String org, String note, String user, GeoPoint location, String location_id, String address) {
+        showProgressDialog();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-
-        //String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         DocumentReference newMeetingRef = db
                 .collection("locations")
                 .document();
 
-        Meeting meeting = new Meeting(groupname, site, org, note, user, marker, location, address);
+        Meeting meeting = new Meeting(groupname, site, org, note, user, location, address);
 
         meeting.setGroupname(groupname);
         meeting.setSite(site);
         meeting.setOrg(org);
         meeting.setNote(note);
         meeting.setUser(user);
-        meeting.setMarker(marker);
         meeting.setLocation(location);
 
         meeting.setLocation_id(newMeetingRef.getId());
@@ -225,6 +222,7 @@ public class MeetingInputActivity extends BaseActivity implements
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful()){
+                    hideProgressDialog();
                     makeSnackBarMessage("Created new meeting");
                     getMeetings();
                 }

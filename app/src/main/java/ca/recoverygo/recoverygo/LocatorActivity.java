@@ -1,7 +1,11 @@
 package ca.recoverygo.recoverygo;
 
 import android.Manifest;
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Criteria;
 
@@ -9,13 +13,13 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
-/*import android.content.Intent;
-import android.location.Address;
-import android.location.Geocoder;*/
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -25,20 +29,20 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-/*import com.google.firebase.FirebaseApp;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.GeoPoint;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;*/
+import java.util.Objects;
+
+import ca.recoverygo.recoverygo.adapters.InfoWindowCustom;
 
 public class LocatorActivity extends FragmentActivity implements
         OnMapReadyCallback,
@@ -47,23 +51,37 @@ public class LocatorActivity extends FragmentActivity implements
 
     private static final String TAG = "rg_LocatorActivity";
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    /*private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseAuth mAuth;
     private ArrayList<GeoPoint> mMarker  = new ArrayList<>();
     private ArrayList<String>   mNotes   = new ArrayList<>();
     private ArrayList<String>   mAddress = new ArrayList<>();
-    private ArrayList<String>   mSite    = new ArrayList<>();
-    private ArrayList<String>   mGroup   = new ArrayList<>();*/
+    private ArrayList<String>   mOrg    = new ArrayList<>();
+    private ArrayList<String>   mGroup   = new ArrayList<>();
+    private ArrayList<String>   mLocation_id   = new ArrayList<>();
+
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
     private LocationManager locationManager;
     private String provider;
+
     Marker myMarker;
+    ImageView logo;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_locator);
+
+        logo = findViewById(R.id.logo);
+        logo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            Intent intent = new Intent(LocatorActivity.this, MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+            }
+        });
         //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
@@ -101,12 +119,17 @@ public class LocatorActivity extends FragmentActivity implements
         Double myLng = location.getLongitude();
         LatLng myposition = new LatLng(myLat, myLng);
 
-        myMarker = googleMap.addMarker(new MarkerOptions().position(myposition).title("ME").icon(BitmapDescriptorFactory.fromResource(R.drawable.arrow)));
+        myMarker = googleMap
+                .addMarker(new MarkerOptions()
+                        .position(myposition)
+                        .title("Stop hitting yourself! :). Seriously though, stop beating yourself up. You are not alone")
+                        .icon(BitmapDescriptorFactory
+                                .fromResource(R.drawable.mkr_mylocation)));
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(myposition));
         googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(myposition,10));
-
+        showProgressDialog();
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-/*        FirebaseApp.initializeApp(this);
+        FirebaseApp.initializeApp(this);
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser;
         currentUser = mAuth.getCurrentUser();
@@ -114,68 +137,93 @@ public class LocatorActivity extends FragmentActivity implements
         if (currentUser != null) {
             Log.d(TAG, "onMapReady: User is logged in");
             Log.d(TAG, "onMapReady: loading location markers");
-            db.collection("locations").addSnapshotListener(new EventListener<QuerySnapshot>() {
-                @Override
-                public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
+            mMarker.clear();
+            Log.d(TAG, "onMapReady: mMarker cleared");
 
-                    for(DocumentSnapshot snapshot : documentSnapshots){
+            db.collection("locations")
+                    /*.whereEqualTo("org", "NA")*/
+                    /*.whereGreaterThanOrEqualTo("org", "NA")*/
+                    .get()
+                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            Log.d(TAG, "onComplete: whereEqualTo(\"org\", \"NA\")");
 
-                        mMarker.add(snapshot.getGeoPoint("location"));
-                        mNotes.add(snapshot.getString   ("note"));
-                        mAddress.add(snapshot.getString ("address"));
-                        mSite.add(snapshot.getString    ("site"));
-                        mGroup.add(snapshot.getString   ("groupname"));
+                            if (task.isSuccessful()) {
+                                for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
+                                    Log.d(TAG, document.getId() + " => " + document.getData());
 
-                        for (int i = 0; i < mMarker.size(); i++) {
+                                    mMarker.add(document.getGeoPoint    ("location"));
+                                    mNotes.add(document.getString       ("note"));
+                                    mAddress.add(document.getString     ("address"));
+                                    mOrg.add(document.getString         ("org"));
+                                    mGroup.add(document.getString       ("groupname"));
+                                    mLocation_id.add(document.getString ("location_id"));
 
-                            String note     = mNotes    .get(i);
-                            String address  = mAddress  .get(i);
-                            String site     = mSite     .get(i);
-                            String group    = mGroup    .get(i);
-                            GeoPoint marker = mMarker   .get(i);
+                                }
+                                final int rcdCount = mMarker.size();
+                                Log.d(TAG, "onEvent: record count = "+rcdCount);
+                                //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                                int i = 0;
+                                     while(i < mMarker.size()) {
 
-                            Double mkrLat = marker.getLatitude();
-                            Double mkrLng = marker.getLongitude();
+                                         String note = mNotes.get(i);
+                                         String address = mAddress.get(i);
+                                         GeoPoint marker = mMarker.get(i);
+                                         String org = mOrg.get(i);
+                                         String group = mGroup.get(i);
+                                         String loc_id = mLocation_id.get(i);
 
-                            LatLng mkrposition = new LatLng(mkrLat, mkrLng);
-                            googleMap.addMarker(new MarkerOptions()
-                                    .position (mkrposition)
-                                    .title(address)
-                                    .snippet(note)
-                                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
-                            //Log.d(TAG, "onEvent: "+marker+","+address+","+site+","+group+","+note);
+                                         Double mkrLat = marker.getLatitude();
+                                         Double mkrLng = marker.getLongitude();
+                                         LatLng mkrposition = new LatLng(mkrLat, mkrLng);
+
+                                        if(org.equals("AA")) {
+                                            googleMap.addMarker(new MarkerOptions()
+                                                    .position(mkrposition)
+                                                    .title(address)
+                                                    .snippet(note)
+                                                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.mkr_flag_aa)));
+                                        }
+                                        else {
+                                            googleMap.addMarker(new MarkerOptions()
+                                                    .position (mkrposition)
+                                                    .title(address)
+                                                    .snippet(note)
+                                                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.mkr_flag_na)));
+                                        }
+
+                                        Log.d(TAG, "result: "+marker+","+address+","+note);
+                                        ++i;
+                                    }
+                                hideProgressDialog();
+                                //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                            } else {
+                                Log.d(TAG, "Error getting documents: ", task.getException());
+                            }
+
                         }
-
-                    }
-                    final int rcdCount = mMarker.size();
-                    Log.d(TAG, "onEvent: record count = "+rcdCount);
-                }
-            });
+                    });
 
         } else {
+            hideProgressDialog();
             Log.d(TAG, "onMapReady: User is logged out");
+            AlertDialog alertDialog = new AlertDialog.Builder(LocatorActivity.this).create();
+            alertDialog.setTitle("Alert");
+            alertDialog.setMessage("You must have a valid account to use the Meeting Locator.");
+            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                            Intent intent = new Intent(LocatorActivity.this, LoginActivity.class);
+                            startActivity(intent);
+                        }
+                    });
+            alertDialog.show();
             //Intent intent = new Intent(LocatorActivity.this, MainActivity.class);
             //startActivity(intent);
-        }*/
-
-        LatLng perth1 =             new LatLng(44.9009235, -76.2502683);
-        LatLng perth2 =             new LatLng(44.903174,-76.2544246);
-        LatLng perth3 =             new LatLng(44.8994238,-76.246947);
-
-        LatLng sharbotlake1 =       new LatLng(44.7713312,-76.6927184);
-
-        LatLng smithsFalls1 =       new LatLng(44.9052747, -76.031819);
-        LatLng smithsFalls2 =       new LatLng(44.9017021,-76.0192961);
-        LatLng smithsFalls3 =       new LatLng(44.8993029,-76.0271187);
-
-
-        googleMap.addMarker(new MarkerOptions().position(perth1).title           ("Perth Resturaunt, 23 Gore St E, Perth, ON"));
-        googleMap.addMarker(new MarkerOptions().position(perth2).title           ("First Baptist Church, D'Arcy St, Perth, ON"));
-        googleMap.addMarker(new MarkerOptions().position(perth3).title           ("St. James Angligan Church, 12 Harvey St, Perth, ON"));
-        googleMap.addMarker(new MarkerOptions().position(sharbotlake1).title     ("United Church Hall, Sharbot Lake, ON"));
-        googleMap.addMarker(new MarkerOptions().position(smithsFalls1).title     ("Cornelia Court, 91 Cornelia St, Smith Falls, ON"));
-        googleMap.addMarker(new MarkerOptions().position(smithsFalls2).title     ("Trinity United Church of Canada, 41 Market St N, Smiths Falls, ON"));
-        googleMap.addMarker(new MarkerOptions().position(smithsFalls3).title     ("2 George St South, Smiths Falls, ON"));
+        }
+        googleMap.setInfoWindowAdapter(new InfoWindowCustom(this));
         googleMap.setOnMarkerClickListener(this);
 
     }
@@ -187,7 +235,7 @@ public class LocatorActivity extends FragmentActivity implements
             return;
         }
         Log.d(TAG, "onResume: locationManager.requestLocationUpdates(400,1)");
-        locationManager.requestLocationUpdates(provider, 400, 1, this);
+        locationManager.requestLocationUpdates(provider, 5000, 1, this);
     }
 
     @Override
@@ -221,7 +269,24 @@ public class LocatorActivity extends FragmentActivity implements
 
     @Override
     public boolean onMarkerClick(final Marker marker) {
-        Toast.makeText(this, marker.getSnippet() + " has been clicked", Toast.LENGTH_LONG).show();
+        //Toast.makeText(this, marker.getSnippet() + " has been clicked", Toast.LENGTH_LONG).show();
     return false;
+    }
+
+    public ProgressDialog mProgressDialog;
+
+    public void showProgressDialog() {
+        if (mProgressDialog == null) {
+            mProgressDialog = new ProgressDialog(this);
+            mProgressDialog.setMessage(getString(R.string.loading));
+            mProgressDialog.setIndeterminate(false);
+        }
+        mProgressDialog.show();
+    }
+
+    public void hideProgressDialog() {
+        if (mProgressDialog != null && mProgressDialog.isShowing()) {
+            mProgressDialog.dismiss();
+        }
     }
 }

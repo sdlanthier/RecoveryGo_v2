@@ -16,9 +16,6 @@ import ca.recoverygo.recoverygo.adapters.MainAdapter;
 
 public class DirectoryActivity extends AppCompatActivity {
 
-    // private static final String TAG = "DirectoryActivity";
-
-    // csvImport variables
     InputStream inputStream;
     String[] data;
 

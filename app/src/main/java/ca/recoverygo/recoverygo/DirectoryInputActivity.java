@@ -101,45 +101,42 @@ public class DirectoryInputActivity extends BaseActivity implements
     }
 
     private void getNames(){
-
+        showProgressDialog();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        CollectionReference notesCollectionRef = db
+        CollectionReference entryCollectionRef = db
                 .collection("Notebook");
-        Query notesQuery;
+        Query entryQuery;
         if(mLastQueriedDocument != null){
-            notesQuery = notesCollectionRef
+            entryQuery = entryCollectionRef
                     .orderBy("nextavail", Query.Direction.ASCENDING)
                     .startAfter(mLastQueriedDocument);
         }
         else{
-            notesQuery = notesCollectionRef
+            entryQuery = entryCollectionRef
                     .orderBy("nextavail", Query.Direction.ASCENDING);
         }
 
-        notesQuery.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        entryQuery.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if(task.isSuccessful()){
-
                     for(QueryDocumentSnapshot document: Objects.requireNonNull(task.getResult())){
                         Entry entry = document.toObject(Entry.class);
+
                         mNames.add(entry);
                     }
-
                     if(task.getResult().size() != 0){
                         mLastQueriedDocument = task.getResult().getDocuments()
                                 .get(task.getResult().size() -1);
                     }
-
+                    hideProgressDialog();
                     mEntryRecyclerViewAdapter.notifyDataSetChanged();
-
                 }
                 else{
                     makeSnackBarMessage("Query Failed. Check Logs.");
                 }
             }
         });
-
     }
 
     @Override
@@ -199,6 +196,8 @@ public class DirectoryInputActivity extends BaseActivity implements
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful()){
+                    hideProgressDialog();
+
                     makeSnackBarMessage("Updated Entry");
                     mEntryRecyclerViewAdapter.updateEntry(entry);
                 }
@@ -219,42 +218,43 @@ public class DirectoryInputActivity extends BaseActivity implements
     public void createNewEntry(String name, String street, String city, String prov, String pcode,
                                String phone, String web, String bedsttl, String bedsrepair, String bedspublic, String waittime, String gender,
                                String nextavail) {
-
+        showProgressDialog();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         DocumentReference newNoteRef = db
                 .collection("Notebook")
                 .document();
 
-                Entry entry = new Entry();
-        entry.setName(name);
-        entry.setStreet(street);
-        entry.setCity(city);
-        entry.setProv(prov);
-        entry.setPcode(pcode);
-        entry.setPcode(phone);
-        entry.setPcode(web);
-        entry.setPcode(bedsttl);
-        entry.setPcode(bedsrepair);
-        entry.setPcode(bedspublic);
-        entry.setPcode(waittime);
-        entry.setPcode(gender);
-        entry.setPcode(nextavail);
+            Entry entry = new Entry();
+            entry.setName(name);
+            entry.setStreet(street);
+            entry.setCity(city);
+            entry.setProv(prov);
+            entry.setPcode(pcode);
+            entry.setPhone(phone);
+            entry.setWeb(web);
+            entry.setBedsttl(bedsttl);
+            entry.setBedsrepair(bedsrepair);
+            entry.setBedspublic(bedspublic);
+            entry.setWaittime(waittime);
+            entry.setGender(gender);
+            entry.setNextavail(nextavail);
 
-        entry.setEntry_id(newNoteRef.getId());
+            entry.setEntry_id(newNoteRef.getId());
 
-                newNoteRef.set(entry).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if(task.isSuccessful()){
-                    makeSnackBarMessage("Created new Entry");
-                    getNames();
+                    newNoteRef.set(entry).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if(task.isSuccessful()){
+                        hideProgressDialog();
+                        makeSnackBarMessage("Created new Entry");
+                        getNames();
+                    }
+                    else{
+                        makeSnackBarMessage("Failed. Check log.");
+                    }
                 }
-                else{
-                    makeSnackBarMessage("Failed. Check log.");
-                }
-            }
-        });
+            });
     }
 
     private void makeSnackBarMessage(String message){
@@ -267,9 +267,8 @@ public class DirectoryInputActivity extends BaseActivity implements
         switch (view.getId()){
 
             case R.id.fab:{
-                //create a new note
                 NewEntryDialog dialog = new NewEntryDialog();
-                dialog.show(getSupportFragmentManager(), getString(R.string.dialog_new_note));
+                dialog.show(getSupportFragmentManager(), getString(R.string.dialog_new_entry));
                 break;
             }
             case R.id.fab2:{

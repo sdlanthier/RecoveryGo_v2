@@ -1,5 +1,6 @@
 package ca.recoverygo.recoverygo;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
@@ -214,7 +215,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
         return !valid;
     }
-
+    public void onBackPressed() {
+        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+        startActivity(intent);
+        super.onBackPressed();
+    }
     @Override
     public void onClick(View v) {
         int i = v.getId();
