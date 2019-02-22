@@ -2,15 +2,17 @@ package ca.recoverygo.recoverygo;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.res.Configuration;
 import android.media.AudioManager;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -33,13 +35,10 @@ import ca.recoverygo.recoverygo.ui.MeetingGuide11Fragment;
 
 public class MeetingGuideActivity extends AppCompatActivity {
 
-    // private static final String TAG="MeetingGuideActivity";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meeting_guide);
-
         SectionsPagerAdapter mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
         ViewPager mViewPager = findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
@@ -76,19 +75,32 @@ public class MeetingGuideActivity extends AppCompatActivity {
         @Override
         public Fragment getItem(int position) {
             switch (position) {
-                case 1: return  new MeetingGuide09Fragment();
-                case 2: return  new MeetingGuide01Fragment();
-                case 3: return  new MeetingGuide02Fragment();
-                case 4: return  new MeetingGuide03Fragment();
-                case 5: return  new MeetingGuide04Fragment();
-                case 6: return  new MeetingGuide05Fragment();
-                case 7: return  new MeetingGuide06Fragment();
-                case 8: return  new MeetingGuide07Fragment();
-                case 9: return  new MeetingGuide08Fragment();
-                case 10: return new MeetingGuide10Fragment();
-                case 11: return new MeetingGuide11Fragment();
+                case 1:
+                    return new MeetingGuide09Fragment();
+                case 2:
+                    return new MeetingGuide01Fragment();
+                case 3:
+                    return new MeetingGuide02Fragment();
+                case 4:
+                    return new MeetingGuide03Fragment();
+                case 5:
+                    return new MeetingGuide04Fragment();
+                case 6:
+                    return new MeetingGuide05Fragment();
+                case 7:
+                    return new MeetingGuide06Fragment();
+                case 8:
+                    return new MeetingGuide07Fragment();
+                case 9:
+                    return new MeetingGuide08Fragment();
+                case 10:
+                    return new MeetingGuide10Fragment();
+                case 11:
+                    return new MeetingGuide11Fragment();
 
-                default: break; }
+                default:
+                    break;
+            }
             return PlaceholderFragment.newInstance(position + 1);
         }
 
@@ -99,20 +111,28 @@ public class MeetingGuideActivity extends AppCompatActivity {
     }
 
     public void setVolumeOn() {
-
         AudioManager am = (AudioManager) this.getSystemService(Context.AUDIO_SERVICE);
+
+        if((this.getResources().getConfiguration().screenLayout
+                & Configuration.SCREENLAYOUT_SIZE_MASK)
+                < Configuration.SCREENLAYOUT_SIZE_LARGE) {
+            Log.d("rg_MeetingGuide", "setVolumeOn: This is a phone");
+            if (am != null) {
+                am.setStreamVolume(AudioManager.STREAM_RING, 9, AudioManager.FLAG_SHOW_UI);
+            }
+            if (am != null) {
+                am.setStreamVolume(AudioManager.STREAM_NOTIFICATION, 9, AudioManager.FLAG_SHOW_UI);
+            }
+        }else{
+            Log.d("rg_MeetingGuide", "setVolumeOn: This is a tablet");
+        }
         if (am != null) {
             am.setStreamVolume(AudioManager.STREAM_MUSIC, 9, AudioManager.FLAG_SHOW_UI);
         }
         if (am != null) {
-            am.setStreamVolume(AudioManager.STREAM_RING, 9, AudioManager.FLAG_SHOW_UI);
-        }
-        if (am != null) {
             am.setStreamVolume(AudioManager.STREAM_ALARM, 9, AudioManager.FLAG_SHOW_UI);
         }
-        if (am != null) {
-            am.setStreamVolume(AudioManager.STREAM_NOTIFICATION, 9, AudioManager.FLAG_SHOW_UI);
-        }
+
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
@@ -122,19 +142,26 @@ public class MeetingGuideActivity extends AppCompatActivity {
     }
 
     public void setVolumeOff(View view) {
-
         AudioManager am = (AudioManager) this.getSystemService(Context.AUDIO_SERVICE);
+
+        if((this.getResources().getConfiguration().screenLayout
+                & Configuration.SCREENLAYOUT_SIZE_MASK)
+                < Configuration.SCREENLAYOUT_SIZE_LARGE) {
+            Log.d("rg_MeetingGuide", "setVolumeOff: This is a phone");
+            if (am != null) {
+                am.setStreamVolume(AudioManager.STREAM_RING, 0, AudioManager.FLAG_SHOW_UI);
+            }
+            if (am != null) {
+                am.setStreamVolume(AudioManager.STREAM_NOTIFICATION, 0, AudioManager.FLAG_SHOW_UI);
+            }
+        }else{
+            Log.d("rg_MeetingGuide", "setVolumeOn: This is a tablet");
+        }
         if (am != null) {
             am.setStreamVolume(AudioManager.STREAM_MUSIC, 0, AudioManager.FLAG_SHOW_UI);
         }
         if (am != null) {
-            am.setStreamVolume(AudioManager.STREAM_RING, 0, AudioManager.FLAG_SHOW_UI);
-        }
-        if (am != null) {
             am.setStreamVolume(AudioManager.STREAM_ALARM, 0, AudioManager.FLAG_SHOW_UI);
-        }
-        if (am != null) {
-            am.setStreamVolume(AudioManager.STREAM_NOTIFICATION, 0, AudioManager.FLAG_SHOW_UI);
         }
 
         Handler handler = new Handler();

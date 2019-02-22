@@ -2,7 +2,6 @@ package ca.recoverygo.recoverygo;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -38,20 +37,35 @@ import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    private static final String TAG         = "rg_MainActivity";
-    private static final String FILE_NAME   = "rgsetup.txt";
-    
-    private FirebaseAuth mAuth;
+    private static final String FILE_NAME = "rgsetup.txt";
 
-    private TextView mStatusTextView;
-            TextView mDays;
-            TextView mHours;
-            ImageView mFbSignedIn;
+    TextView mDays;
+    TextView mHours;
+    TextView mDrydate;
+    TextView mStatusTextView;
+    ImageView mFbSignedIn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //+++++++++++++++++++++++++++++++++++++++++++++++++++
+        mDays               = findViewById(R.id.days);
+        mHours              = findViewById(R.id.hours);
+        mDrydate            = findViewById(R.id.drydate);
+        mStatusTextView     = findViewById(R.id.status);
+        mFbSignedIn         = findViewById(R.id.fbSignedIn);
+        // **************************************************
+
+        mDrydate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, LocalSetupActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+            }
+        });
         //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -62,28 +76,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toggle.syncState();
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-        mAuth                       = FirebaseAuth.getInstance();
-        mDays                       = findViewById(R.id.days);
-        mHours                      = findViewById(R.id.hours);
-        mFbSignedIn                 = findViewById(R.id.fbSignedIn);
-        TextView mTextView          = findViewById(R.id.drydate);
-        mStatusTextView             = findViewById(R.id.status);
-        // **************************************************
+
         FileInputStream fis = null;
         try {
-            Log.d(TAG, "onCreate: opening file:"+FILE_NAME);
             fis = openFileInput(FILE_NAME);
             InputStreamReader isr = new InputStreamReader(fis);
             BufferedReader br = new BufferedReader(isr);
             StringBuilder sb = new StringBuilder();
             String text;
 
-            while ((text = br.readLine()) != null) { sb.append(text).append("\n");
-                Log.d(TAG, "onCreate: file contents:"+text);
+            while ((text = br.readLine()) != null) {
+                sb.append(text).append("\n");
             }
 
-            mTextView.setText(sb.toString());
+            mDrydate.setText(sb.toString());
             String savedDate = sb.toString();
 
             Date today = Calendar.getInstance().getTime();
@@ -93,71 +99,92 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Date date1, date2;
 
             try {
-                date1 = df.parse(todayDate); date2 = df.parse(savedDate);
-                DateTime dt1 = new DateTime(date1); DateTime dt2 = new DateTime(date2);
+                date1               = df.parse(todayDate);
+                date2               = df.parse(savedDate);
+                DateTime dt1        = new DateTime(date1);
+                DateTime dt2        = new DateTime(date2);
+                String daysSober    = (Days.daysBetween(dt2, dt1).getDays() + " days free!");
+                String hoursSober   = (Hours.hoursBetween(dt2, dt1).getHours() - 1 + " hours");
 
-                String daysSober = (Days.daysBetween(dt2,dt1).getDays() + " days free!");
-                String hoursSober = (Hours.hoursBetween(dt2,dt1).getHours()-1 + " hours");
-                mDays.setText(daysSober); mHours.setText(hoursSober);
+                mDays.setText(daysSober);
+                mHours.setText(hoursSober);
 
-                int in = Days.daysBetween(dt2,dt1).getDays();
+                int in = Days.daysBetween(dt2, dt1).getDays();
 
-                if (in ==30) {
-                    Log.d(TAG, "onCreate: xxx_result = 30");
-                    Toast.makeText(this, "Congrats: "+daysSober, Toast.LENGTH_SHORT).show();
+                if (in == 30) {
+                    Toast.makeText(this, "Congrats: " + daysSober, Toast.LENGTH_SHORT).show();
                 }
-                if (in ==60) {
-                    Log.d(TAG, "onCreate: xxx_result = 60");
-                    Toast.makeText(this, "Congrats: "+daysSober, Toast.LENGTH_SHORT).show();
+                if (in == 60) {
+                    Toast.makeText(this, "Congrats: " + daysSober, Toast.LENGTH_SHORT).show();
+                }
+                if (in == 90) {
+                    Toast.makeText(this, "Congrats: " + daysSober, Toast.LENGTH_SHORT).show();
+                }
+                if (in == 120) {
+                    Toast.makeText(this, "Congrats: " + daysSober, Toast.LENGTH_SHORT).show();
+                }
+                if (in == 150) {
+                    Toast.makeText(this, "Congrats: " + daysSober, Toast.LENGTH_SHORT).show();
+                }
+                if (in == 180) {
+                    Toast.makeText(this, "Congrats: " + daysSober, Toast.LENGTH_SHORT).show();
+                }
+                if (in == 210) {
+                    Toast.makeText(this, "Congrats: " + daysSober, Toast.LENGTH_SHORT).show();
+                }
+                if (in == 240) {
+                    Toast.makeText(this, "Congrats: " + daysSober, Toast.LENGTH_SHORT).show();
+                }
+                if (in == 270) {
+                    Toast.makeText(this, "Congrats: " + daysSober, Toast.LENGTH_SHORT).show();
+                }
+                if (in == 300) {
+                    Toast.makeText(this, "Congrats: " + daysSober, Toast.LENGTH_SHORT).show();
+                }
+                if (in == 330) {
+                    Toast.makeText(this, "Congrats: " + daysSober, Toast.LENGTH_SHORT).show();
+                }
+                if (in == 365) {
+                    Toast.makeText(this, "Congrats: 1 Year Free", Toast.LENGTH_SHORT).show();
                 }
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-        }catch (FileNotFoundException e){
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
-        }catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             if (fis != null) {
                 try {
                     fis.close();
-                }catch (IOException e) {
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
         }
-        Log.d(TAG, "onCreate: finished");
     }
-    //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
     @Override
-    public void onStart() {
+    protected void onStart() {
         super.onStart();
-        Log.d(TAG, "onStart: getting user info");
+
+
+
         FirebaseApp.initializeApp(this);
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser;
         currentUser = mAuth.getCurrentUser();
-        Log.d(TAG, "onStart: sending to updateUI: "+currentUser);
         updateUI(currentUser);
     }
+
     private void updateUI(FirebaseUser user) {
         if (user != null) {
-            String name = user.getDisplayName();
-            String email = user.getEmail();
-            String uid = user.getUid();
-
-            Log.d(TAG, "updateUI: user = "+uid);
-            Log.d(TAG, "updateUI: name = "+name);
-            Log.d(TAG, "updateUI: email = "+email);
-
-            mStatusTextView.setText(getString(R.string.emailpassword_status_fmt));
+            mStatusTextView.setText(getString(R.string.firebase_status_fmt, user.getEmail()));
             mFbSignedIn.setVisibility(View.VISIBLE);
-
         } else {
-            Log.d(TAG, "updateUI: user is null");
             mStatusTextView.setText(R.string.signed_out);
-            Log.d(TAG, "updateUI: User is logged out");
         }
-        Log.d(TAG, "updateUI: complete");
     }
 
     @Override
@@ -189,44 +216,40 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        // Handle navigation view item clicks here.
         int id = item.getItemId();
         if (id == R.id.nav_101) {
             Intent intent = new Intent(MainActivity.this, MeetingGuideActivity.class);
             startActivity(intent);
-        }   else if (id == R.id.nav_102) {
+        } else if (id == R.id.nav_102) {
             Intent intent = new Intent(MainActivity.this, MeetingInfoActivity.class);
             startActivity(intent);
-        }   else if (id == R.id.nav_103) {
+        } else if (id == R.id.nav_103) {
             Intent intent = new Intent(MainActivity.this, LocatorActivity.class);
             startActivity(intent);
-        }   else if (id == R.id.nav_201) {
+        } else if (id == R.id.nav_201) {
             Intent intent = new Intent(MainActivity.this, DataInputActivity.class);
             startActivity(intent);
-        }   else if (id == R.id.nav_202) {
+        } else if (id == R.id.nav_202) {
             Intent intent = new Intent(MainActivity.this, LocalSetupActivity.class);
             startActivity(intent);
-        }   else if (id == R.id.nav_203) {
+        } else if (id == R.id.nav_203) {
             Intent intent = new Intent(MainActivity.this, WebActivity.class);
             startActivity(intent);
-        }   else if (id == R.id.nav_301) {
+        } else if (id == R.id.nav_301) {
             Intent intent = new Intent(MainActivity.this, DirectoryInputActivity.class);
             startActivity(intent);
-        }   else if (id == R.id.nav_302) {
+        } else if (id == R.id.nav_302) {
             Intent intent = new Intent(MainActivity.this, MeetingSetupActivity.class);
             startActivity(intent);
-        }   else if (id == R.id.nav_303) {
+        } else if (id == R.id.nav_303) {
             Intent intent = new Intent(MainActivity.this, MeetingInputActivity.class);
             startActivity(intent);
-        }   else if (id == R.id.nav_401) {
+        } else if (id == R.id.nav_401) {
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(intent);
-        /*}   else if (id == R.id.nav_402) {
-            Intent intent = new Intent(MainActivity.this, FingerPaintMainActivity.class);
+        } else if (id == R.id.nav_402) {
+            Intent intent = new Intent(MainActivity.this, AboutActivity.class);
             startActivity(intent);
-        }   else if (id == R.id.nav_403) {
-            Intent intent = new Intent(MainActivity.this, GalleryListActivity.class);
-            startActivity(intent);*/
         }
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

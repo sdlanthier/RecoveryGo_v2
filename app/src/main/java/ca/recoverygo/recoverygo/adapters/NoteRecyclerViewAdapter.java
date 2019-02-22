@@ -10,19 +10,18 @@ import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 
-import ca.recoverygo.recoverygo.system.IDataInputActivity;
 import ca.recoverygo.recoverygo.R;
 import ca.recoverygo.recoverygo.models.Note;
+import ca.recoverygo.recoverygo.system.IDataInputActivity;
 
 public class NoteRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private static final String TAG = "NoteRecyclerViewAdapter";
     private ArrayList<Note> mNotes;
     private IDataInputActivity mIDataInputActivity;
     private Context mContext;
     private int mSelectedNoteIndex;
-    // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
     public NoteRecyclerViewAdapter(Context context, ArrayList<Note> notes) {
         mNotes = notes;
@@ -35,21 +34,19 @@ public class NoteRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
         RecyclerView.ViewHolder holder;
         View view = LayoutInflater.from(parent.getContext()).inflate(
                 R.layout.layout_note_list_item, parent, false);
-
         holder = new ViewHolder(view);
-
         return holder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
 
-        if(holder instanceof ViewHolder){
-            ((ViewHolder)holder).title.setText(mNotes.get(position).getTitle());
+        if (holder instanceof ViewHolder) {
+            ((ViewHolder) holder).title.setText(mNotes.get(position).getTitle());
 
-            SimpleDateFormat spf = new SimpleDateFormat("MMM dd, yyyy");
+            SimpleDateFormat spf = new SimpleDateFormat("MMM dd, yyyy", Locale.US);
             String date = spf.format(mNotes.get(position).getTimestamp());
-            ((ViewHolder)holder).timestamp.setText(date);
+            ((ViewHolder) holder).timestamp.setText(date);
         }
     }
 
@@ -58,13 +55,13 @@ public class NoteRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
         return mNotes.size();
     }
 
-    public void updateNote(Note note){
-       mNotes.get(mSelectedNoteIndex).setTitle(note.getTitle());
-       mNotes.get(mSelectedNoteIndex).setContent(note.getContent());
-       notifyDataSetChanged();
+    public void updateNote(Note note) {
+        mNotes.get(mSelectedNoteIndex).setTitle(note.getTitle());
+        mNotes.get(mSelectedNoteIndex).setContent(note.getContent());
+        notifyDataSetChanged();
     }
 
-    public void removeNote(Note note){
+    public void removeNote(Note note) {
         mNotes.remove(note);
         notifyDataSetChanged();
     }
@@ -75,7 +72,7 @@ public class NoteRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
         mIDataInputActivity = (IDataInputActivity) mContext;
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView title, timestamp;
 

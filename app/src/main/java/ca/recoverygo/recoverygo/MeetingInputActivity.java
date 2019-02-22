@@ -9,7 +9,6 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -43,27 +42,26 @@ public class MeetingInputActivity extends BaseActivity implements
         IMeetingInputActivity,
         SwipeRefreshLayout.OnRefreshListener {
 
-    private static final String TAG = "rg_MeetingIA";
     private FirebaseAuth mAuth;
 
-    private View                            mParentLayout;
-    private RecyclerView                    mRecyclerView;
-    private SwipeRefreshLayout              mSwipeRefreshLayout;
-    private ArrayList<Meeting>              mMeetings = new ArrayList<>();
-    private MeetingRecyclerViewAdapter      mMeetingRecyclerViewAdapter;
-    private DocumentSnapshot                mLastQueriedDocument;
-    TextView                                mNologinMsg;
+    private View mParentLayout;
+    private RecyclerView mRecyclerView;
+    private SwipeRefreshLayout mSwipeRefreshLayout;
+    private ArrayList<Meeting> mMeetings = new ArrayList<>();
+    private MeetingRecyclerViewAdapter mMeetingRecyclerViewAdapter;
+    private DocumentSnapshot mLastQueriedDocument;
+    TextView mNologinMsg;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meeting_input);
 
-        FloatingActionButton mFab   = findViewById(R.id.fab);
-        mParentLayout               = findViewById(android.R.id.content);
-        mRecyclerView               = findViewById(R.id.recycler_view);
-        mSwipeRefreshLayout         = findViewById(R.id.swipe_refresh_layout);
-        mAuth                       = FirebaseAuth.getInstance();
+        FloatingActionButton mFab = findViewById(R.id.fab);
+        mParentLayout = findViewById(android.R.id.content);
+        mRecyclerView = findViewById(R.id.recycler_view);
+        mSwipeRefreshLayout = findViewById(R.id.swipe_refresh_layout);
+        mAuth = FirebaseAuth.getInstance();
 
         mFab.setOnClickListener(this);
         mSwipeRefreshLayout.setOnRefreshListener(this);
@@ -73,11 +71,9 @@ public class MeetingInputActivity extends BaseActivity implements
     @Override
     public void onStart() {
         super.onStart();
-        Log.d(TAG, "onStart: getting user info");
         FirebaseApp.initializeApp(this);
         FirebaseUser currentUser;
         currentUser = mAuth.getCurrentUser();
-        Log.d(TAG, "onStart: sending to updateUI: "+currentUser);
         updateUI(currentUser);
     }
 
@@ -86,35 +82,34 @@ public class MeetingInputActivity extends BaseActivity implements
             initRecyclerView();
             getMeetings();
         } else {
-            FloatingActionButton mFab   = findViewById(R.id.fab);
-            mNologinMsg                 = findViewById(R.id.nologinmsg);
+            FloatingActionButton mFab = findViewById(R.id.fab);
+            mNologinMsg = findViewById(R.id.nologinmsg);
 
             mFab.setVisibility(View.GONE);
             mNologinMsg.setVisibility(View.VISIBLE);
         }
     }
 
-    private void initRecyclerView(){
-        if(mMeetingRecyclerViewAdapter == null){
+    private void initRecyclerView() {
+        if (mMeetingRecyclerViewAdapter == null) {
             mMeetingRecyclerViewAdapter = new MeetingRecyclerViewAdapter(this, mMeetings);
         }
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setAdapter(mMeetingRecyclerViewAdapter);
     }
 
-    private void getMeetings(){
+    private void getMeetings() {
         showProgressDialog();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         CollectionReference meetingsCollectionRef = db.collection("locations");
         Query meetingsQuery;
-        if(mLastQueriedDocument != null){
+        if (mLastQueriedDocument != null) {
             meetingsQuery = meetingsCollectionRef
                     .whereEqualTo("user", Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid())
                     .orderBy("groupname", Query.Direction.ASCENDING)
                     .startAfter(mLastQueriedDocument);
-        }
-        else{
+        } else {
             meetingsQuery = meetingsCollectionRef
                     .whereEqualTo("user", Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid())
                     .orderBy("groupname", Query.Direction.ASCENDING);
@@ -123,21 +118,20 @@ public class MeetingInputActivity extends BaseActivity implements
         meetingsQuery.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if(task.isSuccessful()){
+                if (task.isSuccessful()) {
 
-                    for(QueryDocumentSnapshot document: Objects.requireNonNull(task.getResult())){
+                    for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
                         Meeting meeting = document.toObject(Meeting.class);
                         mMeetings.add(meeting);
                     }
 
-                    if(task.getResult().size() != 0){
-                        mLastQueriedDocument = task.getResult().getDocuments().get(task.getResult().size() -1);
+                    if (task.getResult().size() != 0) {
+                        mLastQueriedDocument = task.getResult().getDocuments().get(task.getResult().size() - 1);
                     }
 
                     mMeetingRecyclerViewAdapter.notifyDataSetChanged();
                     hideProgressDialog();
-                }
-                else{
+                } else {
                     makeSnackBarMessage("Query Failed. Check Logs.");
                 }
             }
@@ -145,8 +139,7 @@ public class MeetingInputActivity extends BaseActivity implements
     }
 
     @Override
-    public void updateMeeting(final Meeting meeting){
-        Log.d(TAG, "updateMeeting: called:"+meeting);
+    public void updateMeeting(final Meeting meeting) {
         showProgressDialog();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -156,19 +149,18 @@ public class MeetingInputActivity extends BaseActivity implements
 
         meetingRef.update(
                 "groupname", meeting.getGroupname(),
-                "site",meeting.getSite(),
-                "org",meeting.getOrg(),
-                "note",meeting.getNote()
+                "site", meeting.getSite(),
+                "org", meeting.getOrg(),
+                "note", meeting.getNote()
 
         ).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-                if(task.isSuccessful()){
+                if (task.isSuccessful()) {
                     makeSnackBarMessage("Location Updated");
                     mMeetingRecyclerViewAdapter.updateMeeting(meeting);
                     hideProgressDialog();
-                }
-                else{
+                } else {
                     makeSnackBarMessage("Database Unavailable.");
                 }
             }
@@ -176,7 +168,7 @@ public class MeetingInputActivity extends BaseActivity implements
     }
 
     @Override
-    public void deleteMeeting(final Meeting meeting){
+    public void deleteMeeting(final Meeting meeting) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         DocumentReference meetingRef = db
@@ -186,11 +178,10 @@ public class MeetingInputActivity extends BaseActivity implements
         meetingRef.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-                if(task.isSuccessful()){
+                if (task.isSuccessful()) {
                     makeSnackBarMessage("Deleted meeting");
                     mMeetingRecyclerViewAdapter.removeMeeting(meeting);
-                }
-                else{
+                } else {
                     makeSnackBarMessage("Failed. Check log.");
                 }
             }
@@ -198,7 +189,7 @@ public class MeetingInputActivity extends BaseActivity implements
     }
 
     @Override
-    public void createNewMeeting(String groupname, String site, String org, String note, String user, GeoPoint location, String location_id, String address) {
+    public void createNewMeeting(String groupname, String site, String org, String note, String user, GeoPoint location, String location_id, String address, String city) {
         showProgressDialog();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -206,7 +197,7 @@ public class MeetingInputActivity extends BaseActivity implements
                 .collection("locations")
                 .document();
 
-        Meeting meeting = new Meeting(groupname, site, org, note, user, location, address);
+        Meeting meeting = new Meeting(groupname, site, org, note, user, location, address,city);
 
         meeting.setGroupname(groupname);
         meeting.setSite(site);
@@ -217,22 +208,22 @@ public class MeetingInputActivity extends BaseActivity implements
 
         meeting.setLocation_id(newMeetingRef.getId());
         meeting.setAddress(address);
+        meeting.setCity(city);
+
 
         newMeetingRef.set(meeting).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-                if(task.isSuccessful()){
+                if (task.isSuccessful()) {
                     hideProgressDialog();
                     makeSnackBarMessage("Created new meeting");
                     getMeetings();
-                }
-                else{
+                } else {
                     makeSnackBarMessage("Failed. Check log.");
                 }
             }
         });
     }
-
 
     @Override
     public void onMeetingSelected(Meeting meeting) {
@@ -240,23 +231,22 @@ public class MeetingInputActivity extends BaseActivity implements
         dialog.show(getSupportFragmentManager(), getString(R.string.dialog_view_meeting));
     }
 
-
-    private void makeSnackBarMessage(String message){
+    private void makeSnackBarMessage(String message) {
         Snackbar.make(mParentLayout, message, Snackbar.LENGTH_SHORT).show();
     }
 
     @Override
     public void onClick(View view) {
 
-        switch (view.getId()){
+        switch (view.getId()) {
 
-            case R.id.fab:{
+            case R.id.fab: {
                 //create a new note
                 Intent intent = new Intent(MeetingInputActivity.this, MeetingSetupActivity.class);
                 startActivity(intent);
                 break;
             }
-            case R.id.fab2:{
+            case R.id.fab2: {
                 signOut();
                 Intent intent = new Intent(MeetingInputActivity.this, LoginActivity.class);
                 startActivity(intent);
@@ -264,8 +254,7 @@ public class MeetingInputActivity extends BaseActivity implements
         }
     }
 
-    private void signOut(){
-        Log.d(TAG, "signOut: signing out");
+    private void signOut() {
         FirebaseAuth.getInstance().signOut();
     }
 
@@ -278,7 +267,7 @@ public class MeetingInputActivity extends BaseActivity implements
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.optionSignOut:
                 signOut();
                 return true;

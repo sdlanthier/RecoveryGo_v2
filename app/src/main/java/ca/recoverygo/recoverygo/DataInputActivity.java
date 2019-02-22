@@ -1,5 +1,7 @@
 package ca.recoverygo.recoverygo;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -9,11 +11,9 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -33,9 +33,9 @@ import java.util.Objects;
 
 import ca.recoverygo.recoverygo.adapters.NoteRecyclerViewAdapter;
 import ca.recoverygo.recoverygo.models.NewNoteDialog;
+import ca.recoverygo.recoverygo.models.Note;
 import ca.recoverygo.recoverygo.models.ViewNoteDialog;
 import ca.recoverygo.recoverygo.system.BaseActivity;
-import ca.recoverygo.recoverygo.models.Note;
 import ca.recoverygo.recoverygo.system.IDataInputActivity;
 
 public class DataInputActivity extends BaseActivity implements
@@ -43,17 +43,13 @@ public class DataInputActivity extends BaseActivity implements
         IDataInputActivity,
         SwipeRefreshLayout.OnRefreshListener {
 
-    private static final String TAG = "DataInputActivity";
-    private FirebaseAuth mAuth;
-
-    private View                            mParentLayout;
-    private RecyclerView                    mRecyclerView;
-    private SwipeRefreshLayout              mSwipeRefreshLayout;
-    private FirebaseAuth.AuthStateListener  mAuthListener;
-    private ArrayList<Note>                 mNotes = new ArrayList<>();
-    private NoteRecyclerViewAdapter         mNoteRecyclerViewAdapter;
-    private DocumentSnapshot                mLastQueriedDocument;
-    TextView                                mNologinMsg;
+    private View                    mParentLayout;
+    private RecyclerView            mRecyclerView;
+    private SwipeRefreshLayout      mSwipeRefreshLayout;
+    private NoteRecyclerViewAdapter mNoteRecyclerViewAdapter;
+    private DocumentSnapshot        mLastQueriedDocument;
+    private ArrayList<Note>         mNotes = new ArrayList<>();
+    FloatingActionButton mFab;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -61,82 +57,95 @@ public class DataInputActivity extends BaseActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_data_input);
 
-        FloatingActionButton mFab   = findViewById(R.id.fab);
-        FloatingActionButton mFab2  = findViewById(R.id.fab2);
+        mFab = findViewById(R.id.fab);
+        mFab.setOnClickListener(this);
         mParentLayout               = findViewById(android.R.id.content);
         mRecyclerView               = findViewById(R.id.recycler_view);
         mSwipeRefreshLayout         = findViewById(R.id.swipe_refresh_layout);
-        mAuth                       = FirebaseAuth.getInstance();
-        mFab.                   setOnClickListener(this);
-        mFab2.                  setOnClickListener(this);
-        mSwipeRefreshLayout.    setOnRefreshListener(this);
-
+        mSwipeRefreshLayout.setOnRefreshListener(this);
+        initRecyclerView();
 
     }
+
     @Override
-    public void onStart() {
+    protected void onStart() {
         super.onStart();
-        Log.d(TAG, "onStart: getting user info");
         FirebaseApp.initializeApp(this);
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser;
         currentUser = mAuth.getCurrentUser();
-        Log.d(TAG, "onStart: sending to updateUI: "+currentUser);
         updateUI(currentUser);
+
     }
-    private void updateUI(FirebaseUser user) {
+
+    public void updateUI(FirebaseUser user) {
         if (user != null) {
-            String name = user.getDisplayName();
-            String email = user.getEmail();
-            String uid = user.getUid();
-
-            Log.d(TAG, "updateUI: user = "+uid);
-            Log.d(TAG, "updateUI: name = "+name);
-            Log.d(TAG, "updateUI: email = "+email);
-            //setupFirebaseAuth();
-            initRecyclerView();
             getNotes();
-        } else {
-            FloatingActionButton mFab   = findViewById(R.id.fab);
-            mNologinMsg               = findViewById(R.id.nologinmsg);
+        }else{
 
-            mFab.setVisibility(View.GONE);
-            mNologinMsg.setVisibility(View.VISIBLE);
-
-            Log.d(TAG, "updateUI: User is logged out");
-
+            AlertDialog alertDialog = new AlertDialog.Builder(DataInputActivity.this).create();
+            alertDialog.setTitle("Alert");
+            alertDialog.setMessage("You must have a valid account to use the Meeting Locator.");
+            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                            Intent intent = new Intent(DataInputActivity.this, LoginActivity.class);
+                            startActivity(intent);
+                        }
+                    });
+            mFab.setVisibility(View.INVISIBLE);
         }
-        Log.d(TAG, "updateUI: complete");
-    }
+}
 
-    private void setupFirebaseAuth(){
-        Log.d(TAG, "setupFirebaseAuth: started.");
+    public void getNotes() {
+        showProgressDialog();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        CollectionReference notesCollectionRef = db.collection("notes");
+        Query notesQuery;
+        if (mLastQueriedDocument != null) {
+            notesQuery = notesCollectionRef
+                    .whereEqualTo("user_id", Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid())
+                    .orderBy("timestamp", Query.Direction.ASCENDING)
+                    .startAfter(mLastQueriedDocument);
+        } else {
+            notesQuery = notesCollectionRef
+                    .whereEqualTo("user_id", Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid())
+                    .orderBy("timestamp", Query.Direction.ASCENDING);
+        }
 
-        mAuthListener = new FirebaseAuth.AuthStateListener() {
+        notesQuery.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-                if (user != null) {
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
 
-                    Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
+                    for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
+                        Note note = document.toObject(Note.class);
+                        mNotes.add(note);
+                    }
+                    if (task.getResult().size() != 0) {
+                        mLastQueriedDocument = task.getResult().getDocuments()
+                                .get(task.getResult().size() - 1);
+                    }
+                    hideProgressDialog();
 
+                    mNoteRecyclerViewAdapter.notifyDataSetChanged();
                 } else {
-                    Log.d(TAG, "onAuthStateChanged:signed_out");
-                    Intent intent = new Intent(DataInputActivity.this, MainActivity.class);
-                    startActivity(intent);
-                    finish();
+                    makeSnackBarMessage("Query Failed. Check Logs.");
                 }
             }
-        };
+        });
     }
+
     @Override
     public void onBackPressed() {
         Intent intent = new Intent(DataInputActivity.this, MainActivity.class);
         startActivity(intent);
-            super.onBackPressed();
-        }
+        super.onBackPressed();
+    }
 
     @Override
-    public void deleteNote(final Note note){
+    public void deleteNote(final Note note) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         DocumentReference noteRef = db
@@ -146,11 +155,10 @@ public class DataInputActivity extends BaseActivity implements
         noteRef.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-                if(task.isSuccessful()){
+                if (task.isSuccessful()) {
                     makeSnackBarMessage("Deleted note");
                     mNoteRecyclerViewAdapter.removeNote(note);
-                }
-                else{
+                } else {
                     makeSnackBarMessage("Failed. Check log.");
                 }
             }
@@ -163,50 +171,9 @@ public class DataInputActivity extends BaseActivity implements
         mSwipeRefreshLayout.setRefreshing(false);
     }
 
-    private void getNotes(){
-        setupFirebaseAuth();
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        CollectionReference notesCollectionRef = db.collection("notes");
-        Query notesQuery;
-        if(mLastQueriedDocument != null){
-           notesQuery = notesCollectionRef
-                    .whereEqualTo("user_id", Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid())
-                    .orderBy("timestamp", Query.Direction.ASCENDING)
-                    .startAfter(mLastQueriedDocument);
-        }
-        else{
-            notesQuery = notesCollectionRef
-                    .whereEqualTo("user_id", Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid())
-                    .orderBy("timestamp", Query.Direction.ASCENDING);
-        }
 
-        notesQuery.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if(task.isSuccessful()){
-
-                    for(QueryDocumentSnapshot document: Objects.requireNonNull(task.getResult())){
-                        Note note = document.toObject(Note.class);
-                        mNotes.add(note);
-                    }
-
-                    if(task.getResult().size() != 0){
-                        mLastQueriedDocument = task.getResult().getDocuments()
-                                .get(task.getResult().size() -1);
-                    }
-
-                    mNoteRecyclerViewAdapter.notifyDataSetChanged();
-                }
-                else{
-                    Log.d(TAG, "onComplete: QUERY FAILED ***********************************");
-                    makeSnackBarMessage("Query Failed. Check Logs.");
-                }
-            }
-        });
-    }
-
-    private void initRecyclerView(){
-        if(mNoteRecyclerViewAdapter == null){
+    private void initRecyclerView() {
+        if (mNoteRecyclerViewAdapter == null) {
             mNoteRecyclerViewAdapter = new NoteRecyclerViewAdapter(this, mNotes);
         }
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -214,7 +181,7 @@ public class DataInputActivity extends BaseActivity implements
     }
 
     @Override
-    public void updateNote(final Note note){
+    public void updateNote(final Note note) {
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -228,11 +195,10 @@ public class DataInputActivity extends BaseActivity implements
         ).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-                if(task.isSuccessful()){
+                if (task.isSuccessful()) {
                     makeSnackBarMessage("Updated note");
                     mNoteRecyclerViewAdapter.updateNote(note);
-                }
-                else{
+                } else {
                     makeSnackBarMessage("Failed. Check log.");
                 }
             }
@@ -255,42 +221,41 @@ public class DataInputActivity extends BaseActivity implements
                 .collection("notes")
                 .document();
 
-                Note note = new Note();
-                note.setTitle(title);
-                note.setContent(content);
-                note.setNote_id(newNoteRef.getId());
-                note.setUser_id(userId);
+        Note note = new Note();
+        note.setTitle(title);
+        note.setContent(content);
+        note.setNote_id(newNoteRef.getId());
+        note.setUser_id(userId);
 
-                newNoteRef.set(note).addOnCompleteListener(new OnCompleteListener<Void>() {
+        newNoteRef.set(note).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-                if(task.isSuccessful()){
+                if (task.isSuccessful()) {
                     makeSnackBarMessage("Created new note");
                     getNotes();
-                }
-                else{
+                } else {
                     makeSnackBarMessage("Failed. Check log.");
                 }
             }
         });
     }
 
-    private void makeSnackBarMessage(String message){
+    private void makeSnackBarMessage(String message) {
         Snackbar.make(mParentLayout, message, Snackbar.LENGTH_SHORT).show();
     }
 
     @Override
     public void onClick(View view) {
 
-        switch (view.getId()){
+        switch (view.getId()) {
 
-            case R.id.fab:{
+            case R.id.fab: {
                 //create a new note
                 NewNoteDialog dialog = new NewNoteDialog();
                 dialog.show(getSupportFragmentManager(), getString(R.string.dialog_new_note));
                 break;
             }
-            case R.id.fab2:{
+            case R.id.fab2: {
                 signOut();
                 Intent intent = new Intent(DataInputActivity.this, LoginActivity.class);
                 startActivity(intent);
@@ -307,7 +272,7 @@ public class DataInputActivity extends BaseActivity implements
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.optionSignOut:
                 signOut();
                 return true;
@@ -317,17 +282,13 @@ public class DataInputActivity extends BaseActivity implements
         }
     }
 
-    private void signOut(){
-        Log.d(TAG, "signOut: signing out");
+    private void signOut() {
         FirebaseAuth.getInstance().signOut();
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        if (mAuthListener != null) {
-            FirebaseAuth.getInstance().removeAuthStateListener(mAuthListener);
-        }
     }
 
 }

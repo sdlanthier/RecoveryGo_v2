@@ -1,13 +1,12 @@
 package ca.recoverygo.recoverygo;
 
-import android.app.ProgressDialog;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -20,19 +19,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ca.recoverygo.recoverygo.adapters.MeetingListAdapter;
+import ca.recoverygo.recoverygo.system.BaseActivity;
 
-public class MeetingListActivity extends AppCompatActivity {
+public class MeetingListActivity extends BaseActivity {
 
-    private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    FirebaseAuth mAuth;
-
-    // private static final String TAG="RGO_MeetingListActivity";
-
-    private List<String> addressList        = new ArrayList<>();
-    private List<String> groupsList         = new ArrayList<>();
-    private List<String> notesList          = new ArrayList<>();
-    private List<String> sitesList          = new ArrayList<>();
-    private List<String> orgsList           = new ArrayList<>();
+    private List<String> addressList = new ArrayList<>();
+    private List<String> groupsList = new ArrayList<>();
+    private List<String> notesList = new ArrayList<>();
+    private List<String> sitesList = new ArrayList<>();
+    private List<String> orgsList = new ArrayList<>();
 
     RecyclerView mRecyclerView;
     RecyclerView.LayoutManager mLayoutManager;
@@ -42,60 +37,52 @@ public class MeetingListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meeting_list);
-        showProgressDialog();
-        FirebaseApp.initializeApp(this);
-        mAuth = FirebaseAuth.getInstance();
-        FirebaseUser currentUser;
-        currentUser = mAuth.getCurrentUser();
-        if (currentUser != null) {
-            mRecyclerView = findViewById(R.id.recyclev1);
-            mLayoutManager = new LinearLayoutManager((this));
-            mRecyclerView.setLayoutManager(mLayoutManager);
 
-            db.collection("locations").addSnapshotListener(new EventListener<QuerySnapshot>() {
+        checkUser();
+
+        mRecyclerView = findViewById(R.id.recyclev1);
+        mLayoutManager = new LinearLayoutManager((this));
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        loadData();
+    }
+
+    public void checkUser(){
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        if (user == null) {
+            AlertDialog alertDialog = new AlertDialog.Builder(MeetingListActivity.this).create();
+            alertDialog.setTitle("Alert");
+            alertDialog.setMessage("You must have a valid user account to create a new meeting marker.");
+            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                            Intent intent = new Intent(MeetingListActivity.this, LoginActivity.class);
+                            startActivity(intent);
+                        }
+                    });
+            alertDialog.show();
+        }
+    }
+    public void loadData(){
+        showProgressDialog();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("locations").addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
-                addressList.clear();
-                groupsList.clear();
-                notesList.clear();
-                sitesList.clear();
-                orgsList.clear();
+            for (DocumentSnapshot snapshot : documentSnapshots) {
 
-                for(DocumentSnapshot snapshot : documentSnapshots){
-
-                    addressList.add(snapshot.       getString("address"));
-                    groupsList.add(snapshot.        getString("groupname"));
-                    notesList.add(snapshot.         getString("note"));
-                    sitesList.add(snapshot.         getString("site"));
-                    orgsList.add(snapshot.          getString("org"));
-                }
-
-                mAdapter = new MeetingListAdapter(addressList,groupsList,notesList,sitesList,orgsList);
-                mRecyclerView.setAdapter(mAdapter);
-                mRecyclerView.setHasFixedSize(true);
-                hideProgressDialog();
+                addressList.add(snapshot.getString("address"));
+                groupsList. add(snapshot.getString("groupname"));
+                notesList.  add(snapshot.getString("note"));
+                sitesList.  add(snapshot.getString("site"));
+                orgsList.   add(snapshot.getString("org"));
             }
-        });
-
-        } else {
-            Intent intent = new Intent(MeetingListActivity.this, LoginActivity.class);
-            startActivity(intent);
+            mAdapter = new MeetingListAdapter(addressList, groupsList, notesList, sitesList, orgsList);
+            mRecyclerView.setAdapter(mAdapter);
+            mRecyclerView.setHasFixedSize(true);
+            hideProgressDialog();
         }
-    }
-    public ProgressDialog mProgressDialog;
-
-    public void showProgressDialog() {
-        if (mProgressDialog == null) {
-            mProgressDialog = new ProgressDialog(this);
-            mProgressDialog.setMessage(getString(R.string.loading));
-            mProgressDialog.setIndeterminate(false);
-        }
-        mProgressDialog.show();
-    }
-
-    public void hideProgressDialog() {
-        if (mProgressDialog != null && mProgressDialog.isShowing()) {
-            mProgressDialog.dismiss();
-        }
-    }
+    });
+}
 }

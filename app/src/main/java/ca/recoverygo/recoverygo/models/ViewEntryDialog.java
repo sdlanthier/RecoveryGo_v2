@@ -2,28 +2,21 @@ package ca.recoverygo.recoverygo.models;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.firebase.auth.FirebaseAuth;
+import java.util.Objects;
 
 import ca.recoverygo.recoverygo.R;
 import ca.recoverygo.recoverygo.system.IDirectoryInputActivity;
 
-public class ViewEntryDialog extends DialogFragment implements View.OnClickListener{
+public class ViewEntryDialog extends DialogFragment implements View.OnClickListener {
 
-    private static final String TAG = "RGO_ViewEntryDialog";
-
-    // private EditText mName, mStreet, mCity, mProv, mPcode, mPhone, mWeb, mBedsttl, mBedsrepair, mBedspublic, mWaittime, mGender, mNextavail;
     private TextView vName, vStreet, vCity, vProv, vPcode, vPhone, vWeb, vBedsttl, vBedsrepair, vBedspublic, vWaittime, vGender, vNextavail;
     private TextView mSave, mDelete;
 
@@ -32,30 +25,25 @@ public class ViewEntryDialog extends DialogFragment implements View.OnClickListe
 
     public static ViewEntryDialog newInstance(Entry entry) {
         ViewEntryDialog dialog = new ViewEntryDialog();
-        Log.d(TAG, "newInstance: "+entry);
         Bundle args = new Bundle();
         args.putParcelable("entry", entry);
         dialog.setArguments(args);
-        Log.d(TAG, "newInstance: "+dialog);
         return dialog;
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d(TAG, "onCreate: Started");
-        int style = DialogFragment.STYLE_NORMAL;
         int theme = android.R.style.Theme_Holo_Light_Dialog;
-        setStyle(style, theme);
+        setStyle(DialogFragment.STYLE_NORMAL, theme);
 
-        mEntry = getArguments().getParcelable("entry");
+        mEntry = Objects.requireNonNull(getArguments()).getParcelable("entry");
     }
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        Log.d(TAG, "onCreateView: inflate layout: dialog_view_entry");
         View view = inflater.inflate(R.layout.dialog_view_entry, container, false);
 
 /*        mName       = view.findViewById(R.id.name);
@@ -74,13 +62,13 @@ public class ViewEntryDialog extends DialogFragment implements View.OnClickListe
         mSave       = view.findViewById(R.id.save);
         mDelete     = view.findViewById(R.id.delete);*/
         //-------------------------------------------------------------
-        vName       = view.findViewById(R.id.vname);
-        vStreet     = view.findViewById(R.id.vstreet);
-        vCity       = view.findViewById(R.id.vcity);
-        vProv       = view.findViewById(R.id.vprov);
-        vPcode      = view.findViewById(R.id.vpcode);
-        vPhone      = view.findViewById(R.id.vphone);
-        vNextavail  = view.findViewById(R.id.vnextavail);
+        vName = view.findViewById(R.id.vname);
+        vStreet = view.findViewById(R.id.vstreet);
+        vCity = view.findViewById(R.id.vcity);
+        vProv = view.findViewById(R.id.vprov);
+        vPcode = view.findViewById(R.id.vpcode);
+        vPhone = view.findViewById(R.id.vphone);
+        vNextavail = view.findViewById(R.id.vnextavail);
         /*vWeb        = view.findViewById(R.id.vweb);
         vBedsttl    = view.findViewById(R.id.vbedsttl);
         vBedsrepair = view.findViewById(R.id.vbedsrepair);
@@ -95,7 +83,7 @@ public class ViewEntryDialog extends DialogFragment implements View.OnClickListe
         return view;
     }
 
-    private void setInitialProperties(){
+    private void setInitialProperties() {
 /*        mName.      setText(mEntry.getName());
         mStreet.    setText(mEntry.getStreet());
         mCity.      setText(mEntry.getCity());
@@ -110,13 +98,13 @@ public class ViewEntryDialog extends DialogFragment implements View.OnClickListe
         mGender.    setText(mEntry.getGender());
         mNextavail. setText(mEntry.getNextavail());*/
 
-        vName.      setText(mEntry.getName());
-        vStreet.    setText(mEntry.getStreet());
-        vCity.      setText(mEntry.getCity());
-        vProv.      setText(mEntry.getProv());
-        vPcode.     setText(mEntry.getPcode());
-        vPhone.     setText(mEntry.getPhone());
-        vNextavail. setText(mEntry.getNextavail());
+        vName.setText(mEntry.getName());
+        vStreet.setText(mEntry.getStreet());
+        vCity.setText(mEntry.getCity());
+        vProv.setText(mEntry.getProv());
+        vPcode.setText(mEntry.getPcode());
+        vPhone.setText(mEntry.getPhone());
+        vNextavail.setText(mEntry.getNextavail());
 /*        vWeb.       setText(mEntry.getWeb());
         vBedsttl.   setText(mEntry.getBedsttl());
         vBedsrepair.setText(mEntry.getBedsrepair());
@@ -129,9 +117,9 @@ public class ViewEntryDialog extends DialogFragment implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
 
-            case R.id.save:{
+            case R.id.save: {
 
                 /*String name         = mName.getText().toString();
                 String street       = mStreet.getText().toString();
@@ -161,7 +149,6 @@ public class ViewEntryDialog extends DialogFragment implements View.OnClickListe
                     mEntry.setWaittime(waittime);
                     mEntry.setGender(gender);
                     mEntry.setNextavail(nextavail);
-                    Log.d(TAG, "onClick: sending to: IDirectoryInputActivity"+mEntry);
                     mIDirectoryInputActivity.updateEntry(mEntry);
                     getDialog().dismiss();
                 }
@@ -171,7 +158,7 @@ public class ViewEntryDialog extends DialogFragment implements View.OnClickListe
                 break;
             }
 
-            case R.id.delete:{
+            case R.id.delete: {
                 mIDirectoryInputActivity.deleteEntry(mEntry);
                 getDialog().dismiss();
                 break;
@@ -182,8 +169,7 @@ public class ViewEntryDialog extends DialogFragment implements View.OnClickListe
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        Log.d(TAG, "onAttach: sending to: IDirectoryInputActivity"+context);
-        mIDirectoryInputActivity = (IDirectoryInputActivity)getActivity();
+        mIDirectoryInputActivity = (IDirectoryInputActivity) getActivity();
     }
 
 }

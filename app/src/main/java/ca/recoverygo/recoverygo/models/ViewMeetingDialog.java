@@ -19,8 +19,6 @@ import ca.recoverygo.recoverygo.system.IMeetingInputActivity;
 
 public class ViewMeetingDialog extends DialogFragment implements View.OnClickListener {
 
-    //private static final String TAG = "rg_ViewMeeting";
-
     EditText mGroup, mSite, mOrg, mNote;
 
     private IMeetingInputActivity mIMeetingInputActivity;
@@ -51,10 +49,10 @@ public class ViewMeetingDialog extends DialogFragment implements View.OnClickLis
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.dialog_view_meeting, container, false);
 
-        mGroup  = view.findViewById(R.id.groupname);
-        mSite   = view.findViewById(R.id.site);
-        mOrg    = view.findViewById(R.id.org);
-        mNote   = view.findViewById(R.id.note);
+        mGroup = view.findViewById(R.id.groupname);
+        mSite = view.findViewById(R.id.site);
+        mOrg = view.findViewById(R.id.org);
+        mNote = view.findViewById(R.id.note);
 
         TextView mSave = view.findViewById(R.id.save);
         TextView mDelete = view.findViewById(R.id.delete);
@@ -69,7 +67,7 @@ public class ViewMeetingDialog extends DialogFragment implements View.OnClickLis
         return view;
     }
 
-    private void setInitialProperties(){
+    private void setInitialProperties() {
         mGroup.setText(mMeeting.getGroupname());
         mSite.setText(mMeeting.getSite());
         mOrg.setText(mMeeting.getOrg());
@@ -78,16 +76,16 @@ public class ViewMeetingDialog extends DialogFragment implements View.OnClickLis
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
 
-            case R.id.save:{
+            case R.id.save: {
 
-                String groupname    = mGroup.getText().toString();
-                String site     = mSite.getText().toString();
-                String org      = mOrg.getText().toString();
-                String note     = mNote.getText().toString();
+                String groupname = mGroup.getText().toString();
+                String site = mSite.getText().toString();
+                String org = mOrg.getText().toString();
+                String note = mNote.getText().toString();
 
-                if(!groupname.equals("")){
+                if (!groupname.equals("")) {
 
                     mMeeting.setGroupname(groupname);
                     mMeeting.setSite(site);
@@ -96,14 +94,13 @@ public class ViewMeetingDialog extends DialogFragment implements View.OnClickLis
 
                     mIMeetingInputActivity.updateMeeting(mMeeting);
                     getDialog().dismiss();
-                }
-                else{
+                } else {
                     Toast.makeText(getActivity(), "Enter a title", Toast.LENGTH_SHORT).show();
                 }
                 break;
             }
 
-            case R.id.delete:{
+            case R.id.delete: {
                 mIMeetingInputActivity.deleteMeeting(mMeeting);
                 getDialog().dismiss();
                 break;
@@ -114,7 +111,7 @@ public class ViewMeetingDialog extends DialogFragment implements View.OnClickLis
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        mIMeetingInputActivity = (IMeetingInputActivity)getActivity();
+        mIMeetingInputActivity = (IMeetingInputActivity) getActivity();
     }
 
 

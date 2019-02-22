@@ -36,29 +36,18 @@
         android:text="@string/title_activity_locator_hdr"
         android:textAlignment="center"
         android:textColor="@color/colorPrimary"
-        android:textSize="16sp" />
+        android:textSize="14sp" />
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
         android:layout_alignStart="@+id/textView15"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="43dp"
-        android:layout_marginTop="43dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="50dp"
         android:contentDescription="@string/content_description"
         android:src="@drawable/mkr_flag_aa" />
-
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="44dp"
-        android:layout_toEndOf="@+id/textView16"
-        android:contentDescription="@string/content_description"
-        android:src="@drawable/mkr_flag_al" />
 
     <TextView
         android:id="@+id/textView16"
@@ -69,7 +58,18 @@
         android:layout_toEndOf="@+id/imageView2"
         android:text="@string/locator_flag_aa"
         android:textColor="@color/colorBlack"
-        android:textSize="18sp" />
+        android:textSize="14sp" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="50dp"
+        android:layout_toEndOf="@+id/textView16"
+        android:contentDescription="@string/content_description"
+        android:src="@drawable/mkr_flag_na" />
 
     <TextView
         android:id="@+id/textView25"
@@ -80,6 +80,27 @@
         android:layout_toEndOf="@+id/imageView3"
         android:text="@string/locator_flag_na"
         android:textColor="@color/colorBlack"
-        android:textSize="18sp" />
+        android:textSize="14sp" />
 
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="50dp"
+        android:layout_toEndOf="@+id/textView25"
+        android:contentDescription="@string/content_description"
+        android:src="@drawable/mkr_flag_al" />
+
+    <TextView
+        android:id="@+id/textView26"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="50dp"
+        android:layout_toEndOf="@+id/imageView4"
+        android:text="@string/locator_flag_al"
+        android:textColor="@color/colorBlack"
+        android:textSize="14sp" />
 </RelativeLayout>

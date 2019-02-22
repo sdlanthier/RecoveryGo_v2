@@ -2,7 +2,6 @@ package ca.recoverygo.recoverygo.ui;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
 
 import com.github.barteksc.pdfviewer.PDFView;
 import com.github.barteksc.pdfviewer.listener.OnLoadCompleteListener;
@@ -14,8 +13,7 @@ import java.util.List;
 
 import ca.recoverygo.recoverygo.R;
 
-public class BookBigBookStoriesActivity extends Activity implements OnPageChangeListener,OnLoadCompleteListener{
-    private static final String TAG = BookBigBookStoriesActivity.class.getSimpleName();
+public class BookBigBookStoriesActivity extends Activity implements OnPageChangeListener, OnLoadCompleteListener {
     public static final String PDF_FILE = "aa_bigbookstories.pdf";
     PDFView pdfView;
     Integer pageNumber = 0;
@@ -27,12 +25,12 @@ public class BookBigBookStoriesActivity extends Activity implements OnPageChange
         setContentView(R.layout.activity_book_big_book_stories);
 
 
-        pdfView= findViewById(R.id.pdfView);
-        displayFromAsset(PDF_FILE);
+        pdfView = findViewById(R.id.pdfView);
+        displayFromAsset();
     }
 
-    private void displayFromAsset(String assetFileName) {
-        pdfFileName = assetFileName;
+    private void displayFromAsset() {
+        pdfFileName = BookBigBookStoriesActivity.PDF_FILE;
 
         pdfView.fromAsset(PDF_FILE)
                 .defaultPage(pageNumber)
@@ -56,15 +54,12 @@ public class BookBigBookStoriesActivity extends Activity implements OnPageChange
 
     @Override
     public void loadComplete(int nbPages) {
-        PdfDocument.Meta meta = pdfView.getDocumentMeta();
         printBookmarksTree(pdfView.getTableOfContents(), "-");
 
     }
 
     public void printBookmarksTree(List<PdfDocument.Bookmark> tree, String sep) {
         for (PdfDocument.Bookmark b : tree) {
-
-            Log.e(TAG, String.format("%s %s, p %d", sep, b.getTitle(), b.getPageIdx()));
 
             if (b.hasChildren()) {
                 printBookmarksTree(b.getChildren(), sep + "-");

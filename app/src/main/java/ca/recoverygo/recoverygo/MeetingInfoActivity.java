@@ -1,13 +1,12 @@
 package ca.recoverygo.recoverygo;
 
+import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
-
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,8 +19,6 @@ import ca.recoverygo.recoverygo.ui.MeetingInfo5Fragment;
 import ca.recoverygo.recoverygo.ui.MeetingInfo6Fragment;
 
 public class MeetingInfoActivity extends AppCompatActivity {
-
-    // private static final String TAG="RGO_MeetingInfoActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,13 +61,21 @@ public class MeetingInfoActivity extends AppCompatActivity {
         @Override
         public Fragment getItem(int position) {
             switch (position) {
-                case 1: return  new MeetingInfo1Fragment();
-                case 2: return  new MeetingInfo2Fragment();
-                case 3: return  new MeetingInfo3Fragment();
-                case 4: return  new MeetingInfo4Fragment();
-                case 5: return  new MeetingInfo5Fragment();
-                case 6: return  new MeetingInfo6Fragment();
-                default: break; }
+                case 1:
+                    return new MeetingInfo1Fragment();
+                case 2:
+                    return new MeetingInfo2Fragment();
+                case 3:
+                    return new MeetingInfo3Fragment();
+                case 4:
+                    return new MeetingInfo4Fragment();
+                case 5:
+                    return new MeetingInfo5Fragment();
+                case 6:
+                    return new MeetingInfo6Fragment();
+                default:
+                    break;
+            }
 
             return PlaceholderFragment.newInstance(position + 1);
         }

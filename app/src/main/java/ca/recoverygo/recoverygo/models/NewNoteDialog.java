@@ -2,6 +2,7 @@ package ca.recoverygo.recoverygo.models;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
@@ -14,38 +15,29 @@ import android.widget.Toast;
 import ca.recoverygo.recoverygo.R;
 import ca.recoverygo.recoverygo.system.IDataInputActivity;
 
-/**
- * Created by User on 5/14/2018.
- */
 
-public class NewNoteDialog extends DialogFragment implements View.OnClickListener{
+public class NewNoteDialog extends DialogFragment implements View.OnClickListener {
 
-    private static final String TAG = "NewNoteDialog";
-
-    //widgets
     private EditText mTitle, mContent;
-    private TextView mCreate, mCancel;
 
-    //vars
     private IDataInputActivity mIDataInputActivity;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        int style = DialogFragment.STYLE_NORMAL;
         int theme = android.R.style.Theme_Holo_Light_Dialog;
-        setStyle(style, theme);
+        setStyle(DialogFragment.STYLE_NORMAL, theme);
     }
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.dialog_new_note, container, false);
         mTitle = view.findViewById(R.id.note_title);
         mContent = view.findViewById(R.id.note_content);
-        mCreate = view.findViewById(R.id.create);
-        mCancel = view.findViewById(R.id.cancel);
+        TextView mCreate = view.findViewById(R.id.create);
+        TextView mCancel = view.findViewById(R.id.cancel);
 
         mCancel.setOnClickListener(this);
         mCreate.setOnClickListener(this);
@@ -57,26 +49,25 @@ public class NewNoteDialog extends DialogFragment implements View.OnClickListene
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
 
-            case R.id.create:{
+            case R.id.create: {
 
                 // insert the new note
 
                 String title = mTitle.getText().toString();
                 String content = mContent.getText().toString();
 
-                if(!title.equals("")){
+                if (!title.equals("")) {
                     mIDataInputActivity.createNewNote(title, content);
                     getDialog().dismiss();
-                }
-                else{
+                } else {
                     Toast.makeText(getActivity(), "Enter a title", Toast.LENGTH_SHORT).show();
                 }
                 break;
             }
 
-            case R.id.cancel:{
+            case R.id.cancel: {
                 getDialog().dismiss();
                 break;
             }
@@ -86,7 +77,7 @@ public class NewNoteDialog extends DialogFragment implements View.OnClickListene
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        mIDataInputActivity = (IDataInputActivity)getActivity();
+        mIDataInputActivity = (IDataInputActivity) getActivity();
     }
 }
 

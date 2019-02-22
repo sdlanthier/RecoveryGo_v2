@@ -16,16 +16,16 @@ import ca.recoverygo.recoverygo.system.IDirectoryInputActivity;
 
 public class EntryRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    // private static final String TAG = "RGO_EntryRecyclerViewAdapter";
-    private ArrayList<Entry> mNames;
+    private ArrayList<Entry>        mNames;
     private IDirectoryInputActivity mIDirectoryInputActivity;
-    private Context mContext;
-    private int mSelectedNoteIndex;
+    private Context                 mContext;
+    private int                     mSelectedEntryIndex;
 
     public EntryRecyclerViewAdapter(Context context, ArrayList<Entry> names) {
         mNames = names;
         mContext = context;
     }
+
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -39,11 +39,11 @@ public class EntryRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
 
-        if(holder instanceof ViewHolder){
-            ((ViewHolder)holder).name.setText(mNames.get(position).getName());
-            ((ViewHolder)holder).city.setText(mNames.get(position).getCity());
-            ((ViewHolder)holder).gender.setText(mNames.get(position).getGender());
-            ((ViewHolder)holder).nextavail.setText(mNames.get(position).getNextavail());
+        if (holder instanceof ViewHolder) {
+            ((ViewHolder) holder).name.setText(mNames.get(position).getName());
+            ((ViewHolder) holder).city.setText(mNames.get(position).getCity());
+            ((ViewHolder) holder).gender.setText(mNames.get(position).getGender());
+            ((ViewHolder) holder).nextavail.setText(mNames.get(position).getNextavail());
         }
     }
 
@@ -52,16 +52,16 @@ public class EntryRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.
         return mNames.size();
     }
 
-    public void updateEntry(Entry entry){
-        mNames.get(mSelectedNoteIndex).setName(entry.getName());
-        mNames.get(mSelectedNoteIndex).setCity(entry.getCity());
-        mNames.get(mSelectedNoteIndex).setGender(entry.getGender());
-        mNames.get(mSelectedNoteIndex).setNextavail(entry.getNextavail());
+    public void updateEntry(Entry entry) {
+        mNames.get(mSelectedEntryIndex).setName(entry.getName());
+        mNames.get(mSelectedEntryIndex).setCity(entry.getCity());
+        mNames.get(mSelectedEntryIndex).setGender(entry.getGender());
+        mNames.get(mSelectedEntryIndex).setNextavail(entry.getNextavail());
 
         notifyDataSetChanged();
     }
 
-    public void removeEntry(Entry entry){
+    public void removeEntry(Entry entry) {
         mNames.remove(entry);
         notifyDataSetChanged();
     }
@@ -73,7 +73,7 @@ public class EntryRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.
 
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView name, city, gender, nextavail;
 
@@ -90,24 +90,8 @@ public class EntryRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.
 
         @Override
         public void onClick(View view) {
-            mSelectedNoteIndex = getAdapterPosition();
-            mIDirectoryInputActivity.onEntrySelected(mNames.get(mSelectedNoteIndex));
+            mSelectedEntryIndex = getAdapterPosition();
+            mIDirectoryInputActivity.onEntrySelected(mNames.get(mSelectedEntryIndex));
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

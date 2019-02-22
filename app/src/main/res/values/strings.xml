@@ -3,13 +3,14 @@
     <string name="app_version">v2.0</string>
     <string name="app_description">The Mobile Recovery Resource App</string>
 
-    <string name="company_name">LTC Inc.</string>
+    <string name="company_name">Lanthier Technology Consulting Inc.</string>
     <string name="company_address">203 Lakeside Drive, Carleton Place, Ontario, K7C 0C4, Canada</string>
     <string name="company_phone">+1 613–257–8581</string>
-    <string name="company_email">developers@recoverygo.ca</string>
+    <string name="company_email">sdlanthier@rogers.com</string>
     <string name="company_url">www.recoverygo.ca</string>
 
-    <string name="title_activity_book_twelve_steps">Twelve Steps &amp; 12 Traditions</string>
+
+    <string name="title_activity_book_twelve_steps">12 Steps &amp; 12 Traditions</string>
     <string name="title_activity_book_bigbook_stories">Stories From The Big Book</string>
 
     <string name="title_activity_directory">Treatment Centre Information</string>
@@ -25,17 +26,53 @@
 
     <string name="title_activity_test">AA Meeting Info</string>
     <string name="title_content_web_txt">Copies of the above books are available at most AA meetings. Ask any member for direction to the librarian.</string>
+    <string name="hdr_next_bed">Next Bed</string>
 
     <string name="title_activity_locator">Map</string>
     <string name="title_activity_locator_hdr">Meetings Near You…</string>
 
+    <string name="title_activity_about">RecoveryGo</string>
+    <string name="title_activity_about_hdr">Created by…</string>
+    <string name="title_activity_about_txt1">Shawn D. Lanthier</string>
+    <string name="title_activity_about_txt2">This app is dedicated to my Big Brother who has been there for me every day of my life. For that, I am truly grateful.</string>
+    <string name="title_activity_about_txt3">A special Thank You to the hard working, professional, caring people at Renascent House on Maddison Ave. Your guidance and compassion helped make this happen.</string>
+
+    <string name="marker_flag_aa">AA</string>
+    <string name="marker_flag_na">NA</string>
+    <string name="marker_flag_al">AL</string>
+
     <string name="locator_flag_aa">AA</string>
     <string name="locator_flag_na">NA</string>
+    <string name="locator_flag_al">AL-Anon</string>
+
+    <string name="rb_option1">AA</string>
+    <string name="rb_option2">NA</string>
+    <string name="rb_option3">AL</string>
 
     <string name="signed_out">Signed Out</string>
     <string name="auth_failed">Authentication Failed</string>
     <string name="data_sobriety_date">My Recovery Date</string>
     <string name="firebase_user_id">Firebase User ID: 123456789abc</string>
+
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password (optional)</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="action_sign_out">Sign out</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="resend_verification_email">Resend Verification Email</string>
+    <string name="forgot_password">Forgot Password</string>
+    <string name="register">Register</string>
+    <string name="password">Password</string>
+    <string name="tabian_consulting_logo">Tabian Consulting Logo</string>
+    <string name="email_registration">Email Registration</string>
+    <string name="email">Email</string>
+    <string name="confirm_password">Confirm Password</string>
+
+
     <string name="instruct01">Press BACK button</string>
     <string name="instruct02">Swipe Left\nto follow the readings</string>
     <string name="instruct03">Swipe Left Edge for List</string>
@@ -47,6 +84,10 @@
     <string name="nav_header_title">RecoveryGo v2.0</string>
 
     <string name="text_placeholder">TextView</string>
+    <string name="text_placeholder1">DD/MM/YYYY</string>
+    <string name="text_placeholder2"># of Days</string>
+    <string name="text_placeholder3"># of Hours</string>
+
     <string name="content_description">ImageView</string>
 
     <string name="btn_save">Save</string>
@@ -64,10 +105,13 @@
 
     <string name="popup_mute">ringer is off\n for the next 60 minutes</string>
 
-    <string name="menu_group2">Tools</string>
-    <string name="menu_group3">Recovery</string>
+    <string name="menu_group2">Meeting Locator</string>
+    <string name="menu_group3">Other Stuff</string>
+    <string name="menu_group4">About</string>
+
     <string name="action_settings">Settings</string>
     <string name="menu_action_settings">Settings</string>
+
     <string name="menu_item101">Meeting Guide</string>
     <string name="menu_item102">Meeting Info</string>
     <string name="menu_item103">Meeting Map</string>
@@ -77,7 +121,8 @@
     <string name="menu_item301">Treatment Centres</string>
     <string name="menu_item302">Add Meeting</string>
     <string name="menu_item303">Edit/Remove Meeting</string>
-    <string name="menu_item401">Login</string>
+    <string name="menu_item401">Login/Create Account</string>
+    <string name="menu_item402">The Developer</string>
 
     <string name="menu_item_web101">AA World Services</string>
     <string name="menu_item_web102">NA World Services</string>
@@ -122,11 +167,14 @@
     <string name="emailpassword_status_fmt">SIGNED IN</string>
     <string name="emailpassword_title_text">Email and Password</string>
     <string name="firebase_status_fmt">Firebase id: %s</string>
-    <string name="sign_in">Sign In</string>
     <string name="create_account">Create Account</string>
     <string name="sign_out">Sign Out</string>
+    <string name="signin">Sign In</string>
+
     <string name="verify_email">Verify Email</string>
     <string name="loading">Loading…</string>
+    <string name="saving">Saving…</string>
+
     <string name="hint_email">Email</string>
     <string name="hint_password">Password</string>
     <string name="desc_firebase_lockup">RecoveryGo logo</string>
@@ -151,6 +199,7 @@
     <string name="form_field_next_avail">MM/DD/YY</string>
     <string name="form_field_next_avail_hdr">Next Available Bed</string>
     <string name="form_field_comma">,</string>
+    <string name="form_field_supportgrp">Support Group:</string>
 
     <string name="form2_name">Add THIS Location to the RecoveryGo Cloud Database</string>
     <string name="form2_txt">Meeting information entered here will reflect the information shown on the map marker in the Find Meeting function of this application.</string>
@@ -160,4 +209,22 @@
     <string name="form2_field_group">Group Name</string>
     <string name="form2_field_note_hint">eg. MON 8PM</string>
     <string name="form2_field_org_hint">eg. AA / NA</string>
+    <string name="text_placeholder4">Today</string>
+
+    <string name="frm_hint_01">Name of Facility</string>
+    <string name="frm_hint_02">Street</string>
+    <string name="frm_hint_03">City</string>
+    <string name="frm_hint_04">Prov</string>
+    <string name="frm_hint_05">Pcode</string>
+    <string name="frm_hint_06">Pcode</string>
+    <string name="frm_hint_07">Country</string>
+    <string name="frm_hint_08">Campus Name</string>
+    <string name="frm_hint_09">Main Phone</string>
+    <string name="frm_hint_10">Toll Free</string>
+    <string name="frm_hint_11">Email</string>
+    <string name="frm_hint_12">Website</string>
+    <string name="frm_hint_13">Logo Url</string>
+    <string name="frm_hint_14">Campus Type</string>
+    <string name="frm_hint_15">Ttl Beds</string>
+    <string name="frm_hint_16">Beds Repair</string>
 </resources>

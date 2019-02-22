@@ -18,15 +18,15 @@ public class MeetingRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVie
 
     // private static final String TAG = "rg_MeetingRVA";
 
-    private ArrayList<Meeting>      mMeetings;
-    private IMeetingInputActivity   mIMeetingInputActivity;
-    private Context                 mContext;
-    private int                     mSelectedMeetingIndex;
+    private ArrayList<Meeting> mMeetings;
+    private IMeetingInputActivity mIMeetingInputActivity;
+    private Context mContext;
+    private int mSelectedMeetingIndex;
     // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
     public MeetingRecyclerViewAdapter(Context context, ArrayList<Meeting> meetings) {
         mMeetings = meetings;
-        mContext  = context;
+        mContext = context;
     }
 
     @NonNull
@@ -40,12 +40,12 @@ public class MeetingRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVie
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        if(holder instanceof ViewHolder){
-            ((ViewHolder)holder).groupname.setText(mMeetings.get(position).getGroupname());
+        if (holder instanceof ViewHolder) {
+            ((ViewHolder) holder).groupname.setText(mMeetings.get(position).getGroupname());
         }
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView groupname;
 
         private ViewHolder(View itemView) {
@@ -60,12 +60,13 @@ public class MeetingRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVie
             mIMeetingInputActivity.onMeetingSelected(mMeetings.get(mSelectedMeetingIndex));
         }
     }
+
     @Override
     public int getItemCount() {
         return mMeetings.size();
     }
 
-    public void updateMeeting(Meeting meeting){
+    public void updateMeeting(Meeting meeting) {
         mMeetings.get(mSelectedMeetingIndex).setGroupname(meeting.getGroupname());
         mMeetings.get(mSelectedMeetingIndex).setSite(meeting.getSite());
         mMeetings.get(mSelectedMeetingIndex).setOrg(meeting.getOrg());
@@ -73,7 +74,7 @@ public class MeetingRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVie
         notifyDataSetChanged();
     }
 
-    public void removeMeeting(Meeting meeting){
+    public void removeMeeting(Meeting meeting) {
         mMeetings.remove(meeting);
         notifyDataSetChanged();
     }

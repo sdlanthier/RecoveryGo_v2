@@ -2,7 +2,6 @@ package ca.recoverygo.recoverygo.models;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.util.Log;
 
 import com.google.firebase.firestore.IgnoreExtraProperties;
 import com.google.firebase.firestore.ServerTimestamp;
@@ -10,8 +9,7 @@ import com.google.firebase.firestore.ServerTimestamp;
 import java.util.Date;
 
 @IgnoreExtraProperties
-public class Entry implements Parcelable{
-    private static final String TAG = "rg_Entry";
+public class Entry implements Parcelable {
     private String name, street, city, prov, pcode, phone, web, nextavail, gender;
     private String bedsttl, bedsrepair, bedspublic, waittime;
     private @ServerTimestamp
@@ -22,44 +20,44 @@ public class Entry implements Parcelable{
                  String bedsttl, String bedsrepair, String bedspublic, String waittime,
                  String gender, String nextavail,
                  Date timestamp, String entry_id) {
-        Log.d(TAG, "Entry() called with: name = [" + name + "], street = [" + street + "], city = [" + city + "], prov = [" + prov + "], pcode = [" + pcode + "], phone = [" + phone + "], web = [" + web + "], bedsttl = [" + bedsttl + "], bedsrepair = [" + bedsrepair + "], bedspublic = [" + bedspublic + "], waittime = [" + waittime + "], gender = [" + gender + "], nextavail = [" + nextavail + "], timestamp = [" + timestamp + "], entry_id = [" + entry_id + "]");
-        this.name       = name;
-        this.street     = street;
-        this.city       = city;
-        this.prov       = prov;
-        this.pcode      = pcode;
-        this.phone      = phone;
-        this.web        = web;
-        this.bedsttl    = bedsttl;
+
+        this.name = name;
+        this.street = street;
+        this.city = city;
+        this.prov = prov;
+        this.pcode = pcode;
+        this.phone = phone;
+        this.web = web;
+        this.bedsttl = bedsttl;
         this.bedsrepair = bedsrepair;
         this.bedspublic = bedspublic;
-        this.waittime   = waittime;
-        this.gender     = gender;
-        this.nextavail  = nextavail;
+        this.waittime = waittime;
+        this.gender = gender;
+        this.nextavail = nextavail;
 
-        this.timestamp  = timestamp;
-        this.entry_id   = entry_id;
+        this.timestamp = timestamp;
+        this.entry_id = entry_id;
     }
+
     public Entry() {
 
     }
 
     private Entry(Parcel in) {
-        Log.d(TAG, "Entry() called with: in = [" + in + "]");
-        name        = in.readString();
-        street      = in.readString();
-        city        = in.readString();
-        prov        = in.readString();
-        pcode       = in.readString();
-        phone       = in.readString();
-        web         = in.readString();
-        bedsttl     = in.readString();
-        bedsrepair  = in.readString();
-        bedspublic  = in.readString();
-        waittime    = in.readString();
-        gender      = in.readString();
-        nextavail   = in.readString();
-        entry_id    = in.readString();
+        name = in.readString();
+        street = in.readString();
+        city = in.readString();
+        prov = in.readString();
+        pcode = in.readString();
+        phone = in.readString();
+        web = in.readString();
+        bedsttl = in.readString();
+        bedsrepair = in.readString();
+        bedspublic = in.readString();
+        waittime = in.readString();
+        gender = in.readString();
+        nextavail = in.readString();
+        entry_id = in.readString();
     }
 
     public static final Creator<Entry> CREATOR = new Creator<Entry>() {
@@ -77,98 +75,122 @@ public class Entry implements Parcelable{
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }
+
     public String getStreet() {
         return street;
     }
+
     public void setStreet(String street) {
         this.street = street;
     }
+
     public String getCity() {
         return city;
     }
+
     public void setCity(String city) {
         this.city = city;
     }
+
     public String getProv() {
         return prov;
     }
+
     public void setProv(String prov) {
         this.prov = prov;
     }
+
     public String getPcode() {
         return pcode;
     }
+
     public void setPcode(String pcode) {
         this.pcode = pcode;
     }
+
     public String getPhone() {
         return phone;
     }
+
     public void setPhone(String phone) {
         this.phone = phone;
     }
+
     public String getWeb() {
         return web;
     }
+
     public void setWeb(String web) {
         this.web = web;
     }
+
     public String getBedsttl() {
         return bedsttl;
     }
+
     public void setBedsttl(String bedsttl) {
         this.bedsttl = bedsttl;
     }
+
     public String getBedsrepair() {
         return bedsrepair;
     }
+
     public void setBedsrepair(String bedsrepair) {
         this.bedsrepair = bedsrepair;
     }
+
     public String getBedspublic() {
         return bedspublic;
     }
+
     public void setBedspublic(String bedspublic) {
         this.bedspublic = bedspublic;
     }
+
     public String getWaittime() {
         return waittime;
     }
+
     public void setWaittime(String waittime) {
         this.waittime = waittime;
     }
+
     public String getGender() {
         return gender;
     }
+
     public void setGender(String gender) {
         this.gender = gender;
     }
+
     public String getNextavail() {
         return nextavail;
     }
-    public void setNextavail(String nextavail)
-    {
+
+    public void setNextavail(String nextavail) {
         this.nextavail = nextavail;
     }
+
     public String getEntry_id() {
         return entry_id;
     }
+
     public void setEntry_id(String entry_id) {
         this.entry_id = entry_id;
     }
 
     @Override
     public int describeContents() {
-        Log.d(TAG, "describeContents() called");
         return 0;
     }
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-        Log.d(TAG, "writeToParcel() called with: parcel = [" + parcel + "], i = [" + i + "]");
         parcel.writeString(name);
         parcel.writeString(street);
         parcel.writeString(city);

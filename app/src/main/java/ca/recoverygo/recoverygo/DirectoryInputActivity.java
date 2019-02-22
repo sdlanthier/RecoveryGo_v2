@@ -9,7 +9,6 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -47,9 +46,9 @@ public class DirectoryInputActivity extends BaseActivity implements
     private RecyclerView                    mRecyclerView;
     private SwipeRefreshLayout              mSwipeRefreshLayout;
     private FirebaseAuth.AuthStateListener  mAuthListener;
-    private ArrayList<Entry>                mNames = new ArrayList<>();
     private EntryRecyclerViewAdapter        mEntryRecyclerViewAdapter;
     private DocumentSnapshot                mLastQueriedDocument;
+    private ArrayList<Entry>                mNames = new ArrayList<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -63,25 +62,18 @@ public class DirectoryInputActivity extends BaseActivity implements
 
         mFab.setOnClickListener(this);
         mSwipeRefreshLayout.setOnRefreshListener(this);
-
         setupFirebaseAuth();
-        initRecyclerView();
-        getNames();
     }
 
-    private void setupFirebaseAuth(){
-        Log.d(TAG, "setupFirebaseAuth: started.");
-
+    private void setupFirebaseAuth() {
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
-
-                    Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
-
+                    initRecyclerView();
+                    getNames();
                 } else {
-                    Log.d(TAG, "onAuthStateChanged:signed_out");
                     Intent intent = new Intent(DirectoryInputActivity.this, LoginActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
@@ -91,27 +83,25 @@ public class DirectoryInputActivity extends BaseActivity implements
         };
     }
 
-    private void initRecyclerView(){
-        if(mEntryRecyclerViewAdapter == null){
+    private void initRecyclerView() {
+        if (mEntryRecyclerViewAdapter == null) {
             mEntryRecyclerViewAdapter = new EntryRecyclerViewAdapter(this, mNames);
         }
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setAdapter(mEntryRecyclerViewAdapter);
-
     }
 
-    private void getNames(){
+    private void getNames() {
         showProgressDialog();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         CollectionReference entryCollectionRef = db
                 .collection("Notebook");
         Query entryQuery;
-        if(mLastQueriedDocument != null){
+        if (mLastQueriedDocument != null) {
             entryQuery = entryCollectionRef
                     .orderBy("nextavail", Query.Direction.ASCENDING)
                     .startAfter(mLastQueriedDocument);
-        }
-        else{
+        } else {
             entryQuery = entryCollectionRef
                     .orderBy("nextavail", Query.Direction.ASCENDING);
         }
@@ -119,20 +109,19 @@ public class DirectoryInputActivity extends BaseActivity implements
         entryQuery.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if(task.isSuccessful()){
-                    for(QueryDocumentSnapshot document: Objects.requireNonNull(task.getResult())){
+                if (task.isSuccessful()) {
+                    for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
                         Entry entry = document.toObject(Entry.class);
 
                         mNames.add(entry);
                     }
-                    if(task.getResult().size() != 0){
+                    if (task.getResult().size() != 0) {
                         mLastQueriedDocument = task.getResult().getDocuments()
-                                .get(task.getResult().size() -1);
+                                .get(task.getResult().size() - 1);
                     }
                     hideProgressDialog();
                     mEntryRecyclerViewAdapter.notifyDataSetChanged();
-                }
-                else{
+                } else {
                     makeSnackBarMessage("Query Failed. Check Logs.");
                 }
             }
@@ -140,7 +129,7 @@ public class DirectoryInputActivity extends BaseActivity implements
     }
 
     @Override
-    public void deleteEntry(final Entry entry){
+    public void deleteEntry(final Entry entry) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         DocumentReference noteRef = db
@@ -150,11 +139,10 @@ public class DirectoryInputActivity extends BaseActivity implements
         noteRef.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-                if(task.isSuccessful()){
+                if (task.isSuccessful()) {
                     makeSnackBarMessage("Deleted Entry");
                     mEntryRecyclerViewAdapter.removeEntry(entry);
-                }
-                else{
+                } else {
                     makeSnackBarMessage("Failed. Check log.");
                 }
             }
@@ -168,40 +156,35 @@ public class DirectoryInputActivity extends BaseActivity implements
     }
 
     @Override
-    public void updateEntry(final Entry entry){
+    public void updateEntry(final Entry entry) {
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-
-        DocumentReference noteRef = db
-                .collection("Notebook")
-                .document(entry.getEntry_id());
-
+        DocumentReference noteRef = db.collection("Notebook").document(entry.getEntry_id());
         noteRef.update(
                 "name", entry.getName(),
                 "street", entry.getStreet(),
-                "city", entry.getCity(),
-                "prov", entry.getProv(),
-                "pcode", entry.getPcode(),
-                "phone", entry.getPhone(),
-                "web", entry.getWeb(),
-                "bedsttl", entry.getBedsttl(),
-                "bedsrepair", entry.getBedsrepair(),
-                "bedspublic", entry.getBedspublic(),
-                "waittime", entry.getWaittime(),
-                "gender", entry.getGender(),
-                "nextavail", entry.getNextavail()
+                "city",         entry.getCity(),
+                "prov",         entry.getProv(),
+                "pcode",        entry.getPcode(),
+                "phone",        entry.getPhone(),
+                "web",          entry.getWeb(),
+                "bedsttl",      entry.getBedsttl(),
+                "bedsrepair",   entry.getBedsrepair(),
+                "bedspublic",   entry.getBedspublic(),
+                "waittime",     entry.getWaittime(),
+                "gender",       entry.getGender(),
+                "nextavail",    entry.getNextavail()
 
 
         ).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-                if(task.isSuccessful()){
+                if (task.isSuccessful()) {
                     hideProgressDialog();
 
                     makeSnackBarMessage("Updated Entry");
                     mEntryRecyclerViewAdapter.updateEntry(entry);
-                }
-                else{
+                } else {
                     makeSnackBarMessage("Failed. Check log.");
                 }
             }
@@ -225,53 +208,52 @@ public class DirectoryInputActivity extends BaseActivity implements
                 .collection("Notebook")
                 .document();
 
-            Entry entry = new Entry();
-            entry.setName(name);
-            entry.setStreet(street);
-            entry.setCity(city);
-            entry.setProv(prov);
-            entry.setPcode(pcode);
-            entry.setPhone(phone);
-            entry.setWeb(web);
-            entry.setBedsttl(bedsttl);
-            entry.setBedsrepair(bedsrepair);
-            entry.setBedspublic(bedspublic);
-            entry.setWaittime(waittime);
-            entry.setGender(gender);
-            entry.setNextavail(nextavail);
+        Entry entry = new Entry();
+        entry.setName(name);
+        entry.setStreet(street);
+        entry.setCity(city);
+        entry.setProv(prov);
+        entry.setPcode(pcode);
+        entry.setPhone(phone);
+        entry.setWeb(web);
+        entry.setBedsttl(bedsttl);
+        entry.setBedsrepair(bedsrepair);
+        entry.setBedspublic(bedspublic);
+        entry.setWaittime(waittime);
+        entry.setGender(gender);
+        entry.setNextavail(nextavail);
 
-            entry.setEntry_id(newNoteRef.getId());
+        entry.setEntry_id(newNoteRef.getId());
 
-                    newNoteRef.set(entry).addOnCompleteListener(new OnCompleteListener<Void>() {
-                @Override
-                public void onComplete(@NonNull Task<Void> task) {
-                    if(task.isSuccessful()){
-                        hideProgressDialog();
-                        makeSnackBarMessage("Created new Entry");
-                        getNames();
-                    }
-                    else{
-                        makeSnackBarMessage("Failed. Check log.");
-                    }
+        newNoteRef.set(entry).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    hideProgressDialog();
+                    makeSnackBarMessage("Created new Entry");
+                    getNames();
+                } else {
+                    makeSnackBarMessage("Failed. Check log.");
                 }
-            });
+            }
+        });
     }
 
-    private void makeSnackBarMessage(String message){
+    private void makeSnackBarMessage(String message) {
         Snackbar.make(mParentLayout, message, Snackbar.LENGTH_SHORT).show();
     }
 
     @Override
     public void onClick(View view) {
 
-        switch (view.getId()){
+        switch (view.getId()) {
 
-            case R.id.fab:{
+            case R.id.fab: {
                 NewEntryDialog dialog = new NewEntryDialog();
                 dialog.show(getSupportFragmentManager(), getString(R.string.dialog_new_entry));
                 break;
             }
-            case R.id.fab2:{
+            case R.id.fab2: {
                 signOut();
                 Intent intent = new Intent(DirectoryInputActivity.this, LoginActivity.class);
                 startActivity(intent);
@@ -288,7 +270,7 @@ public class DirectoryInputActivity extends BaseActivity implements
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.optionSignOut:
                 signOut();
                 return true;
@@ -298,8 +280,7 @@ public class DirectoryInputActivity extends BaseActivity implements
         }
     }
 
-    private void signOut(){
-        Log.d(TAG, "signOut: signing out");
+    private void signOut() {
         FirebaseAuth.getInstance().signOut();
     }
 

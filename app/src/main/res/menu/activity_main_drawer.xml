@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
@@ -30,15 +29,15 @@
         <menu>
             <item
                 android:id="@+id/nav_103"
-                android:icon="@android:drawable/ic_menu_search"
+                android:icon="@android:drawable/ic_search_category_default"
                 android:title="@string/menu_item103" />
             <item
                 android:id="@+id/nav_302"
-                android:icon="@android:drawable/star_big_on"
+                android:icon="@android:drawable/ic_menu_add"
                 android:title="@string/menu_item302" />
             <item
                 android:id="@+id/nav_303"
-                android:icon="@android:drawable/star_big_on"
+                android:icon="@android:drawable/ic_menu_edit"
                 android:title="@string/menu_item303" />
 
 
@@ -56,19 +55,30 @@
                 android:title="@string/menu_item201" />
             <item
                 android:id="@+id/nav_202"
-                android:icon="@android:drawable/star_big_on"
+                android:icon="@android:drawable/ic_menu_my_calendar"
                 android:title="@string/menu_item202" />
             <item
                 android:id="@+id/nav_203"
-                android:icon="@android:drawable/star_big_on"
+                android:icon="@android:drawable/ic_menu_info_details"
                 android:title="@string/menu_item203" />
             <item
                 android:id="@+id/nav_301"
-                android:icon="@android:drawable/ic_menu_edit"
+                android:icon="@android:drawable/stat_sys_phone_call"
                 android:title="@string/menu_item301" />
 
         </menu>
     </item>
 
+    <item
+        android:id="@+id/nav_400"
+        android:title="@string/menu_group4"
+        android:checkableBehavior="single">
+        <menu>
+            <item
+                android:id="@+id/nav_402"
+                android:icon="@android:drawable/star_big_on"
+                android:title="@string/menu_item402" />
 
+        </menu>
+    </item>
 </menu>

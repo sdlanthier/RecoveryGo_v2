@@ -8,12 +8,8 @@ import com.google.firebase.firestore.ServerTimestamp;
 
 import java.util.Date;
 
-/**
- * Created by User on 5/14/2018.
- */
-
 @IgnoreExtraProperties
-public class Note implements Parcelable{
+public class Note implements Parcelable {
 
     private String title;
     private String content;

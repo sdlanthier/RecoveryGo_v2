@@ -1,4 +1,5 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -100,7 +101,8 @@
                 android:layout_weight="1"
                 android:hint="@string/hint_email"
                 android:inputType="textEmailAddress"
-                android:textColor="@color/colorBlack" />
+                android:textColor="@color/colorBlack"
+                tools:ignore="Autofill" />
 
             <EditText
                 android:id="@+id/fieldPassword"
@@ -109,7 +111,8 @@
                 android:layout_weight="1"
                 android:hint="@string/hint_password"
                 android:inputType="textPassword"
-                android:textColor="@color/Black" />
+                android:textColor="@color/Black"
+                tools:ignore="Autofill" />
         </LinearLayout>
 
         <LinearLayout
@@ -127,7 +130,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/sign_in"
+                android:text="@string/signin"
                 android:theme="@style/ThemeOverlay.MyDarkButton" />
 
             <Button

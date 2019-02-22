@@ -7,31 +7,26 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
 import java.util.List;
+
 import ca.recoverygo.recoverygo.R;
 
 public class MeetingListAdapter extends RecyclerView.Adapter<MeetingListAdapter.ViewHolder> {
-    private List<String> mAddress;
-    private List<String> mGroupname;
-    private List<String> mNote;
-    private List<String> mSite;
-    private List<String> mOrg;
 
-    public MeetingListAdapter(List<String> address, List<String> groupname, List<String> note, List<String> site, List<String> org ) {
-        mAddress        = address;
-        mGroupname      = groupname;
-        mNote           = note;
-        mSite           = site;
-        mOrg            = org;
+    private List<String> mAddress,mGroupname,mNote,mSite,mOrg;
+
+    public MeetingListAdapter(List<String> address, List<String> groupname, List<String> note, List<String> site, List<String> org) {
+        mAddress    = address;
+        mGroupname  = groupname;
+        mNote       = note;
+        mSite       = site;
+        mOrg        = org;
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView mAddress;
-        TextView mGroupname;
-        TextView mNote;
-        TextView mSite;
-        TextView mOrg;
+        TextView mAddress,mGroupname,mNote,mSite,mOrg;
 
         private ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -40,17 +35,21 @@ public class MeetingListAdapter extends RecyclerView.Adapter<MeetingListAdapter.
             mSite       = itemView.findViewById(R.id.site);
             mAddress    = itemView.findViewById(R.id.address);
             mNote       = itemView.findViewById(R.id.notes);
-            mOrg       = itemView.findViewById(R.id.org);
+            mOrg        = itemView.findViewById(R.id.org);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v) { int position = getAdapterPosition();
-                switch (position){
-                    case 0: Snackbar.make(v, "" + position, Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    switch (position) {
+                        case 0:
+                            Snackbar.make(v, "" + position, Snackbar.LENGTH_LONG).setAction("Action", null).show();
                         default:
                             break;
                     }
-                Snackbar.make(v, "Click detected on item " + position, Snackbar.LENGTH_LONG).setAction("Action", null).show(); }});
+                    Snackbar.make(v, "Click detected on item " + position, Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                }
+            });
         }
     }
 
@@ -63,13 +62,11 @@ public class MeetingListAdapter extends RecyclerView.Adapter<MeetingListAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
-        holder.mAddress.setText(mAddress.get(position));
-        holder.mGroupname.setText(mGroupname.get(position));
-        holder.mNote.setText(mNote.get(position));
-        holder.mSite.setText(mSite.get(position));
-        holder.mOrg.setText(mOrg.get(position));
-
+        holder.mAddress     .setText(mAddress.get(position));
+        holder.mGroupname   .setText(mGroupname.get(position));
+        holder.mNote        .setText(mNote.get(position));
+        holder.mSite        .setText(mSite.get(position));
+        holder.mOrg         .setText(mOrg.get(position));
     }
 
     @Override

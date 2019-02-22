@@ -3,7 +3,6 @@ package ca.recoverygo.recoverygo;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -24,8 +23,6 @@ import java.util.Map;
 
 public class FacilitySetupActivity extends AppCompatActivity {
 
- // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    private static final String TAG                 = "LocalSetupActivity";
     private static final String FILE_NAME           = "facilitylist.txt";
     private static final String CONTAINER_NAME      = "Notebook";
     private static final String KEY_NAME            = "name";
@@ -46,31 +43,15 @@ public class FacilitySetupActivity extends AppCompatActivity {
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-    EditText mFieldName;            ArrayList<String> mName;
-    EditText mFieldCampus;          ArrayList<String> mCampus;
-    EditText mFieldCampusGender;    ArrayList<String> mCampusGender;
-    EditText mFieldStreet;          ArrayList<String> mStreet;
-    EditText mFieldCity;            ArrayList<String> mCity;
-    EditText mFieldProv;            ArrayList<String> mProv;
-    EditText mFieldPcode;           ArrayList<String> mPcode;
-    EditText mFieldCountry;         ArrayList<String> mCountry;
-    EditText mFieldPhone1;          ArrayList<String> mPhone1;
-    EditText mFieldPhone2;          ArrayList<String> mPhone2;
-    EditText mFieldEmail;           ArrayList<String> mEmail;
-    EditText mFieldWebSite;         ArrayList<String> mWebsite;
-    EditText mFieldLogoUrl;         ArrayList<String> mLogoUrl;
-    EditText mFieldBedsTtl;         ArrayList<String> mBedsTtl;
-    EditText mFieldBedsRepair;      ArrayList<String> mBedsRepair;
-
+    EditText mFieldName, mFieldCampus,mFieldCampusGender,mFieldStreet,mFieldCity,mFieldProv,mFieldPcode,mFieldCountry,mFieldPhone1,mFieldPhone2,mFieldEmail,mFieldWebSite,mFieldLogoUrl, mFieldBedsTtl,mFieldBedsRepair;
+    ArrayList<String> mName,mCampus,mCampusGender,mStreet,mCity,mProv,mPcode,mCountry,mPhone1,mPhone2,mEmail,mWebsite,mLogoUrl,mBedsTtl,mBedsRepair;
     String[] data;
-    // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_facility_setup);
 
-     // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         mFieldName          = findViewById(R.id.field_name);
         mFieldStreet        = findViewById(R.id.field_street);
         mFieldCity          = findViewById(R.id.field_city);
@@ -86,12 +67,9 @@ public class FacilitySetupActivity extends AppCompatActivity {
         mFieldCampusGender  = findViewById(R.id.field_campus_type);
         mFieldBedsTtl       = findViewById(R.id.field_beds_ttl);
         mFieldBedsRepair    = findViewById(R.id.field_beds_repair);
-     // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
     }
 
     public void save(View v) {
-        // **************************************************
         String name         = mFieldName.getText().toString();
         String street       = mFieldStreet.getText().toString();
         String city         = mFieldCity.getText().toString();
@@ -107,8 +85,6 @@ public class FacilitySetupActivity extends AppCompatActivity {
         String campusgender = mFieldCampusGender.getText().toString();
         String bedsttl      = mFieldBedsTtl.getText().toString();
         String bedsrepair   = mFieldBedsRepair.getText().toString();
-
-        // **************************************************
 
         FileOutputStream fos = null;
 
@@ -133,11 +109,9 @@ public class FacilitySetupActivity extends AppCompatActivity {
         String facility = name + "," + street + "," + city + "," + prov + "," + pcode + "," + country + "," + campus + "," + phone1 + "," + phone2 + "," + email + "," + website + "," + logourl + "," + campusgender + "," + bedsttl + "," + bedsrepair + "\n";
         String facilityid = name + " - " + campus;
 
-
         try {
             fos = openFileOutput(FILE_NAME, MODE_PRIVATE);
             fos.write(facility.getBytes());
-
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -153,10 +127,9 @@ public class FacilitySetupActivity extends AppCompatActivity {
             Toast.makeText(this, "Saved to: " + getFilesDir() + "/" + FILE_NAME, Toast.LENGTH_LONG).show();
         }
 
-        // **************************************************
-        Map<String,Object> facilityrcd = new HashMap<>();
+        Map<String, Object> facilityrcd = new HashMap<>();
 
-        facilityrcd.put(KEY_NAME,        name+" - "+campus);
+        facilityrcd.put(KEY_NAME, name + " - " + campus);
         facilityrcd.put(KEY_CAMPUS,         campus);
         facilityrcd.put(KEY_CAMPUSGENDER,   campusgender);
         facilityrcd.put(KEY_STREET,         street);
@@ -181,7 +154,6 @@ public class FacilitySetupActivity extends AppCompatActivity {
             @Override
             public void onFailure(@NonNull Exception e) {
                 Toast.makeText(FacilitySetupActivity.this, "Error!", Toast.LENGTH_LONG).show();
-                Log.d(TAG, "onFailure: "+e.toString());
             }
         });
     }
@@ -189,21 +161,21 @@ public class FacilitySetupActivity extends AppCompatActivity {
     public void load(View v) {
         FileInputStream fis;
 
-        mName           = new ArrayList<>();
-        mStreet         = new ArrayList<>();
-        mCity           = new ArrayList<>();
-        mProv           = new ArrayList<>();
-        mPcode          = new ArrayList<>();
-        mCountry        = new ArrayList<>();
-        mCampus         = new ArrayList<>();
-        mPhone1         = new ArrayList<>();
-        mPhone2         = new ArrayList<>();
-        mEmail          = new ArrayList<>();
-        mWebsite        = new ArrayList<>();
-        mLogoUrl        = new ArrayList<>();
-        mCampusGender   = new ArrayList<>();
-        mBedsTtl        = new ArrayList<>();
-        mBedsRepair     = new ArrayList<>();
+        mName = new ArrayList<>();
+        mStreet = new ArrayList<>();
+        mCity = new ArrayList<>();
+        mProv = new ArrayList<>();
+        mPcode = new ArrayList<>();
+        mCountry = new ArrayList<>();
+        mCampus = new ArrayList<>();
+        mPhone1 = new ArrayList<>();
+        mPhone2 = new ArrayList<>();
+        mEmail = new ArrayList<>();
+        mWebsite = new ArrayList<>();
+        mLogoUrl = new ArrayList<>();
+        mCampusGender = new ArrayList<>();
+        mBedsTtl = new ArrayList<>();
+        mBedsRepair = new ArrayList<>();
 
         try {
             fis = openFileInput(FILE_NAME);
@@ -214,39 +186,39 @@ public class FacilitySetupActivity extends AppCompatActivity {
             while ((record = reader.readLine()) != null) {
                 data = record.split(",");
                 try {
-                    mName.          add(data[1]);
-                    mStreet.        add(data[2]);
-                    mCity.          add(data[3]);
-                    mProv.          add(data[4]);
-                    mPcode.         add(data[5]);
-                    mCountry.       add(data[6]);
-                    mCampus.        add(data[7]);
-                    mPhone1.        add(data[8]);
-                    mPhone2.        add(data[9]);
-                    mEmail.         add(data[10]);
-                    mWebsite.       add(data[11]);
-                    mLogoUrl.       add(data[12]);
-                    mCampusGender  .add(data[13]);
-                    mBedsTtl.       add(data[14]);
-                    mBedsRepair.    add(data[15]);
+                    mName.add(data[1]);
+                    mStreet.add(data[2]);
+                    mCity.add(data[3]);
+                    mProv.add(data[4]);
+                    mPcode.add(data[5]);
+                    mCountry.add(data[6]);
+                    mCampus.add(data[7]);
+                    mPhone1.add(data[8]);
+                    mPhone2.add(data[9]);
+                    mEmail.add(data[10]);
+                    mWebsite.add(data[11]);
+                    mLogoUrl.add(data[12]);
+                    mCampusGender.add(data[13]);
+                    mBedsTtl.add(data[14]);
+                    mBedsRepair.add(data[15]);
                 } catch (Exception e) {
-                    Log.e(TAG, e.toString());
+                    /* empty catch*/
                 }
-                mFieldName          .setText(data[0]);
-                mFieldStreet        .setText(data[1]);
-                mFieldCity          .setText(data[2]);
-                mFieldProv          .setText(data[3]);
-                mFieldPcode         .setText(data[4]);
-                mFieldCountry       .setText(data[5]);
-                mFieldCampus        .setText(data[6]);
-                mFieldPhone1        .setText(data[7]);
-                mFieldPhone2        .setText(data[8]);
-                mFieldEmail         .setText(data[9]);
-                mFieldWebSite       .setText(data[10]);
-                mFieldLogoUrl       .setText(data[11]);
-                mFieldCampusGender  .setText(data[12]);
-                mFieldBedsTtl       .setText(data[13]);
-                mFieldBedsRepair    .setText(data[14]);
+                mFieldName.setText(data[0]);
+                mFieldStreet.setText(data[1]);
+                mFieldCity.setText(data[2]);
+                mFieldProv.setText(data[3]);
+                mFieldPcode.setText(data[4]);
+                mFieldCountry.setText(data[5]);
+                mFieldCampus.setText(data[6]);
+                mFieldPhone1.setText(data[7]);
+                mFieldPhone2.setText(data[8]);
+                mFieldEmail.setText(data[9]);
+                mFieldWebSite.setText(data[10]);
+                mFieldLogoUrl.setText(data[11]);
+                mFieldCampusGender.setText(data[12]);
+                mFieldBedsTtl.setText(data[13]);
+                mFieldBedsRepair.setText(data[14]);
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();

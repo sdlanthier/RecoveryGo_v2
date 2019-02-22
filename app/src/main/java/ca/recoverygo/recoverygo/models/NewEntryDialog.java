@@ -15,9 +15,8 @@ import android.widget.Toast;
 import ca.recoverygo.recoverygo.R;
 import ca.recoverygo.recoverygo.system.IDirectoryInputActivity;
 
-public class NewEntryDialog extends DialogFragment implements View.OnClickListener{
+public class NewEntryDialog extends DialogFragment implements View.OnClickListener {
 
-    // private static final String TAG = "rg_NewEntryDialog";
     private EditText mName, mStreet, mCity, mProv, mPcode, mPhone, mWeb, mBedsttl, mBedsrepair, mBedspublic, mWaittime, mGender, mNextavail;
     private IDirectoryInputActivity mIDirectoryInputActivity;
 
@@ -61,9 +60,9 @@ public class NewEntryDialog extends DialogFragment implements View.OnClickListen
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
 
-            case R.id.create:{
+            case R.id.create: {
 
                 String name         = mName.getText().toString();
                 String street       = mStreet.getText().toString();
@@ -79,18 +78,16 @@ public class NewEntryDialog extends DialogFragment implements View.OnClickListen
                 String gender       = mGender.getText().toString();
                 String nextavail    = mNextavail.getText().toString();
 
-                if(!name.equals("")){
+                if (!name.equals("")) {
                     mIDirectoryInputActivity.createNewEntry(name, street, city, prov, pcode, phone, web, bedsttl, bedsrepair, bedspublic, waittime, gender, nextavail);
                     getDialog().dismiss();
-                }
-
-                else{
+                } else {
                     Toast.makeText(getActivity(), "Enter Name of Treatment Centre", Toast.LENGTH_SHORT).show();
                 }
                 break;
             }
 
-            case R.id.cancel:{
+            case R.id.cancel: {
                 getDialog().dismiss();
                 break;
             }
@@ -100,6 +97,6 @@ public class NewEntryDialog extends DialogFragment implements View.OnClickListen
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        mIDirectoryInputActivity = (IDirectoryInputActivity)getActivity();
+        mIDirectoryInputActivity = (IDirectoryInputActivity) getActivity();
     }
 }

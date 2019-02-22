@@ -6,7 +6,7 @@ import ca.recoverygo.recoverygo.models.Meeting;
 
 public interface IMeetingInputActivity {
 
-    void createNewMeeting(String group, String site, String org, String note, String user, GeoPoint location, String location_id, String address);
+    void createNewMeeting(String group, String site, String org, String note, String user, GeoPoint location, String location_id, String address, String city);
 
     void updateMeeting(Meeting meeting);
 

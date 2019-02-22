@@ -1,1 +1,1 @@
-include ':app', ':recoverygobeds'
+include ':app'

@@ -1,4 +1,5 @@
 <RelativeLayout
+
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
@@ -84,7 +85,7 @@
         android:src="@drawable/ic_plus_white"
         android:layout_margin="16dp"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"/>
+        android:layout_alignParentBottom="true" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab2"
