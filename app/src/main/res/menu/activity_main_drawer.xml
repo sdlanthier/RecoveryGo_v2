@@ -61,11 +61,6 @@
                 android:id="@+id/nav_203"
                 android:icon="@android:drawable/ic_menu_info_details"
                 android:title="@string/menu_item203" />
-            <item
-                android:id="@+id/nav_301"
-                android:icon="@android:drawable/stat_sys_phone_call"
-                android:title="@string/menu_item301" />
-
         </menu>
     </item>
 

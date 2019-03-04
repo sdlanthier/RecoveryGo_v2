@@ -49,10 +49,6 @@ public class Note implements Parcelable {
         }
     };
 
-    public String getUser_id() {
-        return user_id;
-    }
-
     public void setUser_id(String user_id) {
         this.user_id = user_id;
     }
@@ -75,10 +71,6 @@ public class Note implements Parcelable {
 
     public Date getTimestamp() {
         return timestamp;
-    }
-
-    public void setTimestamp(Date timestamp) {
-        this.timestamp = timestamp;
     }
 
     public String getNote_id() {

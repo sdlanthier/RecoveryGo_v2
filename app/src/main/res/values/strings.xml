@@ -1,29 +1,20 @@
 <resources>
     <string name="app_name">RecoveryGo v2.0</string>
-    <string name="app_version">v2.0</string>
-    <string name="app_description">The Mobile Recovery Resource App</string>
 
     <string name="company_name">Lanthier Technology Consulting Inc.</string>
     <string name="company_address">203 Lakeside Drive, Carleton Place, Ontario, K7C 0C4, Canada</string>
-    <string name="company_phone">+1 613–257–8581</string>
     <string name="company_email">sdlanthier@rogers.com</string>
     <string name="company_url">www.recoverygo.ca</string>
 
-
     <string name="title_activity_book_twelve_steps">12 Steps &amp; 12 Traditions</string>
     <string name="title_activity_book_bigbook_stories">Stories From The Big Book</string>
-
     <string name="title_activity_directory">Treatment Centre Information</string>
     <string name="title_activity_data_input">Recovery Journal</string>
     <string name="title_activity_data_input_nologin">To use the Personal Journal you need to create a RecoveryGo account. Press the back button and select Login from the Main menu.</string>
-
     <string name="title_activity_meeting_input">Edit/Remove Meeting</string>
     <string name="title_activity_meeting_input_txt">Meeting Locations you added to the map can only be changed or removed by you.</string>
     <string name="title_activity_meeting_input_nologin">To Add meetings to the map you need to create a RecoveryGo account. Press the back button and select Login from the Main menu.</string>
-
-    <string name="title_activity_gallery">RecoveryGo v2.0</string>
     <string name="title_activity_meeting_list">Meeting Locations</string>
-
     <string name="title_activity_test">AA Meeting Info</string>
     <string name="title_content_web_txt">Copies of the above books are available at most AA meetings. Ask any member for direction to the librarian.</string>
     <string name="hdr_next_bed">Next Bed</string>
@@ -31,15 +22,10 @@
     <string name="title_activity_locator">Map</string>
     <string name="title_activity_locator_hdr">Meetings Near You…</string>
 
-    <string name="title_activity_about">RecoveryGo</string>
     <string name="title_activity_about_hdr">Created by…</string>
     <string name="title_activity_about_txt1">Shawn D. Lanthier</string>
     <string name="title_activity_about_txt2">This app is dedicated to my Big Brother who has been there for me every day of my life. For that, I am truly grateful.</string>
     <string name="title_activity_about_txt3">A special Thank You to the hard working, professional, caring people at Renascent House on Maddison Ave. Your guidance and compassion helped make this happen.</string>
-
-    <string name="marker_flag_aa">AA</string>
-    <string name="marker_flag_na">NA</string>
-    <string name="marker_flag_al">AL</string>
 
     <string name="locator_flag_aa">AA</string>
     <string name="locator_flag_na">NA</string>
@@ -54,29 +40,11 @@
     <string name="data_sobriety_date">My Recovery Date</string>
     <string name="firebase_user_id">Firebase User ID: 123456789abc</string>
 
-    <string name="prompt_email">Email</string>
-    <string name="prompt_password">Password (optional)</string>
-    <string name="action_sign_in">Sign in or register</string>
-    <string name="action_sign_in_short">Sign in</string>
-    <string name="action_sign_out">Sign out</string>
-    <string name="error_invalid_email">This email address is invalid</string>
-    <string name="error_invalid_password">This password is too short</string>
-    <string name="error_incorrect_password">This password is incorrect</string>
-    <string name="error_field_required">This field is required</string>
-    <string name="resend_verification_email">Resend Verification Email</string>
-    <string name="forgot_password">Forgot Password</string>
-    <string name="register">Register</string>
-    <string name="password">Password</string>
-    <string name="tabian_consulting_logo">Tabian Consulting Logo</string>
-    <string name="email_registration">Email Registration</string>
-    <string name="email">Email</string>
-    <string name="confirm_password">Confirm Password</string>
-
 
     <string name="instruct01">Press BACK button</string>
     <string name="instruct02">Swipe Left\nto follow the readings</string>
     <string name="instruct03">Swipe Left Edge for List</string>
-    <string name="instruct04">Enter Sobriety Date</string>
+    <string name="instruct04">Enter New Date</string>
     <string name="instruct05">Tap to read</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -97,6 +65,20 @@
     <string name="btn_create">Create</string>
     <string name="btn_cancel">Cancel</string>
 
+    <string name="normal_map">Normal</string>
+    <string name="hybrid_map">Hybrid</string>
+    <string name="satellite_map">Satellite</string>
+    <string name="terrain_map">Terrain</string>
+    <string name="lat_long_snippet">Lat: %1$.5f, Long: %2$.5f</string>
+    <string name="lat_snippet">%1$.5f</string>
+    <string name="lng_snippet">%2$.5f</string>
+
+
+    <string name="dropped_pin">Dropped Pin</string>
+    <string name="poi">poi</string>
+    <string name="loading_markers">Placing Meeting Markers…</string>
+
+
     <string name="pdf_bigbookstories">Stories From the Big Book</string>
     <string name="pdf_twelvesteps">The Twelve Steps</string>
 
@@ -105,7 +87,7 @@
 
     <string name="popup_mute">ringer is off\n for the next 60 minutes</string>
 
-    <string name="menu_group2">Meeting Locator</string>
+    <string name="menu_group2">Meeting Locations</string>
     <string name="menu_group3">Other Stuff</string>
     <string name="menu_group4">About</string>
 
@@ -116,12 +98,11 @@
     <string name="menu_item102">Meeting Info</string>
     <string name="menu_item103">Meeting Map</string>
     <string name="menu_item201">Recovery Notes</string>
-    <string name="menu_item202">Sobriety Date</string>
-    <string name="menu_item203">Mobile Reads</string>
-    <string name="menu_item301">Treatment Centres</string>
+    <string name="menu_item202">Recovery Date</string>
+    <string name="menu_item203">Mobile Reading</string>
     <string name="menu_item302">Add Meeting</string>
     <string name="menu_item303">Edit/Remove Meeting</string>
-    <string name="menu_item401">Login/Create Account</string>
+    <string name="menu_item401">Login / Create Account</string>
     <string name="menu_item402">The Developer</string>
 
     <string name="menu_item_web101">AA World Services</string>
@@ -161,8 +142,6 @@
     <string name="entry_waittime">Average Wait Time (Days)</string>
     <string name="entry_gender">Gender of Campus</string>
     <string name="entry_nextavail">MM/DD/YYYY</string>
-
-    <string name="setup_date_hint">Next Available Bed (MM/DD/YYYY)</string>
 
     <string name="emailpassword_status_fmt">SIGNED IN</string>
     <string name="emailpassword_title_text">Email and Password</string>
@@ -205,17 +184,13 @@
     <string name="form2_txt">Meeting information entered here will reflect the information shown on the map marker in the Find Meeting function of this application.</string>
     <string name="form2_field_marker">GeoPoint</string>
     <string name="form2_field_address">Address</string>
-    <string name="form2_field_site">Site Name</string>
     <string name="form2_field_group">Group Name</string>
-    <string name="form2_field_note_hint">eg. MON 8PM</string>
-    <string name="form2_field_org_hint">eg. AA / NA</string>
     <string name="text_placeholder4">Today</string>
 
     <string name="frm_hint_01">Name of Facility</string>
     <string name="frm_hint_02">Street</string>
     <string name="frm_hint_03">City</string>
     <string name="frm_hint_04">Prov</string>
-    <string name="frm_hint_05">Pcode</string>
     <string name="frm_hint_06">Pcode</string>
     <string name="frm_hint_07">Country</string>
     <string name="frm_hint_08">Campus Name</string>
@@ -227,4 +202,5 @@
     <string name="frm_hint_14">Campus Type</string>
     <string name="frm_hint_15">Ttl Beds</string>
     <string name="frm_hint_16">Beds Repair</string>
+    <string name="title_activity_map_test">Map</string>
 </resources>

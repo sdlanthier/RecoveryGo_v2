@@ -11,10 +11,8 @@ import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
@@ -30,6 +28,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -52,7 +51,8 @@ public class LocatorActivity extends FragmentActivity implements
         LocationListener,
         GoogleMap.OnMarkerClickListener {
 
-    private static final String TAG = "rg_Locator";
+    private static final String TAG = "rg_LocatorActivity";
+    
     private FirebaseFirestore   db        = FirebaseFirestore.getInstance();
     private ArrayList<GeoPoint> mMarker   = new ArrayList<>();
     private ArrayList<String>   mNotes    = new ArrayList<>();
@@ -65,15 +65,17 @@ public class LocatorActivity extends FragmentActivity implements
     public  Marker              myMarker;
     private LocationManager     locationManager;
 
-    private static final long MIN_DISTANCE_CHANGE_FOR_UPDATES = 0; // 10 meters
-    private static final long MIN_TIME_BW_UPDATES = 0;//1000 * 60 * 1; // 1 minute
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.d(TAG, "onCreate: started");
+        Log.d(TAG, "onCreate: Started");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_locator);
-
+        Log.d(TAG, "onCreate: calling checkPermissions()");
+        /* ************************************************************************************** */
+        checkPermissions();
+        getLocation();
+        checkUser();
+        /* ************************************************************************************** */
         ImageView logo = findViewById(R.id.logo);
 
         logo.setOnClickListener(new View.OnClickListener() {
@@ -84,122 +86,142 @@ public class LocatorActivity extends FragmentActivity implements
                 startActivity(intent);
             }
         });
-        //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        Log.d(TAG, "onCreate: loading map fragment");
+
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-        Log.d(TAG, "onCreate: Calling Location Manager");
-        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        Criteria criteria = new Criteria();
-        provider = locationManager.getBestProvider(criteria, false);
-        Log.d(TAG, "onCreate: provider = " + provider);
-
-        if ( provider == null) {
-            Log.d(TAG, "onCreate: Provider is null, calling loadSettings()");
-            loadSettings();
-        }
-        Log.d(TAG, "onCreate: Getting Last Known Location");
-        Location location = locationManager.getLastKnownLocation(provider);
-            Log.d(TAG, "onCreate: location = " + location);
-
-            if (location == null) {
-                Log.d(TAG, "onCreate: location is null");
-            }
-        onLocationChanged(location);
-        Log.d(TAG, "onCreate: end");
-        }
-
-    @Override
-    protected void onStart() {
-        Log.d(TAG, "onStart: started");
-        super.onStart();
-        FirebaseApp.initializeApp(this);
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-        FirebaseUser currentUser;
-        currentUser = mAuth.getCurrentUser();
-        updateUI(currentUser);
-        Log.d(TAG, "onStart: end");
-    }
-    public void loadSettings(){
-        Log.d(TAG, "loadSettings: started");
-        Intent intent = new Intent();
-        intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-        Uri uri = Uri.fromParts("package", getPackageName(), null);
-        intent.setData(uri);
-        startActivity(intent);
-        Log.d(TAG, "loadSettings: end");
     }
 
-    public void updateUI(FirebaseUser user) {
-        Log.d(TAG, "updateUI: started");
-        if (user != null) {
-            Log.d(TAG, "updateUI: user != null");
-            return;
-        }
-            Log.d(TAG, "updateUI: user is null calling alert dialog");
+    public void checkPermissions(){
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            Log.d(TAG, "checkPermissions: Manifest Permissions Not Granted");
+
             AlertDialog alertDialog = new AlertDialog.Builder(LocatorActivity.this).create();
-            alertDialog.setTitle("Alert");
-            alertDialog.setMessage("You must have a valid account to use the Meeting Locator.");
+            alertDialog.setTitle("Location");
+            alertDialog.setMessage("Location Service on this device must be turned on.");
             alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             dialog.dismiss();
-                            Intent intent = new Intent(LocatorActivity.this, LoginActivity.class);
+                            Intent intent = new Intent(LocatorActivity.this,MainActivity.class);
                             startActivity(intent);
                         }
                     });
+            alertDialog.show();
 
-        Log.d(TAG, "updateUI: user is: "+user);
-        
+        }else{
+            Log.d(TAG, "checkPermissions: Manifest Permissions Granted");
+        }
+    }
+    public void getLocation(){
+        Log.d(TAG, "getLocation: Getting Location Provider");
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        Criteria criteria = new Criteria();
+        provider = locationManager.getBestProvider(criteria, false);
+
+        if ( provider != null) {
+            Log.d(TAG, "getLocation: Provider = "+provider);
+            Log.d(TAG, "getLocation: Getting Location");
+            Location location = locationManager.getLastKnownLocation(provider);
+
+            if (location != null) {
+                Log.d(TAG, "getLocation: Location = "+location);
+            }
+        }else{
+            AlertDialog alertDialog = new AlertDialog.Builder(LocatorActivity.this).create();
+            alertDialog.setTitle("Location");
+            alertDialog.setMessage("You must allow Location Permission for this app.");
+            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                            Intent intent = new Intent(LocatorActivity.this,MainActivity.class);
+                            startActivity(intent);
+                        }
+                    });
+            alertDialog.show();
+        }
+    }
+    public void checkUser(){
+        FirebaseApp.initializeApp(this);
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser;
+        currentUser = mAuth.getCurrentUser();
+        if (currentUser != null) {
+            Log.d(TAG, "checkUser: User: "+currentUser);
+            return;
+        }else{
+            AlertDialog alertDialog = new AlertDialog.Builder(LocatorActivity.this).create();
+            alertDialog.setTitle("User");
+            alertDialog.setMessage("Please Login or Create new account.");
+            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                            Intent intent = new Intent(LocatorActivity.this,MainActivity.class);
+                            startActivity(intent);
+                        }
+                    });
+            alertDialog.show();
+        }
+        Log.d(TAG, "checkUser: user is null");
     }
 
     public void onMapReady(final GoogleMap googleMap) {
-        Log.d(TAG, "onMapReady: started");
+        Log.d(TAG, "onMapReady: Started");
         if ( Build.VERSION.SDK_INT >= 23 &&
                 ContextCompat.checkSelfPermission( this, android.Manifest.permission.ACCESS_FINE_LOCATION )
-                        != PackageManager.PERMISSION_GRANTED &&
+                        == PackageManager.PERMISSION_GRANTED &&
                 ContextCompat.checkSelfPermission( this, android.Manifest.permission.ACCESS_COARSE_LOCATION)
-                        != PackageManager.PERMISSION_GRANTED) {
-            Log.d(TAG, "onCreate: Build Version >= 23 - Denied");
-            loadSettings();
+                        == PackageManager.PERMISSION_GRANTED) {
+            Log.d(TAG, "onMapReady: Build.VERSION.SDK_INT >= 23 - Granted");
+            Log.d(TAG, "onMapReady: calling centreMap()");
+            centerMap(googleMap);
+            Log.d(TAG, "onMapReady: calling setMarkers()");
+            setMarkers(googleMap);
+            Log.d(TAG, "onMapReady: end");
+        }else{
+            Log.d(TAG, "onMapReady: Build.VERSION.SDK_INT >= 23 - Denied");
         }
-        centerMap(googleMap);
-        setMarkers(googleMap);
-    }
 
-    public void centerMap(final GoogleMap googleMap) {
-        Log.d(TAG, "centerMap: started");
+    }
+    public void centerMap(GoogleMap googleMap) {
+        Log.d(TAG, "centerMap: CALLED");
             Location location = locationManager.getLastKnownLocation(provider);
-            Log.d(TAG, "centerMap: locatio = " + location);
             locationManager.requestLocationUpdates(provider, 5000, 1, this);
-            Log.d(TAG, "centerMap: Update Interval: 5sec - 1km");
             Double myLat = location.getLatitude();
             Double myLng = location.getLongitude();
-            LatLng myposition = new LatLng(myLat, myLng);
-            Log.d(TAG, "centerMap: to: " + myposition);
-            googleMap.getUiSettings().setZoomControlsEnabled(true);
-            googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 
-            myMarker = googleMap.addMarker(new MarkerOptions()
-                    .position(myposition)
-                    .title("Stop hitting yourself! :). Seriously though, stop beating yourself up. You are not alone")
-                    .icon(BitmapDescriptorFactory
-                            .fromResource(R.drawable.mkr_mylocation)));
-            googleMap.moveCamera(CameraUpdateFactory.newLatLng(myposition));
-            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(myposition, 10));
-            Log.d(TAG, "centerMap: end");
-        Log.d(TAG, "centerMap: build <= 23 - end");
+        LatLngBounds.Builder latlngBuilder = new LatLngBounds.Builder();
+
+        LatLng myposition  = new LatLng(myLat, myLng);
+        LatLng myposition1 = new LatLng(myLat+0.01, myLng+0.01);
+        LatLng myposition2 = new LatLng(myLat-0.01, myLng-0.01);
+        latlngBuilder.include(myposition1);
+        latlngBuilder.include(myposition2);
+        googleMap.getUiSettings().setZoomControlsEnabled(true);
+        googleMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+
+        myMarker = googleMap
+                .addMarker(new MarkerOptions()
+                .position(myposition)
+                .title("Stop hitting yourself! :). Seriously though, stop beating yourself up.")
+                .icon(BitmapDescriptorFactory
+                .fromResource(R.drawable.mkr_mylocation)));
+        googleMap.moveCamera(CameraUpdateFactory.newLatLng(myposition));
+        googleMap.animateCamera(CameraUpdateFactory.newLatLngBounds(latlngBuilder.build(), 100));
+
     }
     public void setMarkers(final GoogleMap googleMap){
         Log.d(TAG, "setMarkers: started");
         mMarker.clear();
         showProgressDialog();
-        Log.d(TAG, "setMarkers: db connect to Locations");
         db.collection("locations").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
 
                 if (task.isSuccessful()) {
-                    Log.d(TAG, "onComplete: Success");
                     for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
 
                         mMarker     .add(document.getGeoPoint   ("location"));
@@ -221,11 +243,9 @@ public class LocatorActivity extends FragmentActivity implements
                         String site     = mSite.get(i);
 
                         String snippet = org+" - "+site+"\n"+group+"\n"+note;
-                        // Log.d("rg_", "onComplete: "+snippet);
                         Double mkrLat = marker.getLatitude();
                         Double mkrLng = marker.getLongitude();
                         LatLng mkrposition = new LatLng(mkrLat, mkrLng);
-                        Log.d(TAG, "onComplete: mkrposition = "+mkrposition);
                         switch (org) {
                             case "AL":
                                 googleMap.addMarker(new MarkerOptions().position(mkrposition).title(address).snippet(snippet)
@@ -250,8 +270,7 @@ public class LocatorActivity extends FragmentActivity implements
                     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
                 } else {
                     hideProgressDialog();
-                    Log.d(TAG, "onComplete: Query failed");                }
-
+                }
             }
         });
 
@@ -266,7 +285,8 @@ public class LocatorActivity extends FragmentActivity implements
                 && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return;
         }
-        locationManager.requestLocationUpdates(provider, 90000, 1, this);
+        Log.d(TAG, "onResume: LocationUpdates 10s 1km");
+        locationManager.requestLocationUpdates(provider, 60000, 1, this);
     }
 
     @Override
@@ -279,28 +299,33 @@ public class LocatorActivity extends FragmentActivity implements
     public void onLocationChanged(Location location) {
         Toast.makeText(this, "Location Changed " + provider,
                 Toast.LENGTH_SHORT).show();
+        Log.d(TAG, "onLocationChanged: "+location);
     }
 
     @Override
     public void onStatusChanged(String provider, int status, Bundle extras) {
         Toast.makeText(this, "Status Changed " + provider,
                 Toast.LENGTH_SHORT).show();
+        Log.d(TAG, "onStatusChanged: "+provider +" - status:"+status);
     }
 
     @Override
     public void onProviderEnabled(String provider) {
         Toast.makeText(this, "Enabled new provider " + provider,
                 Toast.LENGTH_SHORT).show();
+        Log.d(TAG, "onProviderEnabled: "+provider);
     }
 
     @Override
     public void onProviderDisabled(String provider) {
         Toast.makeText(this, "Disabled provider " + provider,
                 Toast.LENGTH_SHORT).show();
+        Log.d(TAG, "onProviderDisabled: "+provider);
     }
 
     @Override
     public boolean onMarkerClick(final Marker marker) {
+        Log.d(TAG, "onMarkerClick: Marker "+marker+" click");
         // Toast.makeText(this, marker.getSnippet() + " has been clicked",Toast.LENGTH_LONG).show();
         return false;
     }

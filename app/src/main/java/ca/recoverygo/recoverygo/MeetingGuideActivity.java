@@ -12,7 +12,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -116,15 +115,12 @@ public class MeetingGuideActivity extends AppCompatActivity {
         if((this.getResources().getConfiguration().screenLayout
                 & Configuration.SCREENLAYOUT_SIZE_MASK)
                 < Configuration.SCREENLAYOUT_SIZE_LARGE) {
-            Log.d("rg_MeetingGuide", "setVolumeOn: This is a phone");
             if (am != null) {
                 am.setStreamVolume(AudioManager.STREAM_RING, 9, AudioManager.FLAG_SHOW_UI);
             }
             if (am != null) {
                 am.setStreamVolume(AudioManager.STREAM_NOTIFICATION, 9, AudioManager.FLAG_SHOW_UI);
             }
-        }else{
-            Log.d("rg_MeetingGuide", "setVolumeOn: This is a tablet");
         }
         if (am != null) {
             am.setStreamVolume(AudioManager.STREAM_MUSIC, 9, AudioManager.FLAG_SHOW_UI);
@@ -147,15 +143,12 @@ public class MeetingGuideActivity extends AppCompatActivity {
         if((this.getResources().getConfiguration().screenLayout
                 & Configuration.SCREENLAYOUT_SIZE_MASK)
                 < Configuration.SCREENLAYOUT_SIZE_LARGE) {
-            Log.d("rg_MeetingGuide", "setVolumeOff: This is a phone");
             if (am != null) {
                 am.setStreamVolume(AudioManager.STREAM_RING, 0, AudioManager.FLAG_SHOW_UI);
             }
             if (am != null) {
                 am.setStreamVolume(AudioManager.STREAM_NOTIFICATION, 0, AudioManager.FLAG_SHOW_UI);
             }
-        }else{
-            Log.d("rg_MeetingGuide", "setVolumeOn: This is a tablet");
         }
         if (am != null) {
             am.setStreamVolume(AudioManager.STREAM_MUSIC, 0, AudioManager.FLAG_SHOW_UI);

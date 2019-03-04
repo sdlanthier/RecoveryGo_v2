@@ -1,5 +1,7 @@
 package ca.recoverygo.recoverygo;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -152,6 +154,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
+            AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
+            alertDialog.setCancelable(true);
+            alertDialog.setTitle("Welcome!");
+            alertDialog.setMessage("Please enter a Sobriety Date (aka Freedom Date) to get started.");
+
+            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                    new DialogInterface.OnClickListener() {
+
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent intent = new Intent(MainActivity.this,LocalSetupActivity.class);
+                            startActivity(intent);
+                        }
+                    });
+            alertDialog.show();
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -168,9 +184,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onStart() {
         super.onStart();
-
-
-
         FirebaseApp.initializeApp(this);
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser;
@@ -184,6 +197,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             mFbSignedIn.setVisibility(View.VISIBLE);
         } else {
             mStatusTextView.setText(R.string.signed_out);
+
         }
     }
 
@@ -224,7 +238,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Intent intent = new Intent(MainActivity.this, MeetingInfoActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_103) {
-            Intent intent = new Intent(MainActivity.this, LocatorActivity.class);
+            Intent intent = new Intent(MainActivity.this, MapTestActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_201) {
             Intent intent = new Intent(MainActivity.this, DataInputActivity.class);
@@ -234,9 +248,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             startActivity(intent);
         } else if (id == R.id.nav_203) {
             Intent intent = new Intent(MainActivity.this, WebActivity.class);
-            startActivity(intent);
-        } else if (id == R.id.nav_301) {
-            Intent intent = new Intent(MainActivity.this, DirectoryInputActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_302) {
             Intent intent = new Intent(MainActivity.this, MeetingSetupActivity.class);
@@ -254,5 +265,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void openMap(View view) {
+        Intent intent = new Intent(MainActivity.this, MapTestActivity.class);
+        startActivity(intent);
     }
 }

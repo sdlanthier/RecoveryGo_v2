@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryBackground"
     android:orientation="vertical"
-    tools:context=".LocatorActivity">
+    tools:context=".MapTestActivity">
 
     <fragment
         android:id="@+id/map"
@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="80dp"
-        tools:context=".MapsActivity" />
+        tools:context=".MapTestActivity" />
 
     <ImageView
         android:id="@+id/logo"

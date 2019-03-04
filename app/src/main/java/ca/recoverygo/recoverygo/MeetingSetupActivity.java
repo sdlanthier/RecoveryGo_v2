@@ -10,6 +10,7 @@ import android.location.Address;
 import android.location.Criteria;
 import android.location.Geocoder;
 import android.location.Location;
+import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -21,6 +22,7 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -40,9 +42,7 @@ import java.util.Objects;
 import ca.recoverygo.recoverygo.models.Meeting;
 import ca.recoverygo.recoverygo.system.BaseActivity;
 
-public class MeetingSetupActivity extends BaseActivity {
-
-    private static final String TAG = "rg_MeetingSetup";
+public class MeetingSetupActivity extends BaseActivity implements LocationListener {
 
     public LocationManager locationManager;
     public String provider;
@@ -72,33 +72,9 @@ public class MeetingSetupActivity extends BaseActivity {
         mRadioButton2 = findViewById(R.id.orgna);
         mRadioButton3 = findViewById(R.id.orgal);
 
-
-        AlertDialog alertDialog = new AlertDialog.Builder(MeetingSetupActivity.this).create();
-        alertDialog.setTitle("Note");
-        alertDialog.setMessage("This service uses Last Known Location. Please ensure the address shown is the address you are creating the meeting for.");
-        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
-        alertDialog.show();
         //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        Criteria criteria = new Criteria();
-        criteria.setAccuracy(Criteria.ACCURACY_COARSE);
-        provider = locationManager.getBestProvider(criteria, true);
-
-        Log.d(TAG, "onCreate: provider: " + provider);
-
-        if (provider != null) {
-            Log.d(TAG, "onCreate: provider != null");
-        } else {
-            Log.d(TAG, "onCreate: provider == null");
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
-        }
-
+        showProgressDialog();
+        Log.d("rg_MeetingSetup", "onCreate: Checking Location Permissions");
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
@@ -107,11 +83,30 @@ public class MeetingSetupActivity extends BaseActivity {
             //                                          int[] grantResults)
             // to handle the case where the user grants the permission. See the documentation
             // for ActivityCompat#requestPermissions for more details.
+            Log.d("rg_MeetingSetup", "onCreate: App Permission Not Granted");
             return;
         }
+        Log.d("rg_MeetingSetup", "onCreate: App Permission Granted - Getting Provider");
+
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        Criteria criteria = new Criteria();
+        criteria.setAccuracy(Criteria.ACCURACY_COARSE);
+        provider = locationManager.getBestProvider(criteria, true);
+
+        if (provider == null) {
+            Log.d("rg_MeetingSetup", "onCreate: Prover is null - Exit to MainActivity");
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+        }
+        Log.d("rg_MeetingSetup", "onCreate: Provider: "+provider);
+        Log.d("rg_MeetingSetup", "onCreate: Getting Location ");
+
         Location location = locationManager.getLastKnownLocation(provider);
 
             if (location != null) {
+                hideProgressDialog();
+                Log.d("rg_MeetingSetup", "onCreate: Location: "+location);
+
                 double myLat = location.getLatitude();
                 double myLng = location.getLongitude();
 
@@ -133,10 +128,26 @@ public class MeetingSetupActivity extends BaseActivity {
                     mAddressLine.setText(String.valueOf(addressLine));
                 }
             }else {
-                Log.d(TAG, "onCreate: Location is null");
+                Log.d("rg_MeetingSetup", "onCreate: Location is null");
+                AlertDialog alertDialog = new AlertDialog.Builder(MeetingSetupActivity.this).create();
+                alertDialog.setTitle("Location");
+                alertDialog.setMessage("Unable to Obtain Last Known Location. Ensure that Location Services is turned on for this device..");
+                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                                Intent intent = new Intent(MeetingSetupActivity.this,MainActivity.class);
+                                startActivity(intent);
+                            }
+                        });
+                alertDialog.show();
+
             }
+        Log.d("rg_MeetingSetup", "onCreate: END");
+            hideProgressDialog();
 
     }
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -146,6 +157,8 @@ public class MeetingSetupActivity extends BaseActivity {
         currentUser = mAuth.getCurrentUser();
         updateUI(currentUser);
     }
+
+
     public void updateUI(FirebaseUser user) {
         if (user == null) {
             AlertDialog alertDialog = new AlertDialog.Builder(MeetingSetupActivity.this).create();
@@ -159,48 +172,6 @@ public class MeetingSetupActivity extends BaseActivity {
                             startActivity(intent);
                         }
                     });
-        }
-    }
-
-    public void checkPermission(){
-        if (ActivityCompat.checkSelfPermission(this,
-                Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
-                && ActivityCompat.checkSelfPermission(this,
-                Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-
-            AlertDialog alertDialog = new AlertDialog.Builder(MeetingSetupActivity.this).create();
-            alertDialog.setTitle("Alert");
-            alertDialog.setMessage("You must have Location enabled on your device.");
-            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                            Intent intent = new Intent(MeetingSetupActivity.this, MainActivity.class);
-                            startActivity(intent);
-                        }
-                    });
-            alertDialog.show();
-        }
-    }
-    public void checkUser(){
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
-        if (user != null) {
-            String uid = user.getUid();
-            mUser.setText(uid);
-        } else {
-            AlertDialog alertDialog = new AlertDialog.Builder(MeetingSetupActivity.this).create();
-            alertDialog.setTitle("Alert");
-            alertDialog.setMessage("You must have a valid user account to create a new meeting marker.");
-            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                            Intent intent = new Intent(MeetingSetupActivity.this, LoginActivity.class);
-                            startActivity(intent);
-                        }
-                    });
-            alertDialog.show();
         }
     }
     public void openAlert(View view) {
@@ -255,7 +226,7 @@ public class MeetingSetupActivity extends BaseActivity {
 
         GeoPoint loc        = new GeoPoint(myLat, myLng);
         // **************************************************
-        showSaveDialog();
+        showSaveProgressDialog();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         String userId = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
@@ -281,15 +252,14 @@ public class MeetingSetupActivity extends BaseActivity {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
-                    hideSaveDialog();
+                    hideSaveProgressDialog();
                     Intent intent = new Intent(MeetingSetupActivity.this, LocatorActivity.class);
                     startActivity(intent);
                 } else {
-                    hideSaveDialog();
+                    hideSaveProgressDialog();
                 }
             }
         });
-
     }
     public boolean validateForm() {
         boolean valid = true;
@@ -323,5 +293,69 @@ public class MeetingSetupActivity extends BaseActivity {
             valid = false;
         }
         return !valid;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+        locationManager.requestLocationUpdates(provider, 90000, 1, this);
+        Log.d("rg_MeetingSetup", "onResume - requestLocationUpdates from: "+provider);
+    }
+
+    @Override
+    public void onLocationChanged(Location location) {
+        Toast.makeText(this, "Location Changed", Toast.LENGTH_SHORT).show();
+        Log.d("rg_MeetingSetup", "New Location: "+location);
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        Log.d("rg_MeetingSetup", "onLocationChanged: "+locationManager);
+
+        if (location != null) {
+
+            Log.d("rg_MeetingSetup", "onLocationChanged: Location is not null");
+            double myLat = location.getLatitude();
+            double myLng = location.getLongitude();
+            LatLng myposition = new LatLng(myLat, myLng);
+            mGeo.setText(String.valueOf(myposition));
+
+            Geocoder gcd = new Geocoder(this, Locale.getDefault());
+            List<Address> addresses = null;
+            try {
+                addresses = gcd.getFromLocation(myLat, myLng, 1);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            if (Objects.requireNonNull(addresses).size() > 0) {
+                String addressLine = addresses.get(0).getAddressLine(0);
+
+                city = addresses.get(0).getLocality();
+                mAddressLine = findViewById(R.id.addressLine);
+                mAddressLine.setText(String.valueOf(addressLine));
+
+            }
+
+        }else {
+            Log.d("rg_MeetingSetup", "onLocationChanged: Location is null");
+
+        }
+        hideProgressDialog();
+    }
+
+    @Override
+    public void onStatusChanged(String s, int i, Bundle bundle) {
+
+    }
+
+    @Override
+    public void onProviderEnabled(String s) {
+
+    }
+
+    @Override
+    public void onProviderDisabled(String s) {
+
     }
 }

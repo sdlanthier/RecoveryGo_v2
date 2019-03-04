@@ -1,6 +1,11 @@
 package ca.recoverygo.recoverygo;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.location.Criteria;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -43,6 +48,8 @@ public class MeetingInputActivity extends BaseActivity implements
         SwipeRefreshLayout.OnRefreshListener {
 
     private FirebaseAuth mAuth;
+    public LocationManager locationManager;
+    private String provider;
 
     private View mParentLayout;
     private RecyclerView mRecyclerView;
@@ -66,6 +73,25 @@ public class MeetingInputActivity extends BaseActivity implements
         mFab.setOnClickListener(this);
         mSwipeRefreshLayout.setOnRefreshListener(this);
 
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        Criteria criteria = new Criteria();
+        criteria.setAccuracy(Criteria.ACCURACY_COARSE);
+        provider = locationManager.getBestProvider(criteria, true);
+
+        if (provider == null) {
+            AlertDialog alertDialog = new AlertDialog.Builder(MeetingInputActivity.this).create();
+            alertDialog.setTitle("Note");
+            alertDialog.setMessage("Location Permissions must be allowed for this application. Go to Settings | Apps | RecoveryGo v2.0 | permissions | allow location.");
+            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+            alertDialog.show();
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+        }
     }
 
     @Override
@@ -84,7 +110,6 @@ public class MeetingInputActivity extends BaseActivity implements
         } else {
             FloatingActionButton mFab = findViewById(R.id.fab);
             mNologinMsg = findViewById(R.id.nologinmsg);
-
             mFab.setVisibility(View.GONE);
             mNologinMsg.setVisibility(View.VISIBLE);
         }

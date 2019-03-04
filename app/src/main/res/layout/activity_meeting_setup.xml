@@ -92,18 +92,21 @@
                         android:id="@+id/orgaa"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
                         android:text="@string/rb_option1" />
 
                     <RadioButton
                         android:id="@+id/orgna"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
                         android:text="@string/rb_option2" />
 
                     <RadioButton
                         android:id="@+id/orgal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
                         android:text="@string/rb_option3" />
                 </RadioGroup>
 
@@ -269,7 +272,7 @@
             <TextView
                 android:id="@+id/textView9"
                 android:layout_width="0dp"
-                android:layout_height="96dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="4dp"

@@ -166,24 +166,30 @@
         \n\t\t\t(some meetings close with a prayer.)
         \n\t\t» Fellowship
         \n\t\t\t(chat and talk to fellow members who understand.)
-        \n\nDespite their differences, almost all meetings are structured around the reading of some selection of Alcoholics Anonymous literature, an , a request for newcomers to identify (if they want to), the main body of the meeting (speaker, leader plus participation, etc.), and a closing prayer.
+        \n\n\tDespite their differences, almost all meetings are structured around the reading of some selection of Alcoholics Anonymous literature, an , a request for newcomers to identify (if they want to), the main body of the meeting (speaker, leader plus participation, etc.), and a closing prayer.
     </string>
 
-    <string name="aa_info2_title">Types of AA Meetings</string>
+    <string name="aa_info2_title">Meeting Types</string>
     <string name="aa_info2_ref">alcohol.addictionblog.org/types-of-a-a-meetings</string>
-    <string name="aa_info2">
-        The topic/discussion meeting
-        \n\tThis type of meeting usually ranges in size from five to fifty or sixty, and is structured around a leader, often chosen from within the group, who picks a topic and shares about it for five to fifteen minutes before opening the meeting for general discussion. Some group formats ask the leader to read from AA literature and share in context; others leave the topic to the leader’s discretion. Discussion meetings tend to lie somewhere along a spectrum of “anything goes” to solution-oriented.
-        \n\nThe speaker meeting
-        \n\n\tThese are often big meetings (100-300 people), and are usually open meetings, meaning that one does not have to identify as an alcoholic in order to attend. Speaker meetings are generally structured with little to no time for sharing. Speaker meetings are generally upbeat. Greeters at the door welcome attendees, there’s laughter and applause, and newcomers are not required to participate beyond the voluntary raising of their hands when the leader asks if anyone is in their first thirty days.
-        \n\tThe larger speaker meetings feature speakers who have established track records for delivering “pitches” that contain some combination of entertainment value (wild story, humor, style of delivery), inspiration (describing a seemingly impossible transformation, thus transmitting the possibility of hope for the newcomer), and instruction (describing the actions they took to bring about the transformation).
-        \n\nThe Big Book study
-        \n\n\tThe main text in AA is also called Alcoholics Anonymous, but is affectionately known as The Big Book. Groups often organize in order to read and discuss the book, hoping to give the newcomer an understanding of what the alcoholic’s problem is and what solution is being presented. Usually, each member reads a paragraph in turn, and the book gets read sequentially for several pages — perhaps a half chapter at a time. After a reading, members share their experience or thoughts on the material just read. Within the world of Big Book studies, there are some groups that differentiate themselves as hardcore, intent on preserving the process of the Steps as the original members intended.
-        \n\n12 Step studies
-        \n\n\tLike the Big Book study, but using the book Twelve Steps and Twelve Traditions. </string>
+
+    <string name="aa_info2a_hdr">Topic / Discussion Meetings</string>
+    <string name="aa_info2a">\tThis type of meeting usually ranges in size from five to fifty or sixty, and is structured around a leader, often chosen from within the group, who picks a topic and shares about it for five to fifteen minutes before opening the meeting for general discussion. Some group formats ask the leader to read from AA literature and share in context; others leave the topic to the leader’s discretion. Discussion meetings tend to lie somewhere along a spectrum of “anything goes” to solution-oriented.</string>
+
+    <string name="aa_info2b_hdr">Speaker Meetings</string>
+    <string name="aa_info2b">\tThese are often big meetings (100-300 people), and are usually open meetings, meaning that one does not have to identify as an alcoholic in order to attend. Speaker meetings are generally structured with little to no time for sharing. Speaker meetings are generally upbeat. Greeters at the door welcome attendees, there’s laughter and applause, and newcomers are not required to participate beyond the voluntary raising of their hands when the leader asks if anyone is in their first thirty days.
+          \n\n\tThe larger speaker meetings feature speakers who have established track records for delivering “pitches” that contain some combination of entertainment value (wild story, humor, style of delivery), inspiration (describing a seemingly impossible transformation, thus transmitting the possibility of hope for the newcomer), and instruction (describing the actions they took to bring about the transformation).</string>
+
+    <string name="aa_info2c_hdr">Big Book Study Meetings</string>
+    <string name="aa_info2c">\tThe main text in AA is also called Alcoholics Anonymous, but is affectionately known as The Big Book. Groups often organize in order to read and discuss the book, hoping to give the newcomer an understanding of what the alcoholic’s problem is and what solution is being presented. Usually, each member reads a paragraph in turn, and the book gets read sequentially for several pages — perhaps a half chapter at a time. After a reading, members share their experience or thoughts on the material just read. Within the world of Big Book studies, there are some groups that differentiate themselves as hardcore, intent on preserving the process of the Steps as the original members intended.</string>
+
+    <string name="aa_info2d_hdr">Twelve Step Study Meetings</string>
+    <string name="aa_info2d">Like the Big Book study, but using the book Twelve Steps and Twelve Traditions.</string>
+
+    <string name="aa_info2e_hdr">Grapevine Story Meetings</string>
+    <string name="aa_info2e">A Member reads a selected story from The Grapevine magazine. Each member has a chance to share how they may or may not relate to the subject.</string>
 
     <string name="aa_info3_title">Why do AA members use tokens, medallions, and chips to mark sobriety? When did that practice start?</string>
-    <string name="aa_info3_ref">https://www.aa.org/pages/en_US/frequently-asked-questions-about-aa-history#siete</string>
+    <string name="aa_info3_ref">https://www.aa.org/pages/en_US/frequently-asked-questions-about-aa-history</string>
     <string name="aa_info3">
         \tThe chip system is thought to have begun in Indianapolis in 1942. The tradition is believed to have started with Doherty S., who originally brought AA to Indianapolis. Doherty himself, in a letter to Bill, seems to indicate the practice originated in Indianapolis in 1942.
         \n\n\tNell Wing wrote in 1962 about the history of the chip system: "…The chip system might have begun in Indianapolis….reference was made in a letter from Doherty to the start of giving out ‘chips’ and ‘tokens’. This was in 1942. I imagine this would be about right, because most of the early groups started in 1940 and it would take about a couple of years to think of anniversaries and marking any time of sobriety. I asked Bill about this and his memory is that the system started in Indianapolis.

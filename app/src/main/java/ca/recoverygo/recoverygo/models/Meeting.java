@@ -29,17 +29,17 @@ public class Meeting implements Parcelable {
     }
 
     private Meeting(Parcel in) {
-        groupname = in.readString();
-        site = in.readString();
-        org = in.readString();
-        note = in.readString();
-        user = in.readString();
-        int[] data = new int[2];
-        in.readIntArray(data);
-        location = new GeoPoint(data[0], data[1]);
+        groupname   = in.readString();
+        site        = in.readString();
+        org         = in.readString();
+        note        = in.readString();
+        user        = in.readString();
         location_id = in.readString();
-        address = in.readString();
-        city = in.readString();
+        address     = in.readString();
+        city        = in.readString();
+        int[] data  = new int[2];
+        in.readIntArray(data);
+        location    = new GeoPoint(data[0], data[1]);
     }
 
     public static final Creator<Meeting> CREATOR = new Creator<Meeting>() {

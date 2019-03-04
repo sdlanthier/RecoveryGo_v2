@@ -41,11 +41,13 @@ public class LocalSetupActivity extends AppCompatActivity {
         // **************************************************
 
         FileInputStream fis = null;
+
         try {
             fis = openFileInput(FILE_NAME);
-            InputStreamReader isr = new InputStreamReader(fis);
-            BufferedReader br = new BufferedReader(isr);
-            StringBuilder sb = new StringBuilder();
+
+            InputStreamReader isr   = new InputStreamReader(fis);
+            BufferedReader br       = new BufferedReader(isr);
+            StringBuilder sb        = new StringBuilder();
             String text;
 
             while ((text = br.readLine()) != null) {
@@ -78,6 +80,9 @@ public class LocalSetupActivity extends AppCompatActivity {
             }
 
         } catch (FileNotFoundException e) {
+
+            //TODO: Welcome scree activity here.
+
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
@@ -118,7 +123,6 @@ public class LocalSetupActivity extends AppCompatActivity {
         startActivity(intent);
 
     }
-
     public void load(View v) {
         FileInputStream fis = null;
         try {
@@ -147,5 +151,12 @@ public class LocalSetupActivity extends AppCompatActivity {
                 }
             }
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(LocalSetupActivity.this, MainActivity.class);
+        startActivity(intent);
     }
 }
